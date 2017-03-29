@@ -1,1 +1,6 @@
-https://en.wikipedia.org/wiki/Digital_Signal_3
+This link is a quick fact sheet of T1s/DS1s and its hierarchy 
+https://www.dcbnet.com/notes/9611t1.html
+
+
+This link has the formula for T1 bandwidth about half way down.
+https://en.wikipedia.org/wiki/Digital_Signal_1
