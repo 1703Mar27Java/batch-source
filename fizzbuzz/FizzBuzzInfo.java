@@ -11,8 +11,8 @@ public class FizzBuzzInfo implements Serializable {
 	private int maxValue;
 	private int a;
 	private int b;
-	
-	public FizzBuzzInfo(int minValue, int maxValue, int a, int b){
+
+	public FizzBuzzInfo(int minValue, int maxValue, int a, int b) {
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 		this.a = a;
@@ -86,6 +86,5 @@ public class FizzBuzzInfo implements Serializable {
 	public String toString() {
 		return "FizzBuzzInfo [minValue=" + minValue + ", maxValue=" + maxValue + ", a=" + a + ", b=" + b + "]";
 	}
-	
-	
+
 }
