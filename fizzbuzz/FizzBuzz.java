@@ -12,6 +12,8 @@ public class FizzBuzz {
 	public static void main(String[] args) {
 		FizzBuzzInfo fbi = getInput();
 		String output = fizzBuzz(fbi);
+		System.out.println(output);
+		
 		serializeObject("src/serializedThings/FizzBuzzSerial", fbi);
 		writeToFile("src/writtenThings/FizzBuzzHumanReadable", output);
 	}
@@ -31,21 +33,15 @@ public class FizzBuzz {
 			newLine++;
 			if (i % fbi.getA() == 0 && i % fbi.getB() == 0) {
 				sb.append("fizzbuzz ");
-				System.out.print("fizzbuzz ");
 			} else if (i % fbi.getA() == 0) {
 				sb.append("fizz ");
-				System.out.print("fizz ");
 			} else if (i % fbi.getB() == 0) {
 				sb.append("buzz ");
-				System.out.print("buzz ");
 			} else {
 				sb.append(i + " ");
-				System.out.print(i + " ");
 			}
-
 			if (newLine == 20) {
 				sb.append('\n');
-				System.out.println();
 				newLine = 0;
 			}
 
