@@ -60,4 +60,7 @@ class Movie implements Comparable<Movie> {
 		this.year = year;
 	}
 	
+	//http://www.geeksforgeeks.org/comparable-vs-comparator-in-java/
+	//for an example of Comparator (more free comparison methods!) 
+	
 }

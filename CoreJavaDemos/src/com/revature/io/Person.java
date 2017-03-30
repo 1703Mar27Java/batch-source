@@ -34,9 +34,9 @@ public class Person implements Serializable {
 		return age;
 	}
 
-	public void setAge(int age) {
+	/*public void setAge(int age) {
 		this.age = age;
-	}
+	}*/
 
 	public String getSsn() {
 		return ssn;
