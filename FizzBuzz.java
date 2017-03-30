@@ -43,18 +43,18 @@ public class FizzBuzz {
 			{
 				//buff1.append("fizz");
 				//buff2.append("buzz");
-				fw.write("fizzbuzz");
+				fw.write("fizzbuzz\n");
 				
 			}
 			else if((i % value1) == 0)
 			{
 				//buff1.append("fizz");
-				fw.write("fizz");
+				fw.write("fizz\n");
 			}
 			else if((i % value2) == 0)
 			{
 				//buff2.append("buzz");
-				fw.write("buzz");
+				fw.write("buzz\n");
 			}
 			else{
 				fw.write(new Integer(i).toString());
