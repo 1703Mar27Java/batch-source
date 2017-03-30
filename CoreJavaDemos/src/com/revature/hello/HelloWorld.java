@@ -1,5 +1,7 @@
 package com.revature.hello;
 
+import com.revature.fruit.*;
+
 public class HelloWorld {
 
 	static final String THIS_IS_A_CONSTANT = "this is a constant";
@@ -23,6 +25,8 @@ public class HelloWorld {
 		Object o = new Object();
 		System.out.println(o.toString()); //best practices to override this! 
 		System.out.println(b.toString());
+		
+		com.revature.fruit.Apple a = new com.revature.fruit.Apple();
 	}
 
 }
