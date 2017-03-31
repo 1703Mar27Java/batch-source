@@ -1,0 +1,10 @@
+2017-03-31 16:12:20 TRACE root:11 - Trace msg
+2017-03-31 16:12:20 DEBUG root:12 - Debug msg
+2017-03-31 16:12:20 INFO  root:13 - Info msg
+2017-03-31 16:12:20 WARN  root:14 - Warn msg
+2017-03-31 16:12:20 ERROR root:15 - Error msg
+2017-03-31 16:12:20 FATAL root:16 - Fatal msg
+2017-03-31 16:12:20 FATAL root:21 - / by zero
+java.lang.ArithmeticException: / by zero
+	at com.revature.logging.Driver.exceptionThrowingGarbage(Driver.java:26)
+	at com.revature.logging.Driver.main(Driver.java:15)
