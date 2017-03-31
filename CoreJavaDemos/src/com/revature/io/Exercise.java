@@ -104,6 +104,8 @@ public class Exercise {
 		FizzBuzzInfo fizzBuzz = new FizzBuzzInfo(fizzBuzzList);
 		
 		writeObject(fileName, fizzBuzz);
+		
+		scan.close();
 	}
 	
 	/**
