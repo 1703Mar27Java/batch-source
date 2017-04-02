@@ -1,0 +1,27 @@
+2017-03-31 15:51:43 TRACE root:10 - Trace msg
+2017-03-31 15:51:43 DEBUG root:11 - Debug msg
+2017-03-31 15:51:43 INFO  root:12 - Info msg
+2017-03-31 15:51:43 WARN  root:13 - Warn msg
+2017-03-31 15:51:43 ERROR root:14 - Error msg
+2017-03-31 15:51:43 FATAL root:15 - Fatal msg
+2017-03-31 16:01:41 TRACE root:10 - Trace msg
+2017-03-31 16:01:41 DEBUG root:11 - Debug msg
+2017-03-31 16:01:41 INFO  root:12 - Info msg
+2017-03-31 16:01:41 WARN  root:13 - Warn msg
+2017-03-31 16:01:41 ERROR root:14 - Error msg
+2017-03-31 16:01:41 FATAL root:15 - Fatal msg
+2017-03-31 16:02:01 TRACE root:10 - Trace msg
+2017-03-31 16:02:01 DEBUG root:11 - Debug msg
+2017-03-31 16:02:01 INFO  root:12 - Info msg
+2017-03-31 16:02:01 WARN  root:13 - Warn msg
+2017-03-31 16:02:01 ERROR root:14 - Error msg
+2017-03-31 16:02:01 FATAL root:15 - Fatal msg
+2017-03-31 16:09:11 FATAL root:19 - / by zero
+java.lang.ArithmeticException: / by zero
+	at com.revature.logging.Driver.exceptionThrowingGarbage(Driver.java:20)
+	at com.revature.logging.Driver.main(Driver.java:12)
+2017-03-31 16:10:33 FATAL root:15 - Fatal msg
+2017-03-31 16:10:33 FATAL root:19 - / by zero
+java.lang.ArithmeticException: / by zero
+	at com.revature.logging.Driver.exceptionThrowingGarbage(Driver.java:20)
+	at com.revature.logging.Driver.main(Driver.java:12)
