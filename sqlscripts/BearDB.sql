@@ -99,11 +99,18 @@ ALTER TABLE BEAR_BEEHIVE ADD CONSTRAINT FK_Beehive_Id
    Populate Tables
 ********************************************************************************/
 INSERT INTO CAVE (Cave_Id, Cave_Name, Max_Bears) VALUES (1, 'Yosemite', 2);
+INSERT INTO BEEHIVE VALUES (1, 35);
+INSERT INTO BEEHIVE VALUES (2, 50);
 INSERT INTO BEAR_TYPE (Bear_Type_Id, Bear_Type_Name) VALUES (1, 'Picnic');
 INSERT INTO BEAR (Bear_Id, Bear_Name, Bear_Age, Bear_Weight, Bear_Type_Id, Cave_Id) VALUES (1, 'Yogi', 10, 150, 1, 1);
 INSERT INTO BEAR (Bear_Id, Bear_Name, Bear_Age, Bear_Weight, Bear_Type_Id, Cave_Id) VALUES (2, 'Boo Boo', 8, 50, 1, 1);
 
+INSERT INTO BEAR_BEEHIVE VALUES(1, 2);
+
 SELECT * FROM BEAR;
+SELECT * FROM CAVE;
+SELECT * FROM BEEHIVE;
+SELECT * FROM BEAR_BEEHIVE;
 
 commit;
 exit;
