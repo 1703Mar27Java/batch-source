@@ -170,9 +170,25 @@ END;
 
 /*Task – Create a transaction that given a invoiceId will delete that invoice */
 /*(There may be constraints that rely on this, find out how to resolve them). */
+CREATE OR REPLACE PROCEDURE DELETE_INVOICE(I_ID IN NUMBER)
+IS
+BEGIN
+    DELETE FROM INVOICELINE
+    WHERE INVOICEID =
+        (SELECT INVOICEID FROM INVOICE WHERE INVOICEID = I_ID);
+    DELETE FROM INVOICE WHERE INVOICEID = I_ID;
+    COMMIT;
+END;  
+
 
 /*Task – Create a transaction nested within a stored procedure  */
 /*that inserts a new record in the Customer table */
+CREATE OR REPLACE PROCEDURE INSERT_CUSTOMER(C_ID IN NUMBER, C_FIRST IN VARCHAR2, C_LAST IN VARCHAR2, C_EMAIL IN VARCHAR2 )
+IS
+BEGIN
+    INSERT INTO CUSTOMER (CUSTOMERID, FIRSTNAME, LASTNAME, EMAIL) VALUES (C_ID, C_FIRST, C_LAST, C_EMAIL);
+    COMMIT;
+END;  
 
 /*6.0 Triggers */
 /*In this section you will create various kinds of triggers that work */ 
@@ -213,19 +229,34 @@ END;
 /*7.1 INNER */
 /*Task – Create an inner join that joins customers and orders and */
 /*specifies the name of the customer and the invoiceId. */
+SELECT FIRSTNAME, LASTNAME, INVOICEID
+FROM CUSTOMER INNER JOIN INVOICE
+ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
 
 /*7.2 OUTER*/
 /*Task – Create an outer join that joins the customer and invoice table, */
 /*specifying the CustomerId, firstname, lastname, invoiceId, and total.*/
+SELECT CUSTOMER.CUSTOMERID, FIRSTNAME, LASTNAME, INVOICEID, TOTAL
+FROM CUSTOMER FULL OUTER JOIN INVOICE
+ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
 
 /*7.3 RIGHT*/
 /*Task – Create a right join that joins album and artist specifying artist name and title.*/
+SELECT NAME, TITLE
+FROM ALBUM RIGHT JOIN ARTIST 
+ON ALBUM.ARTISTID = ARTIST.ARTISTID; 
 
 /*7.4 CROSS*/
 /*Task – Create a cross join that joins album and artist and sorts by artist name in ascending order.*/
+SELECT * 
+FROM ALBUM CROSS JOIN ARTIST
+ORDER BY NAME ASC;
 
 /*7.5 SELF*/
 /*Task – Perform a self-join on the employee table, joining on the reportsto column.*/
+SELECT *
+FROM EMPLOYEE E1 INNER JOIN EMPLOYEE E2
+ON E1.REPORTSTO = E2.REPORTSTO;
 
 /*9.0 Administration*/
 /*In this section you will be creating backup files of your database. */
