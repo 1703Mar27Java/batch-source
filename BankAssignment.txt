@@ -28,4 +28,6 @@ Bonus:
 A user's transactions are recorded.
 A user may view transaction history. 
 
+Presenatations Tuesday Apr. 11, Java code and database creation file due 5pm Monday, Apr. 10. 
+
 
