@@ -334,10 +334,4 @@ After you create the backup file you will also restore the database.
 Task – Create a .bak file for the Chinook database.
 *******************************************************************************/
 
-RMAN> CONNECT TARGET /
-RMAN> BACKUP DATABASE PLUS ARCHIVELOG;
-
-BACKUP 
-  INCREMENTAL LEVEL 1 CUMULATIVE
-  SKIP INACCESSIBLE 
-  DATABASE;
+--Exported to Chinook.sql, renamed Chinook.bak
