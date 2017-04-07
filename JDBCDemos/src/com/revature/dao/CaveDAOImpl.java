@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.io.IOException;
 import java.sql.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -100,13 +101,12 @@ public class CaveDAOImpl implements CaveDAO {
 	public void executeHelloWorld() {
 		CallableStatement cs = null;
 		try{
-			Connection con = ConnectionUtil.getConnection();
-			cs = con.prepareCall("{call HELLO_WORLD_PROCEDURE()");
-			System.out.println(cs);
-			//cs.registerOutParameter(1, java.sql.Types.VARCHAR);
-			boolean b = cs.execute();
-			System.out.println(b);
-		}catch(SQLException e){
+			Connection con = ConnectionUtil.getConnectionFromFile("connection.properties");
+			cs = con.prepareCall("{call HELLO_WORLD_PROCEDURE(?)");
+			cs.registerOutParameter(1, java.sql.Types.VARCHAR);
+			cs.execute();
+			System.out.println(cs.getString(1));
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 		

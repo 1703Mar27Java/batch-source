@@ -14,18 +14,25 @@ public class MainClass {
 		
 		CaveDAOImpl dao = new CaveDAOImpl();
 			
-			/*Connection con = ConnectionUtil.getConnection();
-			System.out.println(con.toString());
+			/*Connection con;
+			try {
+				con = ConnectionUtil.getConnectionFromFile("connection.properties");
+				System.out.println(con.toString());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
+		
 			
-			Cave c = new Cave("BAT",9);
+			/*Cave c = new Cave("BAT",9);
 			
 			dao.createCave(c);
 			
 			Cave d = new Cave("YELLOWSTONE",9);
 			dao.createCavePS(d);*/
 			
-			List<Cave> c = dao.retrieveAllCaves();
-			System.out.println(c.toString());
+			/*List<Cave> c = dao.retrieveAllCaves();
+			System.out.println(c.toString());*/
 			
 			dao.executeHelloWorld();
 			
