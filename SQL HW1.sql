@@ -53,19 +53,74 @@ DELETE FROM invoice WHERE CUSTOMERID=32;
 
 /*3.1 System Defined Functions */
 /*Task – Create a function that returns the current time. */
+CREATE OR REPLACE FUNCTION FN_TIME 
+RETURN TIMESTAMP AS X TIMESTAMP;
+BEGIN
+ SELECT CURRENT_TIMESTAMP INTO X FROM DUAL;
+ RETURN X;
+END;
 
 /*Task – create a function that returns the length of a mediatype from the mediatype table */
+CREATE OR REPLACE FUNCTION FN_LENGTH (X IN NUMBER)
+RETURN NUMBER AS NUM_LENGTH NUMBER;
+BEGIN
+  SELECT LENGTH(NAME) INTO NUM_LENGTH FROM MEDIATYPE WHERE MEDIATYPEID=X;
+  RETURN NUM_LENGTH;
+END;
 
 /*3.2 System Defined Aggregate Functions */
 /*Task – Create a function that returns the average total of all invoices */
+CREATE OR REPLACE FUNCTION FN_AVER
+RETURN NUMBER AS AVER NUMBER;
+BEGIN
+  SELECT AVG(TOTAL) INTO AVER FROM INVOICE;
+  RETURN AVER;
+END;
 
 /*Task – Create a function that returns the most expensive track */
+CREATE OR REPLACE FUNCTION FN_MAX_TRACK
+RETURN NUMBER AS MAX_TRACK NUMBER;
+BEGIN
+  SELECT MAX(UNITPRICE) INTO MAX_TRACK FROM TRACK;
+  RETURN MAX_TRACK;
+END;
 
 /*3.3 User Defined Scalar Functions */
 /*Task – Create a function that returns the average price of invoiceline items in the invoiceline table */
+CREATE OR REPLACE FUNCTION FN_AVER_INVOICELINE
+RETURN NUMBER AS AVER NUMBER;
+BEGIN
+  SELECT AVG(UNITPRICE) INTO AVER FROM INVOICELINE;
+  RETURN AVER;
+END;
 
 /*3.4 User Defined Table Valued Functions */
 /*Task – Create a function that returns all employees who are born after 1968. */
+CREATE OR REPLACE FUNCTION FN_BORN_AFTER_1968
+RETURN SYS_REFCURSOR AS S SYS_REFCURSOR;
+BEGIN
+  OPEN S
+  FOR SELECT LASTNAME, FIRSTNAME, BIRTHDATE FROM EMPLOYEE WHERE BIRTHDATE>'01-JAN-68';
+  RETURN S;
+END;
+--SAMPLE FUNCTION TO ITERATE THROUGH THE RESULTS OF THE ABOVE FUNCTION
+/*
+DECLARE
+  S SYS_REFCURSOR;
+  SOME_FIRST EMPLOYEE.FIRSTNAME%TYPE;
+  SOME_LAST EMPLOYEE.LASTNAME%TYPE;
+  SOME_BIRTH EMPLOYEE.BIRTHDATE%TYPE;
+BEGIN
+  S:=FN_BORN_AFTER_1968();
+  DBMS_OUTPUT.PUT_LINE('LIST OF ALL EMPLOYEES BORN AFTER 1968: ');
+  LOOP
+    FETCH S INTO SOME_FIRST, SOME_LAST, SOME_BIRTH;
+    EXIT WHEN S%NOTFOUND;
+    DBMS_OUTPUT.PUT_LINE(SOME_FIRST || ' ' || SOME_LAST || ', '|| SOME_BIRTH || '.');
+  END LOOP;
+  CLOSE S;
+END;
+*/
 
 /*4.0 Stored Procedures */
 /*In this section you will be creating and executing stored procedures. */ 
@@ -73,14 +128,41 @@ DELETE FROM invoice WHERE CUSTOMERID=32;
 
 /*4.1 Basic Stored Procedure */
 /*Task – Create a stored procedure that selects the first and last names of all the employees. */
-
+CREATE OR REPLACE PROCEDURE SP_GET_ALL_EMPLOYEES(S OUT SYS_REFCURSOR)
+IS
+BEGIN
+OPEN S  FOR
+SELECT FIRSTNAME, LASTNAME FROM EMPLOYEE;
+END;
 /*4.2 Stored Procedure Input Parameters */
 /*Task – Create a stored procedure that updates the personal information of an employee. */
+CREATE OR REPLACE PROCEDURE SP_UPDATE_EMPLOYEE
+(EID NUMBER, LNAME VARCHAR, FNAME VARCHAR, ADDR VARCHAR, CTY VARCHAR, STAT VARCHAR, CNTY VARCHAR, POSTAL VARCHAR, PNUM VARCHAR, EML VARCHAR)
+IS
+BEGIN
+  
+  UPDATE EMPLOYEE 
+  SET LASTNAME=LNAME, FIRSTNAME=FNAME, ADDRESS=ADDR, CITY=CTY, STATE=STAT, COUNTRY=CNTY, POSTALCODE=POSTAL, PHONE=PNUM, EMAIL=EML 
+  WHERE EMPLOYEE.EMPLOYEEID=EID;
+  COMMIT;
+END;
 
 /*Task – Create a stored procedure that returns the managers of an employee. */
+CREATE OR REPLACE PROCEDURE SP_GET_MANAGER (EID NUMBER, S OUT SYS_REFCURSOR)
+IS
+BEGIN
+  OPEN S FOR
+  SELECT REPORTSTO FROM EMPLOYEE WHERE EMPLOYEE.EMPLOYEEID=EID;
+END;
 
 /*4.3 Stored Procedure Output Parameters */
 /*Task – Create a stored procedure that returns the name and company of a customer. */
+CREATE OR REPLACE PROCEDURE SP_GET_CUST_INFO (CID NUMBER, S OUT SYS_REFCURSOR)
+IS
+BEGIN
+  OPEN S FOR
+  SELECT FIRSTNAME, LASTNAME, COMPANY FROM CUSTOMER WHERE CUSTOMER.CUSTOMERID=CID;
+END;
 
 /*5.0 Transactions */
 /*In this section you will be working with transactions. */ 
@@ -96,17 +178,33 @@ DELETE FROM invoice WHERE CUSTOMERID=32;
 /*In this section you will create various kinds of triggers that work */ 
 /*when certain DML statements are executed on a table. */
 
-
-
 /*6.1 AFTER/FOR */
 /*Task - Create an after insert trigger on the employee table  */
 /*fired after a new record is inserted into the table. */
+CREATE OR REPLACE TRIGGER TR_AFTER_INSERT_EMPLOYEE
+AFTER INSERT ON EMPLOYEE
+FOR EACH ROW
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('UPDATED EMPLOYEE. ');
+END;
 
 /*Task – Create an after update trigger on the album table  */
 /*that fires after a row is inserted in the table */
+CREATE OR REPLACE TRIGGER TR_AFTER_UPDATE_ALBUM
+AFTER UPDATE ON ALBUM
+FOR EACH ROW
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('UPDATED ALBUM. ');
+END;
 
 /*Task – Create an after delete trigger on the customer table  */
 /*that fires after a row is deleted from the table. */
+CREATE OR REPLACE TRIGGER TR_AFTER_DELETE_CUSTOMER
+AFTER DELETE ON CUSTOMER
+FOR EACH ROW
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('DELETED A CUSTOMER. ');
+END;
 
 /*7.0 JOINS */
 /*In this section you will be working with combing various tables through the use of joins. */
