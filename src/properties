@@ -1,0 +1,3 @@
+jdbc:oracle:thin:@testdb.ccr7b4olo7hr.us-west-2.rds.amazonaws.com:1521:ORCL
+master
+p4ssw0rd
