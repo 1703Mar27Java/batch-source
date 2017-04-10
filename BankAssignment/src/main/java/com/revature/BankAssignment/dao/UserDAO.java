@@ -11,7 +11,7 @@ public void Logout();
 public void CreateNewAccount(User user);
 public void UpdateAccount(int accountNumber);
 public void DeleteAccount(User user,int accountNumber);
-public void ViewAllAccounts();
+public void ViewAllAccounts(User user);
 public void Deposit(User user,int accountNumber,double amount);
 public void Withdraw(User user,int accountNumber,double amount);
 }

@@ -26,6 +26,12 @@ public void setBalance(double balance) {
 public String toString() {
 	return "BankAccount [id=" + id + ", accountNumber=" + accountNumber + ", balance=" + balance + "]";
 }
+
+public BankAccount(double balance){
+	super();
+	this.balance=balance;
+}
+
 public BankAccount(int id, int accountNumber, double balance) {
 	super();
 	this.id = id;

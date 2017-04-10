@@ -10,7 +10,8 @@ import java.sql.SQLException;
 import java.util.Properties;
 import java.util.Scanner;
 
-
+import com.revature.BankAssignment.dao.BankDAOImpl;
+import com.revature.BankAssignment.dao.SuperUser;
 import com.revature.BankAssignment.dao.UserDAO;
 import com.revature.BankAssignment.dao.UserDAOImpl;
 import com.revature.BankAssignment.domain.User;
@@ -38,11 +39,19 @@ public class Main {
 		userDAO.DeleteAccount(user, accountNumber);
 	}
 
-	public static void Deposit(){
+	public static void Deposit(User user){
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Enter the number of the account you wish to deposit money into");
+		int accountNumber= scanner.nextInt();
+		System.out.println("Enter the amount to be deposited");
+		double amount= scanner.nextDouble();
+		
+		UserDAOImpl userDAO=new UserDAOImpl();
+		userDAO.Deposit(user, accountNumber, amount);
 		
 	}
 
-	public static void Withdraw(){
+	public static void Withdraw(User user){
 		
 	}
 	
@@ -78,11 +87,11 @@ public class Main {
 			System.out.println("5: Make a withdrawl");
 			System.out.println("6: Logout");
 			switch(scanner.nextInt()){
-			case 1: userDAO.ViewAllAccounts();break;
+			case 1: userDAO.ViewAllAccounts(user);break;
 			case 2: userDAO.CreateNewAccount(user); break;
 			case 3: DeleteAccount(user);break;
-			case 4: Deposit();break;
-			case 5: Withdraw();break;
+			case 4: Deposit(user);break;
+			case 5: Withdraw(user);break;
 			case 6: loop=false;Logout();break;
 			default: System.out.println("Invalid input please enter again"); continue;
 			
@@ -123,6 +132,42 @@ public class Main {
 	}
 	
 	public static void LoginAsSuperuser(){
+		
+		
+		try {
+			SuperUser.login();
+			
+			
+			Scanner scanner=new Scanner(System.in);
+			
+			System.out.println("Welcome SuperUser please select an option");
+			
+			boolean loop=true;
+			
+			while(loop){
+				System.out.println("1: View all users");
+				System.out.println("2: Create a user");
+				System.out.println("3: Update a user");
+				System.out.println("4: Delete a user");
+				System.out.println("5: Logout");
+				switch(scanner.nextInt()){
+				case 1:SuperUser.ViewAll();break;
+				case 2:SuperUser.Create();break;
+				case 3: SuperUser.Update();break;
+				case 4: SuperUser.Delete();break;
+				case 5: loop=false;break;
+				default: System.out.println("Invalid input please enter again");
+				}
+			}
+			
+			
+		} catch (IncorrectPassword e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
 		
 	}
 	
