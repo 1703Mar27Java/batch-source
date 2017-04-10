@@ -1,0 +1,3 @@
+url = jdbc:oracle:thin:@pbjbank.ctct7rg6v32d.us-west-2.rds.amazonaws.com:1521:ORCL
+username = Admin
+password = siLLyboy
