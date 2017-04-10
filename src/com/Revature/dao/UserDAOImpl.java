@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 			System.out.println(cstmt.getString(3));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Error in adding funds");
 		}
 	}
 
@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
 			System.out.println(cstmt.getString(3));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Error in removing funds");
 		}
 	}
 
@@ -103,7 +103,7 @@ public class UserDAOImpl implements UserDAO {
 			System.out.println(cstmt.getString(4));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Error in creating an account.");
 		}
 	}
 
@@ -121,7 +121,7 @@ public class UserDAOImpl implements UserDAO {
 			System.out.println(cstmt.getString(2));
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("Error in deleting an account.");
 		}
 
 	}
