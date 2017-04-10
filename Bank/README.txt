@@ -1,0 +1,1 @@
+type "admin" in starting screen to go to super user options
