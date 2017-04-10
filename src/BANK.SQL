@@ -3,20 +3,20 @@ Bank Assignment
 
 Console application: 
 
-DONE A registered user can login with their username and password 
-DONE An unregistered user can register by creating a username and password 
+ A registered user can login with their username and password 
+ An unregistered user can register by creating a username and password 
 A superuser can view, create, update, and delete all users.
 
-DONE A user can view their own existing accounts and balances. 
-DONE A user can create an account.
-DONE A user can delete an account if it is empty.  
-DONE A user can add to or withdraw from an account. 
+ A user can view their own existing accounts and balances. 
+ A user can create an account.
+ A user can delete an account if it is empty.  
+ A user can add to or withdraw from an account. 
 A user can execute multiple deposits or withrawals in a session. 
 A user can logout. 
 
-DONE Use sequences to generate USER_ID and BANK_ACCOUNT_ID. 
-DONE Use at least one stored procedure with IN and OUT parameters. 
-DONE Throw custom exceptions in the event of user error (overdraft, incorrect password, etc). 
+ Use sequences to generate USER_ID and BANK_ACCOUNT_ID. 
+ Use at least one stored procedure with IN and OUT parameters. 
+ Throw custom exceptions in the event of user error (overdraft, incorrect password, etc). 
 Provide validation messages through the console for all user actions. 
 Use the DAO design pattern. 
 Store superuser username/password and database connection information in a properties file. 
@@ -114,8 +114,7 @@ INSERT INTO BANK_ACCOUNT  (USER_ID, BANK_ACCOUNT_NAME, BALANCE)
 INSERT INTO BANK_ACCOUNT  (USER_ID, BANK_ACCOUNT_NAME, BALANCE)
   VALUES                  (3,       'SOME DUDE ACCT',   20);
   
-SELECT * FROM BANK_ACCOUNT;
-SELECT * FROM USER_ACCOUNT;
+
 
 --CRERATE STORED PROCEDURES FOR MODIFYING ACCOUNTS
 CREATE OR REPLACE PROCEDURE SP_ADD_FUNDS (BID IN NUMBER, MONEY_IN IN NUMBER, TEXT_OUT OUT VARCHAR) IS
@@ -272,4 +271,3 @@ END;
 
 
 
-SELECT * FROM TRANSACTION_HISTORY WHERE USER_ID=(SELECT USER_ID FROM USER_ACCOUNT WHERE USER_NAME='CAIT');
