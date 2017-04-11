@@ -34,8 +34,12 @@ public class CaveDAOImpl implements CaveDAO {
 	
 	@Override
 	public void createCavePS(Cave cave) {
+		Connection con = null;
 		try{
-			Connection con = ConnectionUtil.getConnection();
+			con = ConnectionUtil.getConnection();
+			
+			con.setAutoCommit(false);
+			
 			String n = cave.getName();
 			int m = cave.getMaxBears();
 			String sql = "INSERT INTO CAVE (CAVE_NAME,MAX_BEARS) VALUES (?,?)";
@@ -44,8 +48,16 @@ public class CaveDAOImpl implements CaveDAO {
 			pstmt.setInt(2, m);
 			int numRowsAffected = pstmt.executeUpdate();
 			System.out.println(numRowsAffected);
+			
+			con.commit();
 		}catch(SQLException e){
 			e.printStackTrace();
+			try {
+				con.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dogs>
+	<dog>
+		<id>3</id>
+		<name>Sarah</name>
+		<breed>BorderCollie</breed>
+	</dog>
+	<dog>
+		<id>4</id>
+		<name>Sherman</name>
+		<breed>Husky</breed>
+	</dog>
+</dogs>
