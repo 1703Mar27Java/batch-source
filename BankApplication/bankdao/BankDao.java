@@ -9,5 +9,5 @@ public interface BankDao {
 	public void Withdraw(int money);
 	public void Balance(int money);
 	public void DeleteAccount(int id);
-	public void createUser(String username, String password);
+	public void createUser(Bank user);
 }
