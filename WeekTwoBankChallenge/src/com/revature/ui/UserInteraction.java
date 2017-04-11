@@ -113,7 +113,7 @@ public class UserInteraction {
 		
 		int userID = userDao.retrieveUserByLoginInfo(userName, password).getUserID();
 		
-		//Scanner sc = new Scanner(System.in);
+		sc = new Scanner(System.in);
 		System.out.println("Create your account, " + userID);
 		System.out.print("Account name: ");
 		accountName = sc.nextLine();
@@ -143,7 +143,7 @@ public class UserInteraction {
 	
 	public void handleWithdrawal(){
 		double withAmt = 0;
-		//sc = new Scanner(System.in);
+		new Scanner(System.in);
 		System.out.print("Withdrawal amount: ");
 		withAmt = sc.nextDouble();
 
@@ -160,8 +160,13 @@ public class UserInteraction {
 		System.out.println(bankDao.retrieveAllAccount());
 	}
 	
-	public void seeCurrentBalance(){
+	public void handleDelete(){
+		int id = 0;
+		viewAccounts();
+		System.out.print("Enter acct id: ");
+		id = sc.nextInt();
 		
+		bankDao.deleteAccount(id);
 	}
 	
 	public void switchAccount(){

@@ -25,7 +25,7 @@ public class BankAccountDaoImpl implements BankAccountDao {
 			
 			Statement statement = con.createStatement();	//this is precompiled
 			int numRowsAffected = statement.executeUpdate(sql);	//this argument is not precompiled as a paramater
-			System.out.println("hi");							//use prepared statements to prevent sql injections by users
+								//use prepared statements to prevent sql injections by users
 			
 			
 		} catch (SQLException e){
@@ -169,7 +169,24 @@ public class BankAccountDaoImpl implements BankAccountDao {
 
 	@Override
 	public void deleteAccount(int id) {
-		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		List<BankAccount> accounts = new ArrayList<>();
+		try{
+			Connection con = ConnectionUtil.getConnection();
+			String sql = "DELETE FROM BANKACCOUNT WHERE ACCOUNTID ='" + id +"'";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			System.out.println("Deleted");
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if (pstmt!=null){try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}}
+		}
+
 	}
 
 	@Override

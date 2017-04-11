@@ -37,7 +37,7 @@ public class Main {
 		
 		String action = "";
 		while (!action.equals("LOGOUT")){
-			System.out.println("Select action:\nWITHDRAW, DEPOSIT, CREATE ACCOUNT, \n VIEW BALANCE, SWITCH ACCOUNT, VIEW ACCOUNTS, LOGOUT");
+			System.out.println("Select action:\nWITHDRAW, DEPOSIT, CREATE ACCOUNT,\nSWITCH ACCOUNT, VIEW ACCOUNTS, LOGOUT");
 			action = sc.nextLine();
 			
 			switch (action){
@@ -53,13 +53,13 @@ public class Main {
 				case "VIEW ACCOUNTS":
 					user.viewAccounts();
 					break;
-				case "VIEW BALANCE":
-					user.seeCurrentBalance();
-					break;
 				case "SWITCH ACCOUNT":
 					user.switchAccount();
 					break;
 				case "LOGOUT":
+					break;
+				case "DELETE":
+					user.handleDelete();
 					break;
 				default:
 					System.out.println("Please provide a valid command");
