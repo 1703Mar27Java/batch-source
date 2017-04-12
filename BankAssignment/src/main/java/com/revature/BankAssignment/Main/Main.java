@@ -52,7 +52,14 @@ public class Main {
 	}
 
 	public static void Withdraw(User user){
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Enter the number of the account you wish to withdraw money from");
+		int accountNumber= scanner.nextInt();
+		System.out.println("Enter the amount to be withdrawn");
+		double amount= scanner.nextDouble();
 		
+		UserDAOImpl userDAO=new UserDAOImpl();
+		userDAO.Withdraw(user, accountNumber, amount);
 	}
 	
 	public static void Login(){
@@ -180,30 +187,24 @@ public class Main {
 			e.printStackTrace();
 		}*/
 		
-		/*Properties prop=new Properties();
+		Properties prop=new Properties();
 		
 		try {
 			
 			FileOutputStream output = new FileOutputStream("config.properties");
 			prop.setProperty("SuperUserName", "SuperUser");
 			prop.setProperty("SuperUserPassword", "SuperUser");
-			prop.setProperty("DataBaseConnectionUserName", "BankAssignment");
-			prop.setProperty("DataBaseConnectionPassword", "BankAssignment");
-			prop.setProperty("DataBaseConnectionUrl", "jdbc:oracle:thin:@localhost:1521:xe");
+			
 			prop.store(output,null);
 			output.close();
-			InputStream input=new FileInputStream("config.properties");
-			prop.load(input);
-			System.out.println(prop.getProperty("SuperUserName"));
-			input.close();
-			//System.out.println(prop.getProperty("SuperUserName"));
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		while(true){
 		Scanner scanner=new Scanner(System.in);

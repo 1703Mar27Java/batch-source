@@ -24,6 +24,8 @@ public class ConnectionUtil {
 			prop.setProperty("Databaseurl", url);
 			prop.setProperty("Databaseusername", username);
 			prop.setProperty("Databasepassword", password);
+			prop.setProperty("SuperUserName", "SuperUser");
+			prop.setProperty("SuperUserPassword", "SuperUser");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

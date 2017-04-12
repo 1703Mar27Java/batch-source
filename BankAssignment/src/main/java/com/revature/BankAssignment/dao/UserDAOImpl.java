@@ -74,8 +74,8 @@ public class UserDAOImpl implements UserDAO {
 			PreparedStatement pstmt=con.prepareStatement(check);
 			pstmt.setInt(1, accountNumber);
 			ResultSet result=pstmt.executeQuery();
-			
-			if(result.getDouble(1)>0){
+			result.next();
+			if(!(result.getDouble(1)>0)){
 			
 		pstmt=con.prepareStatement(sql);
 			pstmt.setInt(1, accountNumber);
@@ -136,16 +136,17 @@ while(result.next()){
 		try {
 			Connection con=ConnectionUtil.getConnection();
 			String sql="{call DEPOSIT(?,?)}";
-			String check="SELECT FROM BANK_ACCOUNT WHERE BANK_ACCOUNT_NUMBER=? AND USER_ID=?";
+			String check="SELECT * FROM BANK_ACCOUNT WHERE BANK_ACCOUNT_NUMBER=? AND USER_ID=?";
 			CallableStatement cstmt=con.prepareCall(sql);
 			cstmt.setInt(1,accountNumber);
 			cstmt.setDouble(2, amount);
 			PreparedStatement pstmt=con.prepareStatement(check);
-			
+			pstmt.setInt(1, accountNumber);
+			pstmt.setInt(2, user.getId());
 			ResultSet result=pstmt.executeQuery();
 			
 			if(result.next()){
-			if(cstmt.execute()){
+			if(!cstmt.execute()){
 				System.out.println("Your deposit of "+amount+"dollars was successful");
 			}
 			else{System.out.println("Error: your deposit failed for an unknown reason");}
@@ -166,16 +167,17 @@ while(result.next()){
 		try {
 			Connection con=ConnectionUtil.getConnection();
 			String sql="{call WITHDRAW(?,?)}";
-			String check="SELECT FROM BANK_ACCOUNT WHERE BANK_ACCOUNT_NUMBER=? AND USER_ID=?";
+			String check="SELECT * FROM BANK_ACCOUNT WHERE BANK_ACCOUNT_NUMBER=? AND USER_ID=?";
 			CallableStatement cstmt=con.prepareCall(sql);
 			cstmt.setInt(1,accountNumber);
 			cstmt.setDouble(2, amount);
 			PreparedStatement pstmt=con.prepareStatement(check);
-			
+			pstmt.setInt(1, accountNumber);
+			pstmt.setInt(2, user.getId());
 			ResultSet result=pstmt.executeQuery();
 			
 			if(result.next()){
-			if(cstmt.execute()){
+			if(!cstmt.execute()){
 				System.out.println("Your withdrawl of "+amount+"dollars was successful");
 			}
 			else{System.out.println("Error: your withdrawl failed for an unknown reason");}
