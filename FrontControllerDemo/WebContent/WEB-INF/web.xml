@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>FrontControllerDemo</display-name>
+  <servlet>
+  	<servlet-name>master</servlet-name>
+  	<servlet-class>com.revature.controllers.MasterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>master</servlet-name>
+  	<url-pattern>/MasterServlet</url-pattern>
+  </servlet-mapping>
+    <servlet>
+  	<servlet-name>cocoa</servlet-name>
+  	<servlet-class>com.revature.controllers.CocoaServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>cocoa</servlet-name>
+  	<url-pattern>/CocoaServlet</url-pattern>
+  </servlet-mapping>
+      <servlet>
+  	<servlet-name>coffee</servlet-name>
+  	<servlet-class>com.revature.controllers.CoffeeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>coffee</servlet-name>
+  	<url-pattern>/CoffeeServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

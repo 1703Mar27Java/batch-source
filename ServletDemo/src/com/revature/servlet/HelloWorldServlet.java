@@ -16,7 +16,7 @@ public class HelloWorldServlet extends HttpServlet {
 		//writing directly to response body
 		PrintWriter out = resp.getWriter();
 		out.println("<p>did the get</p>");
-		out.println("<a href=\"HelloWorld.html\">go home</>");
+		out.println("<a href=\"HelloWorld.html\">go home</a>");
 		String n1 = req.getParameter("n1");
 		String n2 = req.getParameter("n2");
 		int result = Integer.parseInt(n1)+Integer.parseInt(n2);
@@ -28,7 +28,7 @@ public class HelloWorldServlet extends HttpServlet {
 		//System.out.println("did post");
 		PrintWriter out = resp.getWriter();
 		out.println("<p>did the post</p>");
-		out.println("<a href=\"HelloWorld.html\">go home</>");
+		out.println("<a href=\"HelloWorld.html\">go home</a>");
 		String n1 = req.getParameter("n1");
 		String n2 = req.getParameter("n2");
 		int result = Integer.parseInt(n1)+Integer.parseInt(n2);
