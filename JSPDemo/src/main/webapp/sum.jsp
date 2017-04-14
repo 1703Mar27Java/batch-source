@@ -17,5 +17,6 @@
 		out.println(x);
 	}
 	 %>
+	 <p>The current date and time are: </p><%@ include file="date.jsp" %>
 </body>
 </html>
