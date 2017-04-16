@@ -1,0 +1,95 @@
+@CHARSET "ISO-8859-1";
+a:link{
+	text-decoration:none;
+}
+h1{
+	font-family: Lucida Grande;
+	color: grey;
+	margin-top: 10px;
+	margin-left: 40px;
+}
+h2{
+	font-family:Lucida Grande;
+	color: grey;
+	text-align:center;
+}
+h3{
+	font-family: monospace;
+	font-size: 2em;
+	color: white;
+	position: inherit;
+	text-align: center;
+	margin-top: 3px;
+}
+h5{
+	font-family:Lucida Grande;
+	color: grey;
+	text-align:center;
+}
+h6{
+	font-family: sans-serif;
+	text-align: right;
+	text-size: 40px;
+}
+body{
+	background-image: url("images/buildings.jpg");
+	background-size: cover;
+}
+form{
+	position:absolute;
+	left:45%;
+	top:30%;
+}
+ul{
+	float:left;
+	display:inline-block;
+	list-style-type: none;
+}
+.white-box {
+	border-radius:25px;
+	background-color:#FFF;
+	position: absolute;
+	top: 15%;
+	left:20%;
+	width: 850px;
+	height: 500px;
+	z-index: -1;
+}
+.accountCard{
+	background-color:grey;
+	border-radius:10px;
+	width:275px;
+	height: 35px;
+	margin-top: 5px;
+	display:inline-block;
+	-webkit-transition: 0.2s;
+}
+.accountCard:hover{
+	background-color:#d3d3d3;
+	-webkit-transition: 0.3s;
+}
+.firstButton{
+	clear: right;
+	float: right;
+	margin-right: 50px;
+}
+.secondButton{
+	clear: right;
+	float:right;
+	margin-right:50px;
+	margin-top: 25px;
+}
+.thirdButton{
+	clear:right;
+	float:right;
+	margin-right:50px;
+	margin-top:25px;
+}
+.fourthButton{
+	clear:right;
+	float:right;
+	margin-right:50px;
+	margin-top:25px;
+}
+
+

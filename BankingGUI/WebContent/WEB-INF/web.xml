@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>SelfLoginPage</display-name>
+  
+  <servlet>
+  	<servlet-name>loginpage</servlet-name>
+  	<servlet-class>com.Revature.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>loginpage</servlet-name>
+  	<url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Create Account</servlet-name>
+  	<servlet-class>com.Revature.servlet.CreateUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Create Account</servlet-name>
+  	<url-pattern>/newuser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Create BankAccount</servlet-name>
+  	<servlet-class>com.Revature.servlet.CreateAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Create BankAccount</servlet-name>
+  	<url-pattern>/createbankacc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>View BankAccount</servlet-name>
+  	<servlet-class>com.Revature.servlet.ViewBankAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>View BankAccount</servlet-name>
+  	<url-pattern>/viewbankacc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>View User Account</servlet-name>
+  	<servlet-class>com.Revature.servlet.ViewUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>View User Account</servlet-name>
+  	<url-pattern>/viewuseracc</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>User list</servlet-name>
+  	<servlet-class>com.Revature.servlet.UserListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>User list</servlet-name>
+  	<url-pattern>/userlist</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>Deposit BankAccount</servlet-name>
+  	<servlet-class>com.Revature.servlet.DepositServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Deposit BankAccount</servlet-name>
+  	<url-pattern>/deposit</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>Withdraw BankAccount</servlet-name>
+  	<servlet-class>com.Revature.servlet.WithdrawServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Withdraw BankAccount</servlet-name>
+  	<url-pattern>/withdraw</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>update BankAccount</servlet-name>
+  	<servlet-class>com.Revature.servlet.updateAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>update BankAccount</servlet-name>
+  	<url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>delete BankAccount</servlet-name>
+  	<servlet-class>com.Revature.servlet.DeleteBankAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>delete BankAccount</servlet-name>
+  	<url-pattern>/delete</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>delete User</servlet-name>
+  	<servlet-class>com.Revature.servlet.DeleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>delete User</servlet-name>
+  	<url-pattern>/deleteuser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>edit User</servlet-name>
+  	<servlet-class>com.Revature.servlet.EditUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>edit User</servlet-name>
+  	<url-pattern>/edituser</url-pattern>
+  </servlet-mapping>
+  
+</web-app>
