@@ -1,0 +1,58 @@
+homePage.html
+
+<!DOCTUPE html>
+<html>
+	<!-- the html element is the root element of the page-->
+	<!-- the head element contains metadata about the document-->
+	
+	<head>
+		<title>BankWorld</title>
+		<link rel = "stylesheet" href="bankStyles1.css">
+		<style>
+			body {background-color:lightblue;}
+			h1 {color: red}
+		</style>
+	</head>
+	<body>
+	<Table class = "outer">
+		<TR>
+			<TD>
+			<TABLE class = "banner">
+   				<TR>
+      				<TD id="bannerTitle"><img src="bank_Banner.png" alt="No graph... sorry" min-width = "90%"></TD>
+      				<TD id="bannerImage"><img src="piggyBank.jpg" alt="No graph... sorry" min-width = "100" height = "100"></TD>	
+   				</TR>
+			</TABLE>
+			</TD>
+		</TR>
+		<TR>
+			<TD>
+				<h3>Now You Can Bank In Style!</h3>
+			</TD>
+		</TR>
+		<TR>
+		<TD>
+			<TABLE class = "forms">
+			<tr>
+				<TD>
+		 			<form action="login" method="post">
+  						<p class = "lbl">Name:<input type="text" name="un"><br></p> 
+  						<p class = "lbl">Password:<input type="text" name="pw"><br></p>
+						<input class = "lbl" type="submit" value="Login" />
+					</form>
+					<form action = "createUser" method="get">
+						<input class = "lbl" type = "submit" value="Sign Up" />
+					</form>
+				</TD>
+			<tr>
+			</TABLE>
+		</TD>
+		</TR>
+		<TR>
+			<td>
+				<p>Here at Welcome To Bank World, we believe that <br> the curstomer is <br> always <br> right.</p>
+			</td>
+		</TR>
+	</Table>
+	</body>
+</html>
