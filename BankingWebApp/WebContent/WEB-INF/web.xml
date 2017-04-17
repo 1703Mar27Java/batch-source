@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>BankingWebApp</display-name>
+  <servlet>
+    <servlet-name>loginserv</servlet-name>
+    <servlet-class>com.revature.servlet.LogingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>loginserv</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>accountser</servlet-name>
+    <servlet-class>com.revature.servlet.AccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>accountser</servlet-name>
+    <url-pattern>/account</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>depWith</servlet-name>
+    <servlet-class>com.revature.servlet.AccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>depWith</servlet-name>
+    <url-pattern>/depWith</url-pattern>
+  </servlet-mapping>
+</web-app>
