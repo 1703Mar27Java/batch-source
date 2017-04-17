@@ -1,0 +1,224 @@
+@CHARSET "ISO-8859-1";
+
+#turtle {
+	height: 80px;
+	width: 100px;
+	display:inline;
+}
+
+.content{
+	width: 60%;
+	height: 50%;
+	margin: 0 auto;
+}
+
+.accounts{
+	overflow-y: scroll;
+	height: 300px;
+	border: solid 3px black;
+	/*background-color: #8233dd;*/
+	background: rgba(0, 0, 0, 0.4);
+}
+
+#welcome{
+	font-size: 20pt;
+	display: inline;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table tr td input {
+	padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+	width: 50%;
+	float: right;
+	height: 100px;
+	font-size: 15pt;
+    border-radius: 5px; 
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+    
+}
+
+.front{
+	padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+	width: 100%;
+	float: right;
+	height: 40px;
+	font-size: 15pt;
+    border-radius: 5px; 
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+.front:hover{
+	background-color: #008CBA;
+    color: white;
+	padding:5px 15px; 
+    border:0 none;
+	width: 100%;
+	float: right;
+	height: 40px;
+	font-size: 15pt;
+    border-radius: 5px; 
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	
+}
+
+.submit{
+	padding:5px 15px; 
+    border:0 none;
+	font-size: 15pt;
+    border-radius: 5px; 
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+.submit:hover{
+	background-color: #008CBA;
+    color: white;
+	padding:5px 15px; 
+    border:0 none;
+	font-size: 15pt;
+    border-radius: 5px; 
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+	
+}
+
+
+
+table tr td input:hover {
+	background-color: #008CBA;
+    color: white;
+	padding:5px 15px; 
+    border:0 none;
+	width: 50%;
+	float: right;
+	height: 100px;
+	font-size: 15pt;
+    border-radius: 5px; 
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    
+}
+
+#newAccount{
+	margin-top:20px;
+	padding:5px 15px; 
+    border:0 none;
+	width: 100%;
+	height: 50px;
+	font-size: 15pt;
+    border-radius: 5px; 
+    background-color: white; 
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+#newAccount:hover{
+	padding:5px 15px; 
+    border:0 none;
+	width: 100%;
+	height: 50px;
+	font-size: 15pt;
+    border-radius: 5px; 
+    background-color: #008CBA;
+    color: black; 
+    border: 2px solid #008CBA;
+}
+
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    color: white;
+    font-size: 30pt;
+}
+
+#accountsTable tr{
+	border-bottom: 1px solid #ddd;
+}
+
+
+tr:nth-child(even)
+
+#logo {
+	font-family:"Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	height: 80px;
+	width: 50%;
+	min-width:400px;
+}
+
+.header{
+	text-align:center;
+	margin: 0 auto;
+	width: 100%;
+	min-width:600px;
+}
+
+#clouds{
+	margin-top: -100px;
+	opacity: .4;
+	height:400px;
+	width:100%;
+	z-index:-1;
+	position:absolute;
+}
+
+
+#background{
+	z-index:-10;
+	position:fixed;
+	width:100%;
+	opacity:.3;
+	margin-top: 100px;
+	bottom:0;
+	left:0;
+}
+
+
+.login{
+	width: 950px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top:5%;
+    display:block;
+}
+
+
+button{
+    text-align: center;
+    text-decoration: none;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	margin-top:40px;
+	margin-right: 10px;
+    font-size: 16px;
+}
+
+.login input{
+	float:right;
+}
+
+body{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+	background-color:#a169ea;
+	color:white;
+}
+
+#beach{
+	position: fixed; 
+	bottom:0; 
+	left:0;
+	max-height: 250px;
+	width: 100%;
+	z-index: -20;
+}
