@@ -46,7 +46,8 @@ public class CreAcct extends HttpServlet {
 			uName= (String) session.getAttribute("uName");
 		UserDAOImpl uDAO = new UserDAOImpl();
 		double bal=0;
-		try{
+		try{	
+			
 			bal =  Double.parseDouble(request.getParameter("bal"));
 			String acctName =  request.getParameter("acctName");
 			uDAO.createAcct(uName,acctName,bal);

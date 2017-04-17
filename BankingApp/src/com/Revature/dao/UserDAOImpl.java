@@ -224,7 +224,7 @@ public class UserDAOImpl implements UserDAO {
 		ArrayList<Trans> tList = new ArrayList<>();
 		try {
 			con = ConnectionUtil.getConnection();
-			String sql = "SELECT * FROM TRANSACTION_HISTORY";
+			String sql = "SELECT * FROM TRANSACTION_HISTORY ORDER BY TRANS_ID DESC";
 			PreparedStatement cstmt = con.prepareStatement(sql);
 			ResultSet rs = cstmt.executeQuery();
 			while (rs.next()) {
@@ -240,6 +240,26 @@ public class UserDAOImpl implements UserDAO {
 			e.printStackTrace();
 		}
 		return tList;
+	}
+
+	@Override
+	public String getUserOfBankAcct(int bid) {
+		Connection con;
+		String name=null;
+		try{
+			con = ConnectionUtil.getConnection();
+			String sql = "SELECT USER_NAME FROM USER_ACCOUNT WHERE USER_ID="
+					+ "(SELECT USER_ID FROM BANK_ACCOUNT WHERE BANK_ACCOUNT_ID=?)";
+			PreparedStatement cstmt = con.prepareStatement(sql);
+			cstmt.setInt(1, bid);
+			ResultSet rs = cstmt.executeQuery();
+			rs.next();
+			name=rs.getString("USER_NAME");
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return name;
 	}
 
 }

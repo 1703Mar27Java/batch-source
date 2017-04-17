@@ -16,4 +16,6 @@ public interface UserDAO {
 	public ArrayList<BankAcct> fetchAdmin();
 	public ArrayList<Trans> fetchTrans(String name);
 	public ArrayList<Trans> fetchTransAdmin();
+	
+	public String getUserOfBankAcct(int bid); 
 }

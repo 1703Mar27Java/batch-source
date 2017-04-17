@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.Revature.dao.UserDAOImpl;
 
@@ -40,10 +41,19 @@ public class SubFunds extends HttpServlet {
 			throws ServletException, IOException {
 		UserDAOImpl uDAO = new UserDAOImpl();
 		try {
+			HttpSession session = request.getSession();
 			int bid = Integer.parseInt(request.getParameter("bid"));
 			double money = Double.parseDouble(request.getParameter("money"));
-			uDAO.subFunds(bid, money);
-			request.getRequestDispatcher("showAccts").forward(request, response);
+			//confirm current user owns the account
+			String owner=uDAO.getUserOfBankAcct(bid);
+			if (session.getAttribute("isAdmin").equals("true") || owner.equals(session.getAttribute("uName"))){
+				uDAO.subFunds(bid, money);
+				request.getRequestDispatcher("showAccts").forward(request, response);
+			}
+			else {
+				request.setAttribute("errorMessage", "BankID must be yours!");
+				request.getRequestDispatcher("SubFunds.jsp").forward(request, response);
+			}
 		} catch (NumberFormatException e) {
 			request.setAttribute("errorMessage", "BankID in must be numeric.");
 			request.getRequestDispatcher("SubFunds.jsp").forward(request, response);

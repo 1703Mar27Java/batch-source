@@ -81,7 +81,7 @@
 				if (request.getAttribute("errorMessage") != null) {
 				%>
 				<div class="alert alert-danger">
-					<strong>RuhRoh!</strong> BankID MUST be numeric.
+					<strong>RuhRoh!</strong>  <%=request.getAttribute("errorMessage") %>
 				</div>
 	
 				<%
