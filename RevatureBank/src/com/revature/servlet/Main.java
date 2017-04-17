@@ -16,7 +16,8 @@ public class Main {
         Bank_UserDAO bank_UserDAO = new Bank_UserDAOImpl();
         
         try {
-			Bank_User user = bank_UserDAO.getUser(userName, userPassword);
+			int userId = bank_UserDAO.getUser(userName, userPassword);
+			Bank_User user = new Bank_User(userId, userName, userPassword);
 			System.out.println(user.toString());
 		} catch (SQLException | IOException e) {
 			// TODO Auto-generated catch block
