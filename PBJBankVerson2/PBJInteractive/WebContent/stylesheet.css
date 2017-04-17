@@ -1,0 +1,97 @@
+@CHARSET "ISO-8859-1";
+
+body{
+	
+	background-image: url(https://static.pexels.com/photos/3768/sky-sunny-clouds-cloudy.jpg);
+	width:100%;
+	height:100%;
+}
+
+#header{
+	height:100%;
+	margin:0;
+	text-align: center;
+	background-color: black;
+	
+	
+}
+
+#header h1{
+	color: white;
+	font-family: Ariel,Franklin, bold;	
+	font-size: 25pt;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	margin:0s;
+}
+
+h1{
+	padding:20px;
+}
+
+#nav{
+	padding:10px;
+	vertical-align: middle;
+	text-align: center;
+	   
+}
+
+
+
+ul li {
+ 
+    list-style: none;
+    margin: 0;
+    padding: 0; 
+  	display: inline-block; 
+    margin-right: 20px;
+    padding-bottom: 5px;
+}	
+
+ul a{
+	text-decoration: none;
+	color: white;
+	font-size: 15pt;
+	
+}
+
+
+
+#content{
+	padding-top: 50px;
+	display: block;
+	text-align:center;
+	verical-align: center;
+	
+	
+}
+
+
+
+
+#content p{
+	font-size: 25;
+}
+
+#content form{
+	display: inline-block;
+	left-margin: 0;
+	right-margin:0;
+	text-align:left;
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+input{
+	margin:5px;
+	
+	
+}

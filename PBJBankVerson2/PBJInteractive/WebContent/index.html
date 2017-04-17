@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome to the PB and J Bank!</title>
+<link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+
+
+<div id="header">
+	<h1>Welcome to the PB and J Bank!</h1>	
+		</div>
+	
+<div id="nav">
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="news.asp">News</a></li>
+  <li><a href="contact.asp">Contact</a></li>
+  <li><a href="about.asp">About</a></li>
+</ul>
+	</div>	
+	
+	<div id="content">
+	<h3>Returning customers please log in here:</h3>
+	<form action="UserServlet" method="post">
+	<label for=nam>Username</label>
+	<input id="name"  type="text" name="username">
+	<br/>
+	<br/>	
+	<label for=pass>Password</label>
+	<input id="pass"  type="text" name="password">
+	<input type="submit" value="Submit"> 	
+	</form>
+	<br/>
+	<br/>
+	<br/>
+	<br/>	
+	<h3>New customers create an account here:</h3>
+	<form action="NewServlet" method="post">
+	<label for=name>Username</label>
+	<input id="name"  type="text" name="username">
+	<br/>
+	<br/>
+	<label for=pass>Password</label>
+	<input id="pass"  type="text" name="password">
+	<input type="submit" value="Submit"> 	
+	</form>	
+	</div>
+	
+	
+	
+	
+</body>
+</html>

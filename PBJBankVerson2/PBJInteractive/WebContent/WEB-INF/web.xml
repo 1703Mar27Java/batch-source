@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <display-name>PBJInteractive</display-name>
+  
+  <servlet>
+  	<servlet-name>bank</servlet-name>
+  	<servlet-class>com.pbjbank.appservlets.BankAccountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>bank</servlet-name>
+  	<url-pattern>/BankAccountServlet</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>user</servlet-name>
+  	<servlet-class>com.pbjbank.appservlets.UserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>user </servlet-name>
+   <url-pattern>/UserServlet</url-pattern> 
+  </servlet-mapping>
+  
+  
+  <servlet>
+  	<servlet-name>new</servlet-name>
+  	<servlet-class>com.pbjbank.appservlets.NewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  <servlet-name>new</servlet-name>
+   <url-pattern>/NewServlet</url-pattern> 
+  </servlet-mapping>
+  
+  
+  
+  
+  <error-page>
+  		<error-code>404</error-code>
+  		<location>/404.jsp</location>
+  </error-page>
+  
+</web-app>
