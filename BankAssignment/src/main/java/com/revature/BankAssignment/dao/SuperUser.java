@@ -52,10 +52,11 @@ Properties prop = new Properties();
 		}
 	}
 	
-	public static void ViewAll(){
+	public static String ViewAll(){
 Connection con;
 		
 		String sql="SELECT * FROM USERS";
+		String output="";
 	
 		
 		try {
@@ -65,17 +66,24 @@ Connection con;
 			
 			
 ResultSet result=pstmt.executeQuery();
-			
+	
+output+="<table border=\"1\" width=\"100%\">";
+output+="<tr><th>USER_ID</th><th>USER_NAME</th><th>USER_PASSWORD</th></tr>";
+
 while(result.next()){
 	System.out.println("USER_ID"+" "+"USER_NAME"+"USER_PASSWORD");
 	System.out.println(result.getInt(1)+" "+result.getString(2)+" "+result.getString(3));
+	
+	output+="<tr><td>"+result.getInt(1)+"</td><td>"+result.getString(2)+"</td><td>"+result.getString(3)+"</tr>";
 }
-
+output+="</table>";
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return output;
 		}
+		return output;
 	}
 	
 	public static void Create(){

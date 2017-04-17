@@ -1,0 +1,29 @@
+body{
+	
+	
+	background-image:url("images/BankBackground.png");
+}
+
+h1{
+	/*text-align:center;*/
+}
+
+
+p{
+	
+	/*text-align:center;*/
+	
+}
+
+#textcenter{
+	text-align:center;
+	
+}
+
+.p1{
+	text-align:center;
+}
+
+input{
+	size="100";
+}

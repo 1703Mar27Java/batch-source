@@ -8,13 +8,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import oracle.jdbc.OracleDriver;
 
 public class ConnectionUtil {
 	
 	public static Connection getConnection() throws SQLException{
 		
 		
-		Properties prop=new Properties();
+		
+		
+		/*Properties prop=new Properties();
 		FileOutputStream output = null;
 		try {
 			output = new FileOutputStream("config.properties");
@@ -57,8 +60,19 @@ public class ConnectionUtil {
 			e.printStackTrace();
 		}
 		
+		*/
 		
 		
-		return DriverManager.getConnection(prop.getProperty("Databaseurl"),prop.getProperty("Databaseusername"),prop.getProperty("Databasepassword"));
+		
+		
+		
+OracleDriver driver=new OracleDriver();
+		
+		DriverManager.registerDriver(driver);
+		String url= "jdbc:oracle:thin:@localhost:1521:xe";
+		String username="BankAssignment";
+		String password="BankAssignment";
+		
+		return DriverManager.getConnection(url,username,password);
 	}
 }
