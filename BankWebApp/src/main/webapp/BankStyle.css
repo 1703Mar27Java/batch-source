@@ -1,0 +1,29 @@
+@CHARSET "ISO-8859-1";
+body {
+	font-family: Verdana;
+	background-color: #ECECEA;
+	color: #558C89;
+}
+a {
+	color: #b7753a;
+}
+a:link{
+	text-decoration:none;
+}
+h1{
+	background-color: #558C89;
+	color: #ECECEA;
+	margin-top: 10px;
+}
+table{
+	float:right; 
+	margin-left:10px;
+	margin-right:20px;
+	text-align: center;
+}
+tr:nth-child(even) {
+    background-color: #558C89;
+	color: #ECECEA;
+}
+form{
+}
