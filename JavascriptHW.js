@@ -106,6 +106,10 @@ homework.rotateLeft = function(array, n) {
 */
 homework.balancedBrackets = function(bracketsString){
 	
+	if ((bracketsString.length % 2) == 1){
+		return false;
+	}
+	
 	for(var i = 0; i < bracketsString.length/2 ; i++){
 		
 		
