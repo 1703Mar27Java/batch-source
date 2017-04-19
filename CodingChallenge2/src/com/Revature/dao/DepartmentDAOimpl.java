@@ -23,13 +23,14 @@ public class DepartmentDAOimpl implements DepartmentDAO{
 		
 		try(Connection con = ConnectionUtil.getConnectionFromFile("connection.properties");){
 			cs = con.prepareCall("{call SP_DEPARTMENT_SALARY(?)}");
-			cs.registerOutParameter(2, OracleTypes.CURSOR);
+			cs.registerOutParameter(1, OracleTypes.CURSOR);
 			cs.executeUpdate();
-			ResultSet rs = (ResultSet) cs.getObject(2);
+			ResultSet rs = (ResultSet) cs.getObject(1);
 			while(rs.next()){
 				Department dept = new Department();
 				dept.setId(rs.getInt("DEPARTMENT_ID"));
 				dept.setName(rs.getString("DEPARTMENT_NAME"));
+				dept.setSalary(rs.getDouble("AVGSALARY"));
 				depts.add(dept);
 			}
 		}catch(SQLException e){
@@ -41,10 +42,10 @@ public class DepartmentDAOimpl implements DepartmentDAO{
 	}
 
 	@Override
-	public void giveRaise(int amt) {
+	public void giveRaise(int id) {
 		try(Connection con = ConnectionUtil.getConnectionFromFile("connection.properties");){
 			CallableStatement cs = con.prepareCall("{call SP_GIVE_RAISE(?,?,?)}");
-			cs.setInt(1, amt);
+			cs.setInt(1, id);
 			cs.registerOutParameter(2, OracleTypes.DOUBLE);
 			cs.registerOutParameter(3, OracleTypes.INTEGER);
 			int numRowsAffected = cs.executeUpdate();
