@@ -8,6 +8,7 @@ module.exports = homework;
  f(1) = 1
  f(10) = 55
 */
+
 homework.fibonacci = function(n){
 	//yay recursion
 	//a super simple algorthm if implemented recursively
@@ -64,9 +65,19 @@ homework.factorial = function(n){
  f([1,2,3,4,5], 6) = [2,3,4,5,1]
  f([1,2,3,4,5], 3) = [4,5,1,2,3]
 
+	1,2,3,4,5
+	2,3,4,5,1
 */
 homework.rotateLeft = function(array, n) {
-
+	var len=array.length;
+	for(var i = 0; i<n;i++){
+		var t=array[0];
+		for(var j=0; j<len-1;j++){
+			array[j]=array[j+1];
+		}
+		array[j]=t;
+	}
+	return array;
 };
 
 /*
@@ -90,6 +101,30 @@ homework.rotateLeft = function(array, n) {
  Return false if not balanced
 */
 homework.balancedBrackets = function(bracketsString){
-
+	//simple operation utilizing a stack
+	var len = bracketString.length;
+	var stack =[];
+	for(var i = 0; i<len;i++){
+		//simply check the current val.
+		//if opening bracket, we add it to the stack
+		//if closing bracket, we pop the stack and compare values.
+		if(bracketString[i]=="(") stack.push("(");
+		else if(bracketString[i]=="{") stack.push("{");
+		else if(bracketString[i]=="[") stack.push("[");
+		else if(bracketString[i]==")") {
+			if (stack==[]) return false;
+			if (stack.pop() != "(") return false;
+        }
+		else if(bracketString[i]=="}") {
+			if (stack==[]) return false;
+			if (stack.pop() != "{") return false;
+        }
+		else if(bracketString[i]=="]") {
+			if (stack==[]) return false;
+			if (stack.pop() != "[") return false;
+        }
+    }	
+	if (stack.length==0) return true;
+	else return false;
 };
 
