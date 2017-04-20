@@ -1,3 +1,36 @@
+/*
+db |  gui
+---|------     
+ X |     | -An Employee can login
+N/A|     | -An Employee can view the Employee Homepage
+N/A|     | -An Employee can logout
+ X |     | -An Employee can submit a reimbursement request
+   |     | -An Employee can upload an image of his/her receipt as part of the reimbursement request
+   |     | -An Employee can view their pending reimbursement requests
+   |     | -An Employee can view their resolved reimbursement requests
+   |     | -An Employee can view their information
+   |     | -An Employee can update their information
+   |     | -An Employee receives an email when one of their reimbursement requests is resolved (optional)
+   |     | 
+ X |     | -A Manager can login
+N/A|     | -A Manager can view the Manager Homepage
+   |     | -A Manager can logout
+   |     | -A Manager can approve/deny pending reimbursement requests
+   |     | -A Manager can view all pending requests from all employees
+   |     | -A Manager can view images of the receipts from reimbursement requests
+   |     | -A Manager can view all resolved requests from all employees and see which manager resolved it
+   |     | -A Manager can view all Employees
+   |     | -A Manager can view reimbursement requests from a single Employee
+   |     | 
+---|--------------------------------------------------------------
+   |     | -A Manager can register an Employee, which sends the Employee an email with their username and temp password (optional)
+   |     | -An Employee can reset their password (Optional - tied with above functional requirement)
+*/
+
+
+
+
+
 /*******************************************************
 *                Create Table Structure                *
 *******************************************************/
@@ -122,5 +155,127 @@ CREATE OR REPLACE TRIGGER TR_INSERT_ERS_USERS
 INSERT INTO ERS_USER_ROLES (UR_ROLE) VALUES ('Employee');
 INSERT INTO ERS_USER_ROLES (UR_ROLE) VALUES ('Manager');
 INSERT INTO ERS_USER_ROLES (UR_ROLE) VALUES ('Admin');
+INSERT INTO ERS_REIMBURSEMENT_STATUS (RS_STATUS) VALUES ('Approved');
+INSERT INTO ERS_REIMBURSEMENT_STATUS (RS_STATUS) VALUES ('Denied');
+INSERT INTO ERS_REIMBURSEMENT_STATUS (RS_STATUS) VALUES ('Pending');
+INSERT INTO ERS_REIMBURSEMENT_TYPE (RT_TYPE) VALUES ('Travel');
+INSERT INTO ERS_REIMBURSEMENT_TYPE (RT_TYPE) VALUES ('Education');
+INSERT INTO ERS_REIMBURSEMENT_TYPE (RT_TYPE) VALUES ('Certification');
+INSERT INTO ERS_REIMBURSEMENT_TYPE (RT_TYPE) VALUES ('Equipment');
+INSERT INTO ERS_REIMBURSEMENT_TYPE (RT_TYPE) VALUES ('Miscellaneous');
+INSERT INTO ERS_USERS (U_USERNAME, U_PASSWORD, U_FIRSTNAME, U_LASTNAME, U_EMAIL, UR_ID)
+VALUES                ('rich', 'wing', 'Richard', 'Wingert', 'rich@wing.com', 21);
+INSERT INTO ERS_USERS (U_USERNAME, U_PASSWORD, U_FIRSTNAME, U_LASTNAME, U_EMAIL, UR_ID)
+VALUES                ('cait', 'buck', 'Caitlin', 'Buckner', 'cait@buck.com', 21);
+INSERT INTO ERS_USERS (U_USERNAME, U_PASSWORD, U_FIRSTNAME, U_LASTNAME, U_EMAIL, UR_ID)
+VALUES                ('emil', 'higg', 'Emily', 'Higgens', 'emil@higg.com', 22);
+INSERT INTO ERS_USERS (U_USERNAME, U_PASSWORD, U_FIRSTNAME, U_LASTNAME, U_EMAIL, UR_ID)
+VALUES                ('stev', 'kels', 'Steven', 'Kelsey', 'steve@kels.com', 23);
 
---CONTINUE ADDING USER, THEN WORK ON STORE PROCEDURES FOR ALL REQS
+
+
+/*******************************************************
+*       Add views to make data more readable           *
+*******************************************************/
+
+CREATE OR REPLACE VIEW VW_ERS_USERS AS
+  SELECT 
+    ERS_USERS.U_USERNAME AS USER_NAME, 
+    ERS_USERS.U_FIRSTNAME AS FIRST_NAME, 
+    ERS_USERS.U_LASTNAME AS LAST_NAME, 
+    ERS_USERS.U_EMAIL AS EMAIL, 
+    ERS_USER_ROLES.UR_ROLE AS JOB_TITLE
+  FROM ERS_USER_ROLES 
+  JOIN ERS_USERS ON ERS_USER_ROLES.UR_ID=ERS_USERS.UR_ID;
+  
+CREATE OR REPLACE VIEW VW_ERS_REIMBURSEMENTS AS
+  SELECT 
+    ERS_REIMBURSEMENTS.R_ID, 
+    ERS_REIMBURSEMENTS.R_DESCR AS DESCRIPTION, 
+    ERS_REIMBURSEMENTS.R_SUBMITTED AS TIME_SUBMITTED,
+    ERS_REIMBURSEMENTS.R_RESOLVED AS TIME_RESOLVED,
+    ERS_REIMBURSEMENTS.R_AMOUNT AS AMOUNT, 
+    ERS_REIMBURSEMENT_TYPE.RT_TYPE AS R_TYPE, 
+    ERS_REIMBURSEMENT_STATUS.RS_STATUS AS R_STATUS, 
+    ERS_USERS.U_USERNAME AS USERNAME,
+    ERS_USERS.U_FIRSTNAME AS FIRST_NAME,
+    ERS_USERS.U_LASTNAME AS LAST_NAME
+  FROM ERS_REIMBURSEMENTS 
+  INNER JOIN ERS_USERS ON ERS_USERS.U_ID=ERS_REIMBURSEMENTS.U_ID_AUTHOR
+  INNER JOIN ERS_REIMBURSEMENT_STATUS ON ERS_REIMBURSEMENT_STATUS.RS_ID=ERS_REIMBURSEMENTS.RS_STATUS
+  INNER JOIN ERS_REIMBURSEMENT_TYPE ON ERS_REIMBURSEMENT_TYPE.RT_ID=ERS_REIMBURSEMENTS.RT_TYPE;
+
+/*******************************************************
+*               Various Stored Procedures              *
+*******************************************************/
+
+--SP FOR ADDING REIMBURSEMENTS W/O DESCR
+CREATE OR REPLACE PROCEDURE ERS_SP_CREATE_REIMBURSEMENT (AMOUNT IN NUMBER, U_USER IN VARCHAR, RTYPE IN VARCHAR, TEXT_OUT OUT VARCHAR)
+IS
+  CURR_TIME TIMESTAMP:=CURRENT_TIMESTAMP;
+  ID_OF_AUTHOR NUMBER;
+  ID_OF_TYPE NUMBER;
+  ID_OF_STATUS NUMBER;
+  TYPE_OF_REIMBURSE VARCHAR2(50);
+BEGIN
+  SAVEPOINT SP;
+  SELECT U_ID INTO ID_OF_AUTHOR FROM ERS_USERS WHERE U_USER=U_USERNAME;
+  SELECT RT_ID INTO ID_OF_TYPE FROM ERS_REIMBURSEMENT_TYPE WHERE RTYPE=RT_TYPE;
+  SELECT RS_ID INTO ID_OF_STATUS FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Pending'; 
+  INSERT INTO ERS_REIMBURSEMENTS (R_AMOUNT, R_SUBMITTED, U_ID_AUTHOR, RT_TYPE, RS_STATUS )
+                          VALUES (AMOUNT, CURR_TIME, ID_OF_AUTHOR, ID_OF_TYPE, ID_OF_STATUS);
+  TEXT_OUT:='SUCCESSFULLY CREATED REIMBURSEMENT ENTRY.';
+  COMMIT;
+  --EXCEPTION HANDLING
+  EXCEPTION WHEN NO_DATA_FOUND THEN
+    TEXT_OUT:='NO DATA FOUND!';
+    ROLLBACK TO SP;
+  WHEN OTHERS THEN
+    TEXT_OUT:='ERROR!';
+    ROLLBACK TO SP;
+END;
+
+--SIMILAR TO ABOVE SP, EXCEPT ALSO INCLUDES THE DESCRIPTION FIELD
+CREATE OR REPLACE PROCEDURE ERS_SP_CREATE_REIMBUR_DESCR (DESCRIP IN VARCHAR, AMOUNT IN NUMBER, U_USER IN VARCHAR, RTYPE IN VARCHAR, TEXT_OUT OUT VARCHAR)
+IS
+  CURR_TIME TIMESTAMP:=CURRENT_TIMESTAMP;
+  ID_OF_AUTHOR NUMBER;
+  ID_OF_TYPE NUMBER;
+  ID_OF_STATUS NUMBER;
+  TYPE_OF_REIMBURSE VARCHAR2(50);
+BEGIN
+  SAVEPOINT SP;
+  SELECT U_ID INTO ID_OF_AUTHOR FROM ERS_USERS WHERE U_USER=U_USERNAME;
+  SELECT RT_ID INTO ID_OF_TYPE FROM ERS_REIMBURSEMENT_TYPE WHERE RTYPE=RT_TYPE;
+  SELECT RS_ID INTO ID_OF_STATUS FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Pending'; 
+  INSERT INTO ERS_REIMBURSEMENTS (R_AMOUNT,R_DESCR, R_SUBMITTED, U_ID_AUTHOR, RT_TYPE, RS_STATUS )
+                          VALUES (AMOUNT, DESCRIP, CURR_TIME, ID_OF_AUTHOR, ID_OF_TYPE, ID_OF_STATUS);
+  TEXT_OUT:='SUCCESSFULLY CREATED REIMBURSEMENT ENTRY.';
+  COMMIT;
+  --EXCEPTION HANDLING
+  EXCEPTION WHEN NO_DATA_FOUND THEN
+    TEXT_OUT:='ENTERED DATA WAS NOT FOUND!';
+    ROLLBACK TO SP;
+  WHEN OTHERS THEN
+    TEXT_OUT:='ERROR!';
+    ROLLBACK TO SP;
+END;
+  
+--SP TO VALIDATE A USER'S INFO FOR LOGIN PURPOSES
+CREATE OR REPLACE PROCEDURE SP_ERS_VALIDATE_USER(U_NAME VARCHAR, U_PASS VARCHAR, IS_VALID OUT NUMBER, TEXT_OUT OUT VARCHAR) 
+IS 
+BEGIN
+  SELECT COUNT(U_USERNAME) INTO IS_VALID FROM ERS_USERS
+    WHERE U_USERNAME=U_NAME AND U_PASSWORD=U_PASS;
+  IF IS_VALID=0 THEN
+    TEXT_OUT:='Username/Password combination is incorrect.';
+  ELSE 
+    TEXT_OUT:='Username/Password combination is correct.';
+  END IF;
+END;
+
+DECLARE
+VAL NUMBER:=0;
+BEGIN
+SP_ERS_VALIDATE_USER('rich','wing',VAL);
+END;
