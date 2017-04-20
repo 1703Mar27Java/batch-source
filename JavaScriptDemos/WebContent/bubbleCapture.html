@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Bubbling and Capturing</title>
+</head>
+<body>
+	<div id="d1" style="background-color: blue">
+		<h3>this is the outer div</h3>
+		<div id="d2" style="background-color: red">
+			<h4>this is the inner div</h4>
+		</div>
+	</div>
+</body>
+<script>
+	//event propagation: defines order in which event listeners are triggered. 
+	//bubbling: default behavior. Innermost element's event is handled first.
+	//capturing: outermost element's event is handled is handled first. 
+	//addEventListener(event, function, useCapture) 
+	//useCapture defaults to false 
+	function myD1Function(event) {
+		console.log("d1");
+		console.log(event.type)
+	};
+	function myD2Function(event) {
+		console.log("d2");
+	};
+	document.getElementById("d1").addEventListener("click",myD1Function,true);
+	document.getElementById("d2").addEventListener("click",myD2Function,true);
+</script>
+
+
+</html>

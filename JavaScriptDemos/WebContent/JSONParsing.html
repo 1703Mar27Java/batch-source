@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Parsing</title>
+</head>
+<body>
+
+<p id="demo"></p>
+
+</body>
+
+<script>
+	var text = '{"dogs": ['+
+		'{"name":"Rex", "breed":"schnauzer"},'+
+		'{"name":"Rex2", "breed":"dachshund"},'+
+		'{"name":"Rex3", "breed":"pit bull"}]}';
+	var obj = JSON.parse(text);
+	document.getElementById("demo").innerHTML=obj.dogs[1].name;
+</script>
+</html>

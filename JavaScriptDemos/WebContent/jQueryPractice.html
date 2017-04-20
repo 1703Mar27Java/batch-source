@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script>
+	$(document).ready(function() {
+		
+		$("#btn").click(function(){
+			//hide all paragraphs
+			//$("p").hide();
+			//hide all elements with class="class1"
+			//$(".class1").hide();
+		});
+		
+		//without callback function
+		/*$("#btn2").click(function(){
+			$("p").hide(1000);
+			alert("the paragraphs are now hidden");
+		});*/
+		
+		//with callback function
+		$("#btn2").click(function(){
+			$("p").hide("slow",function(){
+			alert("the paragraphs are now hidden")
+			});
+		});
+		
+		//doubleclick
+		$("p").dblclick(function(){
+			$(this).hide();
+		});
+		
+		//mouseenter
+		/*$("#p1").mouseenter(function(){
+			alert("you entered p1");
+		});
+		
+		//mouseleave
+		$("#p2").mouseleave(function(){
+			alert("you left p2");
+		});*/
+		
+		//hover takes 2 functions
+		//first executes on mouseenter, 
+		//second on mouseleave 
+		$("#btn").hover(function(){
+			$("#p2").hide();},
+			function(){
+				$("#p2").show();
+			});
+		
+		//chaining
+		$("#btn3").click(function(){
+			$(this).css("color","red").slideUp(2000).slideDown(2000);
+		});
+		
+		//focus 
+		$("input").focus(function(){
+			$(this).css("background-color","#cccccc");
+		});
+		
+		//blur
+		$("input").blur(function(){
+			$(this).css("background-color","#00ffff");
+		});
+		
+		//multiple event handlers on one element
+		$("#p2").on({
+			mouseenter:function(){
+				$(this).css("background-color","#00ffff");
+			},
+			mouseleave:function(){
+				$(this).css("background-color","#ffffff");
+			}
+		});
+		
+	});
+	 
+
+</script>
+</head>
+<body>
+	<button id="btn">click me!</button>
+	<input class="class1" type="text" id="test">
+	<p id="p1">I am a paragraph</p>
+	<p id="p2">I am also a paragraph</p>
+
+	<button id="btn2">also click me!</button>
+	<button id="btn3">me too!</button>
+
+</body>
+</html>

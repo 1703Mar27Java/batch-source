@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title id="title">HelloWorld</title>
+</head>
+<body>
+	<h1 id="h1" onclick="changeText(this)">click on this text!</h1>
+
+</body>
+<script>
+function changeText(id){
+	id.innerHTML="text changed!";
+}
+window.addEventListener("resize",function(){
+	document.getElementById("title").innerHTML = "you resized the window";
+});
+</script>
+</html>

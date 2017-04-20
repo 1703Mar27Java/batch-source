@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>html validation</title>
+</head>
+<body>
+	<p>please input a number between 5 and 10:</p>
+	<input id="demo" type="text">
+	<button type="button" id="button">Test Input</button>
+	<p id="message"></p>
+</body>
+<script>
+	/*try {
+		addAlert("welcome guest");
+	}
+	catch (err) {
+		document.getElementById("demo").innerHTML = err.message;
+	}*/
+	function myFunction(input){
+		var message = document.getElementById("message");
+		message.innerHTML = "";
+		try{
+			if (input=="") throw "empty";
+			if (isNaN(input)) throw "not a number"
+			x = Number(input); //wrapper class for numeric literals 
+			if (x<5) throw "too low";
+			if (x>10) throw "too high";
+		}
+		catch (err) {
+			message.innerHTML = "input is "+err;
+		}
+	};
+	
+	document.getElementById("button").addEventListener("click",function(){
+		myFunction(document.getElementById("demo").value)});
+</script>
+</html>
