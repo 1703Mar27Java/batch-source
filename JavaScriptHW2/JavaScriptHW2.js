@@ -105,19 +105,15 @@ function getCustomAttribute() {
  */
 
 $(document).ready(
-		function() {
-			$("#num1, #num2").change(
-					function() {
-						if ($.isNumeric($("#num1").val())
-								&& $.isNumeric($("#num2").val())) {
-							$("#sum").text(
-									parseInt($("#num1").val())
-											+ parseInt($("#num2").val()));
-						} else {
-							$("#sum").text("Cannot add");
-						}
-					});
-		});
+	function() {
+	$("#num1, #num2").change(function() {
+		if ($.isNumeric($("#num1").val())&& $.isNumeric($("#num2").val())) {
+			$("#sum").text(parseInt($("#num1").val())+ parseInt($("#num2").val()));
+		} else {
+			$("#sum").text("Cannot add");
+		}
+	});
+});
 
 /*
  * 7. Skills Event
@@ -132,14 +128,11 @@ $(document).ready(
  */
 
 $(document).ready(
-		function() {
-			$("select[name=skills]").change(
-					function() {
-						alert("Are you sure "
-								+ $("select[name=skills] option:selected")
-										.val() + " is one of your skill?")
-					});
-		});
+	function() {
+		$("select[name=skills]").change(function(){
+			alert("Are you sure "+ $("select[name=skills] option:selected").val() + " is one of your skill?");
+	});
+});
 
 /*
  * 8. Favorite Color Event
@@ -162,7 +155,7 @@ $(document).ready(function() {
 	oldColor = "";
 	$("input[name=favoriteColor]").change(function() {
 		var newColor = $("input[name=favoriteColor]:checked").val();
-		alert("So you like " + newColor + " more than " + oldColor + " now?")
+		alert("So you like " + newColor + " more than " + oldColor + " now?");
 		oldColor = newColor;
 	});
 });
