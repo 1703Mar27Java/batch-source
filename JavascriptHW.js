@@ -106,26 +106,34 @@ homework.rotateLeft = function(array, n) {
 */
 homework.balancedBrackets = function(bracketsString){
 	
-	for(var i = 0; i < bracketsString.length/2 ; i++){
+	var check;
+	var stack = [];
+	for(var i = 0; i < bracketsString.length ; i++){
 		
+			if(bracketsString[i] == "("){
+				stack.push("(");
+			} else if(bracketsString[i] == "{"){
+				stack.push("{");
+			} else if(bracketsString[i] == "["){
+				stack.push("[")
+			} else{
+				check = stack.pop(); 
+				if(check == "("){
+					check = ")";
+				} else if (check == "{"){
+					check = "}";
+				} else if (check == "["){
+					check = "]";
+				}
+				if(check != bracketsString[i] || check==null){
+					return false;
+				}
+			}
+		}
 		
-		switch(bracketsString[i]){
-			case "(":
-				if(bracketsString[bracketsString.length-i-1] != ")"){
-					return false;
-				}
-				break;
-			case "{":
-				if(bracketsString[bracketsString.length-i-1] != "}"){
-					return false;
-				}
-				break;	
-			case "[":
-				if(bracketsString[bracketsString.length-i-1] != "]"){
-					return false;
-				}
-				break;
-		}	
+	if(stack.length > 0){
+		return false;
 	}
+		
 	return true;
-};
+	};
