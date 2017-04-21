@@ -5,13 +5,17 @@
 <title>PlainAjax</title>
 </head>
 <body>
-<div id="demo">
-	<h2>Let AJAX change this text</h2>
+<div >
+	<h2 id="demo">Let AJAX change this text</h2>
 	<button type="button" onclick="loadDoc('ajaxInfo.txt',myFunction1)">Change Content</button>
 </div>
-<div id="demo2">
-	<h2>Let AJAX change this text</h2>
-	<button type="button" onclick="loadDoc('https://pokeapi.co/api/v2/pokemon/pikachu/',myFunction2)">Change Content</button>
+<div >
+	<h2 id="demo2">Show me bulbasaur!</h2>
+	<button type="button" onclick="loadDoc('https://pokeapi.co/api/v2/pokemon/1/',myFunction2)">Change Content</button>
+</div>
+<div >
+	<h2 id="demo3">Show me the caves</h2>
+	<button type="button" onclick="loadDoc('caves.jsp',myFunction3)">Change Content</button>
 </div>
 </body>
 <script>
@@ -31,6 +35,9 @@ function myFunction1(xhttp){
 }
 function myFunction2(xhttp){
 	document.getElementById("demo2").innerHTML = xhttp.responseText;
+}
+function myFunction3(xhttp){
+	document.getElementById("demo3").innerHTML = xhttp.responseText;
 }
 </script>
 </html>

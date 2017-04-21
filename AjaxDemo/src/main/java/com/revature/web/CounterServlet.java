@@ -23,6 +23,7 @@ public class CounterServlet extends HttpServlet{
 		resp.setContentType("application/json");
 		if(et > 0){
 			counter = new Random().nextInt() + et;
+			//counter = counter/100000; UNCOMMENT FOR RANDOMIZATION STEP TWO!
 		}
 		resp.getWriter().write("{\"counter\" : " + counter +"}");
 		
