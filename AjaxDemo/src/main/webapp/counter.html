@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<style>
+
+</style>
+</head>
+<body>
+
+	<div id="ajax">
+		<h1>The current server counter is:</h1>
+	</div>
+
+	<script>
+		document
+				.addEventListener(
+						"DOMContentLoaded",
+						function() {
+							var counter = 0;
+							var startTime = new Date().getSeconds();
+							var ajx = document.getElementById("ajax");
+							var html = ajx.innerHTML;
+							html += "<h1>" + counter + "</h1>";
+							ajx.innerHTML = html;
+							console.log(ajx);
+							var int = setInterval(
+									function() {
+										var currTime = new Date().getSeconds();
+										var et = currTime - startTime;
+										startTime = new Date().getSeconds();
+										var xhr = new XMLHttpRequest()
+												|| new ActiveXObject(
+														"Microsoft.HTTPRequest");
+
+										xhr.onreadystatechange = function() {
+											if (xhr.readyState != 4)
+												return;
+											if (xhr.status == 200) {
+												var res = JSON.parse(xhr.responseText)
+												ajx.lastChild.innerHTML = res.counter;
+											} else {
+												clearInterval(int);
+												ajx.innerHTML = "It didn't work";
+											}
+										}
+
+										var url = "http://localhost:8083/AjaxDemo/count?ElapsedTime="
+												+ et;
+										xhr.open("GET", url, true);
+										xhr.send();
+									}, 2000);
+						});
+	</script>
+
+</body>
+</html>
+
