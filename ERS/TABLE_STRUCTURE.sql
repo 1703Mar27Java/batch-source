@@ -6,25 +6,25 @@ N/A|     | -An Employee can view the Employee Homepage
 N/A|     | -An Employee can logout
  X |     | -An Employee can submit a reimbursement request
    |     | -An Employee can upload an image of his/her receipt as part of the reimbursement request
-   |     | -An Employee can view their pending reimbursement requests
-   |     | -An Employee can view their resolved reimbursement requests
-   |     | -An Employee can view their information
+ X |     | -An Employee can view their pending reimbursement requests
+ X |     | -An Employee can view their resolved reimbursement requests
+ X |     | -An Employee can view their information
    |     | -An Employee can update their information
    |     | -An Employee receives an email when one of their reimbursement requests is resolved (optional)
    |     | 
  X |     | -A Manager can login
 N/A|     | -A Manager can view the Manager Homepage
-   |     | -A Manager can logout
+N/A|     | -A Manager can logout
    |     | -A Manager can approve/deny pending reimbursement requests
-   |     | -A Manager can view all pending requests from all employees
+ X |     | -A Manager can view all pending requests from all employees
    |     | -A Manager can view images of the receipts from reimbursement requests
-   |     | -A Manager can view all resolved requests from all employees and see which manager resolved it
-   |     | -A Manager can view all Employees
-   |     | -A Manager can view reimbursement requests from a single Employee
+ X |     | -A Manager can view all resolved requests from all employees and see which manager resolved it
+ X |     | -A Manager can view all Employees
+ X |     | -A Manager can view reimbursement requests from a single Employee
    |     | 
 ---|--------------------------------------------------------------
-   |     | -A Manager can register an Employee, which sends the Employee an email with their username and temp password (optional)
-   |     | -An Employee can reset their password (Optional - tied with above functional requirement)
+ X |     | -A Manager can register an Employee, which sends the Employee an email with their username and temp password (optional)
+ X |     | -An Employee can reset their password (Optional - tied with above functional requirement)
 */
 
 
@@ -178,6 +178,9 @@ VALUES                ('stev', 'kels', 'Steven', 'Kelsey', 'steve@kels.com', 23)
 *       Add views to make data more readable           *
 *******************************************************/
 
+--VIEW ALL USERS
+--A Manager can view all Employees (WHERE UR_ROLE)
+--An Employee can view their information (WHERE U_USERNAME)
 CREATE OR REPLACE VIEW VW_ERS_USERS AS
   SELECT 
     ERS_USERS.U_USERNAME AS USER_NAME, 
@@ -188,6 +191,9 @@ CREATE OR REPLACE VIEW VW_ERS_USERS AS
   FROM ERS_USER_ROLES 
   JOIN ERS_USERS ON ERS_USER_ROLES.UR_ID=ERS_USERS.UR_ID;
   
+--VIEW ALL REIMBURSMENTS
+--An Employee can view their resolved reimbursement requests (WHERE U_USERNAME AND RS_STATUS)
+--A Manager can view reimbursement requests from a single Employee (WHERE U_USERNAME)
 CREATE OR REPLACE VIEW VW_ERS_REIMBURSEMENTS AS
   SELECT 
     ERS_REIMBURSEMENTS.R_ID, 
@@ -204,6 +210,52 @@ CREATE OR REPLACE VIEW VW_ERS_REIMBURSEMENTS AS
   INNER JOIN ERS_USERS ON ERS_USERS.U_ID=ERS_REIMBURSEMENTS.U_ID_AUTHOR
   INNER JOIN ERS_REIMBURSEMENT_STATUS ON ERS_REIMBURSEMENT_STATUS.RS_ID=ERS_REIMBURSEMENTS.RS_STATUS
   INNER JOIN ERS_REIMBURSEMENT_TYPE ON ERS_REIMBURSEMENT_TYPE.RT_ID=ERS_REIMBURSEMENTS.RT_TYPE;
+  
+--An Employee can view their pending reimbursement requests (WHERE U_ID)
+--A Manager can view all pending requests from all employees
+CREATE OR REPLACE VIEW VW_ERS_ALL_PEND_REIMBURSE AS
+  SELECT
+    ERS_REIMBURSEMENTS.R_ID, 
+    ERS_REIMBURSEMENTS.R_DESCR AS DESCRIPTION,
+    ERS_REIMBURSEMENTS.R_RECEIPT AS RECEIPT,
+    ERS_REIMBURSEMENTS.R_SUBMITTED AS TIME_SUBMITTED,
+    ERS_REIMBURSEMENTS.R_RESOLVED AS TIME_RESOLVED,
+    ERS_REIMBURSEMENTS.R_AMOUNT AS AMOUNT, 
+    ERS_REIMBURSEMENT_TYPE.RT_TYPE AS R_TYPE, 
+    ERS_REIMBURSEMENT_STATUS.RS_STATUS AS R_STATUS, 
+    ERS_USERS.U_USERNAME AS USERNAME,
+    ERS_USERS.U_FIRSTNAME AS FIRST_NAME,
+    ERS_USERS.U_LASTNAME AS LAST_NAME
+    FROM ERS_REIMBURSEMENTS 
+  INNER JOIN ERS_USERS ON ERS_USERS.U_ID=ERS_REIMBURSEMENTS.U_ID_AUTHOR
+  INNER JOIN ERS_REIMBURSEMENT_STATUS ON ERS_REIMBURSEMENT_STATUS.RS_ID=ERS_REIMBURSEMENTS.RS_STATUS
+  INNER JOIN ERS_REIMBURSEMENT_TYPE ON ERS_REIMBURSEMENT_TYPE.RT_ID=ERS_REIMBURSEMENTS.RT_TYPE
+  WHERE ERS_REIMBURSEMENTS.RS_STATUS=(SELECT RS_ID FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Pending');
+  
+--A Manager can view all resolved requests from all employees and see which manager resolved it
+--(did this separately because of the need to add the additional where clause and other changes)
+CREATE OR REPLACE VIEW VW_ERS_ALL_RESOLVED_REIMBURSE AS
+  SELECT
+    REIMBUR.R_ID, 
+    REIMBUR.R_DESCR AS DESCRIPTION,
+    REIMBUR.R_RECEIPT AS RECEIPT,
+    REIMBUR.R_SUBMITTED AS TIME_SUBMITTED,
+    REIMBUR.R_RESOLVED AS TIME_RESOLVED,
+    USERS_B.U_USERNAME AS RESOLVED_BY,
+    REIMBUR.R_AMOUNT AS AMOUNT, 
+    ERS_REIMBURSEMENT_TYPE.RT_TYPE AS R_TYPE, 
+    ERS_REIMBURSEMENT_STATUS.RS_STATUS AS R_STATUS, 
+    USERS_A.U_USERNAME AS USERNAME,
+    USERS_A.U_FIRSTNAME AS FIRST_NAME,
+    USERS_A.U_LASTNAME AS LAST_NAME
+    FROM ERS_REIMBURSEMENTS REIMBUR
+  INNER JOIN ERS_USERS USERS_A ON USERS_A.U_ID=REIMBUR.U_ID_AUTHOR
+  LEFT JOIN ERS_USERS USERS_B ON USERS_B.U_ID=REIMBUR.U_ID_RESOLVER
+  INNER JOIN ERS_REIMBURSEMENT_STATUS ON ERS_REIMBURSEMENT_STATUS.RS_ID=REIMBUR.RS_STATUS
+  INNER JOIN ERS_REIMBURSEMENT_TYPE ON ERS_REIMBURSEMENT_TYPE.RT_ID=REIMBUR.RT_TYPE
+  WHERE REIMBUR.RS_STATUS=(SELECT RS_ID FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Denied')
+  OR REIMBUR.RS_STATUS=(SELECT RS_ID FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Approved');
+
 
 /*******************************************************
 *               Various Stored Procedures              *
@@ -234,6 +286,8 @@ BEGIN
     TEXT_OUT:='ERROR!';
     ROLLBACK TO SP;
 END;
+
+
 
 --SIMILAR TO ABOVE SP, EXCEPT ALSO INCLUDES THE DESCRIPTION FIELD
 CREATE OR REPLACE PROCEDURE ERS_SP_CREATE_REIMBUR_DESCR (DESCRIP IN VARCHAR, AMOUNT IN NUMBER, U_USER IN VARCHAR, RTYPE IN VARCHAR, TEXT_OUT OUT VARCHAR)
@@ -274,8 +328,31 @@ BEGIN
   END IF;
 END;
 
-DECLARE
-VAL NUMBER:=0;
+CREATE OR REPLACE PROCEDURE SP_ERS_CREATE_USER 
+  (U_NAME IN VARCHAR, U_PASS IN VARCHAR, U_FIRST IN VARCHAR, U_LAST IN VARCHAR, EMAIL IN VARCHAR, U_ROLE IN VARCHAR, IS_VALID OUT NUMBER)
+IS
+  ROLE_ID NUMBER;
 BEGIN
-SP_ERS_VALIDATE_USER('rich','wing',VAL);
+  SAVEPOINT SP;
+  SELECT UR_ID INTO ROLE_ID FROM ERS_USER_ROLES WHERE UR_ROLE=U_ROLE;
+  INSERT INTO ERS_USERS (U_USERNAME, U_PASSWORD, U_FIRSTNAME, U_LASTNAME, U_EMAIL, UR_ID)
+                 VALUES (U_NAME, U_PASS, U_FIRST, U_LAST, EMAIL, ROLE_ID);
+  COMMIT;
+  IS_VALID:=1;
+  EXCEPTION WHEN OTHERS THEN 
+    IS_VALID:=0;
+    ROLLBACK TO SP;
 END;
+
+CREATE OR REPLACE PROCEDURE SP_ERS_RESET_PASS(U_NAME IN VARCHAR)
+IS
+BEGIN
+  SAVEPOINT SP;
+  UPDATE ERS_USERS SET U_PASSWORD='password' WHERE U_USERNAME=U_NAME;
+  COMMIT;
+  EXCEPTION WHEN OTHERS THEN
+    ROLLBACK TO SP;
+END;
+
+
+
