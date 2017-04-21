@@ -1,0 +1,120 @@
+Gabe Aron
+JS Homework1
+Apr 21 20017
+
+1)
+homework.fibonacci = function(n){
+	if (n == 0){
+
+		return 0;
+   
+	}
+	
+	else if (n == 1){
+
+		return 1;
+    
+	}
+	
+	else if (n >= 2){
+
+		return (homework.fibonacci(n - 1) + homework.fibonacci(n - 2));
+
+	}
+
+};
+
+2)
+homework.sort = function(arr){
+	for (i = 0; i < (arr.length - 1); i++){
+
+		for (j = 0; j <= i; j++){
+
+			//do a swap
+
+			if (arr[j] > arr[j+1]){
+
+				var temp = arr[j];
+
+				arr[j] = arr[j+1];
+
+				arr[j+1] = temp;
+
+			}
+
+		}
+	
+	}
+	
+	return arr;
+
+};
+
+3)
+homework.factorial = function(n){
+	if (n == 0){
+
+		return 1;
+
+	}
+
+	else
+{
+		return (n * factorial(n-1));
+	}	
+};
+
+4)
+homework.rotateLeft = function(n, arr){
+	for (i = 0; i < n; i++){
+		arr[i];
+
+		var temp = arr[0];
+
+		for (j = 0; j < (arr.length - 1); j++){
+
+			arr[j] = arr[j+1];
+
+		}
+
+		arr[(arr.length-1)] = temp;
+
+	}
+
+
+	return arr;
+};
+
+5)
+homework.balancedBrackets = function(bracketsString){
+
+	var stack=new Array();
+
+	for (var i = 0; i < bracketString.length; i++){
+
+		if (bracketString.charAt(i) == "(" || bracketString.charAt(i) == "{" || bracketString.charAt(i) == "["){
+			stack.push(bracketString.charAt(i));
+
+		}
+
+		if (bracketString.charAt(i) == ")" || bracketString.charAt(i) == "}" || bracketString.charAt(i) == "]"){
+
+		stack.pop();
+
+		}
+
+	}
+	
+	if (stack.length == 0){
+
+		return true;
+
+	}
+
+	else{
+
+		return false;
+
+	}
+
+};
