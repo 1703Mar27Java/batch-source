@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script>
+	function fib(a) {
+		var result = 0;
+		var last = 0;
+		var cur = 1;
+		for (var i = 0; i < a - 1; i++) {
+
+			result = cur + last;
+			last = cur;
+			cur = result;
+		}
+		return cur;
+	}
+	function sort(a) {
+		for (var i = 0; i < a.length; i++) {
+			for (var j = 0; j < a.length; j++) {
+				if (a[i] < a[j]) {
+					var temp = a[i];
+					a[i] = a[j];
+					a[j] = temp;
+				}
+			}
+		}
+		return a;
+	}
+	function fact(a) {
+		var result = 0;
+		for (var i = a; i > 1; i--) {
+			if (result == 0)
+				result++;
+			result += (result * i);
+		}
+		return result;
+	}
+	function shift(a, x) {
+		var temp = 0;
+		for (var i = 0; i < x; i++) {
+			temp = a[0];
+			for (var j = 0; j < a.length; j++) {
+				a[j] = a[j + 1];
+			}
+			a[a.length - 1] = temp;
+		}
+		return a;
+	}
+	function balance(a) {
+		var RightCurly = [];
+		var LeftCurly = [];
+		var RightBrace = [];
+		var LeftBrace = [];
+		var RightBracket = [];
+		var LeftBracket = [];
+		for (var i = 0; i < a.length; i++) {
+				if(a[i] == "(")
+					LeftCurly.push(a[i]);
+				if(a[i] == ")")
+					RightCurly.push(a[i]);
+				
+				if(a[i] == "{")
+					LeftBrace.push(a[i]);
+				if(a[i] == "}")
+					RightBrace.push(a[i]);
+				
+				if(a[i] == "[")
+					LeftBracket.push(a[i]);
+				if(a[i] == "]")
+					RightBracket.push(a[i]);
+			}
+		
+		if(RightCurly.length == LeftCurly.length && 
+				RightBrace.length == LeftBrace.length && 
+				RightBracket.length == LeftBracket.length)
+			return true;
+		
+		return false;
+	}
+</script>
+</html>
