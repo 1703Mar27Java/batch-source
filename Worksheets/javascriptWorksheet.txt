@@ -1,0 +1,75 @@
+function fib(n)
+{if(n <= 1)
+ {return n};
+ return fib(n-1)+fib(n-2);
+} 
+
+
+function bubbleSort(array) {
+	var ntl = array.length -1;
+	array.some(function() {
+		var inS = true;
+		for(var i = 0;i < ntl;i+=1){
+		
+		 var nextI = i+1;
+		 if(array[i] > array[nextI]){
+		 
+		 var h = array[nextI];
+		 array[nextI] = array[i];
+		 array[i] = h;
+		 ins = false;
+		 }
+		}
+	
+	return ins;'
+	});
+}
+arr=[10,100,34,56,78,67,56,87,65,45,23,43,56,54,34];
+bubbleSort(arr);
+console.log(arr);
+
+function factorial(number)
+{
+	var fact =1;
+	for(i = 1;i <= number;i++)
+	{
+		fact=fact*i;
+	}
+	return fact;
+};
+
+
+
+function arrayRotate(arr, shift) {
+  shift -= arr.length *Math.floor(shift / arr.length)
+  arr.push.apply(arr, arr.splice(0, shift))
+  return arr
+}
+
+
+var stack = [];
+
+function checkParentheses(word) {
+  var map = {
+    '(': ')',
+    '[': ']',
+    '{': '}'
+  };
+  for (var i = 0; i < word.length; i++) {
+    if (word[i] === '(' || word[i] === '[' || word[i] === '{') {
+      stack.push(word[i]);
+    } else {
+      var last = stack.pop();
+
+      if (word[i] !== map[last]) {
+        return false;
+      }
+    }
+  }
+
+  if (stack.length !== 0) {
+    return false;
+  }
+
+  return true;
+}
