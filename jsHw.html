@@ -116,7 +116,7 @@ color:blue;
 	<a>Click Here</a>
 	<script type="text/javascript">
 	
-	//apparently this is wrong
+	
 	/* 1. USA
 	Define function getUSA()
 	Find the html element that contains "USA".
@@ -217,8 +217,13 @@ color:blue;
 	In this example, green is the new value and blue is the old value.
 	Make the background color (of all favoriteColor radio buttons) 
 	the newly selected favoriteColor */
-	
-	
+	var before;
+	$('input[name=favoriteColor]').mouseup(function(){
+	    before=$('input[name=favoriteColor]:checked').val();
+	}).change(function(){
+		if(before!=undefined)
+	    	alert("So you like "+$('input[name=favoriteColor]:checked').val()+" more than "+before+" now?");
+	});
 	/* 9. Show/Hide Event
 	NOTE: Write unobtrusive Javascript
 	When user hovers over an employees name:
