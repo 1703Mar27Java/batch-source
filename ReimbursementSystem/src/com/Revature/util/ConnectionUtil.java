@@ -8,7 +8,7 @@ public class ConnectionUtil {
 	public static Connection getConnectionFromFile(String filename) throws IOException, SQLException {
 		Properties prop = new Properties();
 		//InputStream in = new FileInputStream(filename);
-		InputStream in = new FileInputStream("C:\\Users\\jrene\\Desktop\\Training\\SelfLoginPage\\connection.properties");
+		InputStream in = new FileInputStream("C:\\Users\\jrene\\Desktop\\Training\\ReimbursementSystem\\connection.properties");
 		prop.load(in);
 		String url = prop.getProperty("url");
 		String username = prop.getProperty("username");

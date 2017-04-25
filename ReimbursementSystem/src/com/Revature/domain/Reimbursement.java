@@ -1,13 +1,14 @@
 package com.Revature.domain;
 
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Timestamp;
 
 public class Reimbursement {
 	private int id;
-	private int amount;
+	private double amount;
 	private String description;
-	private Blob receipt;
+	private InputStream receipt;
 	private Timestamp timestamp;
 	private int submitterID;
 	private int resolverID;
@@ -24,7 +25,7 @@ public class Reimbursement {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 	public void setAmount(int amount) {
@@ -36,10 +37,10 @@ public class Reimbursement {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Blob getReceipt() {
+	public InputStream getReceipt() {
 		return receipt;
 	}
-	public void setReceipt(Blob receipt) {
+	public void setReceipt(InputStream receipt) {
 		this.receipt = receipt;
 	}
 	public Timestamp getTimestamp() {

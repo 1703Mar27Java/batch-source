@@ -1,13 +1,8 @@
-form{
-	position:absolute;
-	left:42%;
-	top:40%;
-}
 img {
 	display:block;
     margin-left: auto;
     margin-right: auto;
-    width: 450px;
+    width: 350px;
     height:auto;
 }
 .button {
@@ -36,4 +31,22 @@ img {
 	width: 1000px;
 	height: 500px;
 	z-index: -1;
+}
+.firstButton{
+	clear: right;
+	float: right;
+	margin-right: 50px;
+}
+.accountCard{
+	background-color:#f26a26;
+	border-radius:5px;
+	width:275px;
+	height: 35px;
+	margin-top: 5px;
+	display:inline-block;
+	-webkit-transition: 0.2s;
+}
+.accountCard:hover{
+	background-color:#ff9f70;
+	-webkit-transition: 0.3s;
 }

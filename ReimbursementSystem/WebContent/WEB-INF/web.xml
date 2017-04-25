@@ -25,5 +25,14 @@
   	<url-pattern>/createuser</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>Create Reimbursement</servlet-name>
+  	<servlet-class>com.Revature.servlet.CreateReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Create Reimbursement</servlet-name>
+  	<url-pattern>/createreimbursement</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>

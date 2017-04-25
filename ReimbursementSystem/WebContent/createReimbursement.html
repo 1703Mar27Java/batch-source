@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Reimbursement</title>
+<link rel="stylesheet" href="radar.css">
+<style>
+form{
+	position:absolute;
+	left:42%;
+	top:30%;
+}
+</style>
+</head>
+<body>
+	<img src="images/revradar.png"></img>
+	<div class="orange-box">
+		<form action="createreimbursement" method="post">
+			<input type="text" placeholder="Enter Amount" name="amount" required><br>
+			<input type="text" placeholder="Enter Description" name="description"><br>
+			(Receipt image)<br>
+			<input type="file" name="receipt" accept="image/*"><br>
+			<select name="reimbType">
+				<option value="1">Travel</option>
+    			<option value="2">Certification</option>
+    			<option value="3">Food</option>
+			</select><br>
+			<input type="submit" class="button" value="create"/>
+		</form>
+	</div>
+</body>
+</html>
