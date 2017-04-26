@@ -1,0 +1,45 @@
+package com.revature.dao;
+
+import java.util.list;
+
+import one.to.many.*;
+
+//example of basic hql
+
+//inerface
+public interfface DAO{
+	public List<Cave> getCaves();
+	public List<Bear> getBears();
+	public Bear getBearByName(String name);
+}
+
+//implemenation
+public class DAOImpl implements DAO{
+	@Override
+	public List<Cave> getCaves(){
+		List<Cave> caves = new ArrayList<Cave>();
+		Session sesh = HibernateUtil.getSession();
+		caves = sesh.createQuery("from Cave").list();		//Cave is the classname
+		return caves;
+	}
+	
+	@Override
+	public List<Bear> getBears(){
+		List<Bear> bears = new ArrayList<Bear>();
+		Session sesh = HibernateUtil.getSession();
+		bears = sesh.createQuery("from Bear").list();		
+		return bears;
+	}
+	
+	@Override
+	public Bear getBearByName(String bearName){
+		Bear bear = null;
+		List<Bear> bears = new ArrayList<Bear>();
+		Session sesh = HibernateUtil.getSession();
+		bears = sesh.createQuery("from Bear where name = :namevar").list().setString("namevar", bearName).list();
+		if (!bears.isEmpty()){
+			bear = bears.get(0);
+		}			
+		return bears;
+	}
+}

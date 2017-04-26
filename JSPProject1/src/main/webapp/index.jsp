@@ -1,0 +1,98 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+<%String userRole = (String)session.getAttribute("userRole"); %>
+<!--<link rel="stylesheet" type="text/css" href="bootstrap-3.3.7-dist/css/bootstrap.css">
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+   <style>
+   	 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+   	 body {
+   	 	background-color: lightblue
+   	 }
+   	 .row.content {
+   	 	height: 100px
+   	 }
+   	 footer {
+     	background-color: #555;
+      	color: blue;
+     	 padding: 15px;
+    }
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+   	 
+    </style>
+    
+</head>
+<body >
+	<div>
+	<div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+     <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
+  </div>
+    
+	<Table class = "container-fluid">
+		<TR class = "row content">
+			<TD>
+			<TABLE>
+   				<TR class = "row content">
+      				<td><h2>I Love Food</h2><h4><small>RECENT POSTS</small></h4></td>
+   				</TR>
+			</TABLE>
+			</TD>
+		</TR>
+		<TR  class = "row content">
+		<TD>
+			<TABLE>
+			<tr class = "row content">
+				<TD>
+		 			<form action="Login" method="post">
+  						<p>Name:<input class="form-control" type="text" name="un" style="float:right;"><br></p> 
+  						<p>Password:<input class="form-control" type="text" name="pw"><br></p>
+						<input class = "glyphicon glyphicon-log-in" type="submit" value="Login" name = "employee"/>
+					</form>
+				</TD>
+			<tr class = "row content">
+			</TABLE>
+		</TD>
+		</TR>
+		<TR class = "row content">
+			<td>
+				<p>Slogan</p>
+			</td>
+		</TR>
+	</Table>
+	
+	<footer class="container-fluid text-center">
+  		<p>Footer Text</p>	
+	</footer>
+	</div>
+	
+</body>
+</html>
