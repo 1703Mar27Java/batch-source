@@ -33,7 +33,7 @@ public class Cave implements Serializable {
 	@Column(name="CAVE_NAME")
 	private String name;
 	
-	@OneToMany(mappedBy="cave",fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="cave",fetch=FetchType.EAGER)
 	List<Bear> occupants;
 
 	public int getId() {

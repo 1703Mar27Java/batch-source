@@ -4,20 +4,20 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
-
+@NamedQueries({ @NamedQuery(name = "findBearByName", query = "from Bear where name = :namevar") })
 
 @Entity
-@Table(name="BEAR")
+@Table(name = "BEAR")
 public class Bear implements Serializable {
-	
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1671056424943086535L;
 
-	public Bear(String name, Cave cave) {
+	public Bear(String name, int weight, Cave cave) {
 		super();
-	
+		this.weight = weight;
 		this.name = name;
 		this.cave = cave;
 	}
@@ -26,18 +26,21 @@ public class Bear implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="bearSeq")
-	@SequenceGenerator(allocationSize=1,name="bearSeq",sequenceName="BEAR_SEQ")
-	@Column(name="BEAR_ID")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bearSeq")
+	@SequenceGenerator(allocationSize = 1, name = "bearSeq", sequenceName = "BEAR_SEQ")
+	@Column(name = "BEAR_ID")
 	private int id;
-	
-	@Column(name="BEAR_NAME")
+
+	@Column(name = "BEAR_NAME")
 	private String name;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="BEAR_CAVE")
+
+	@Column(name = "BEAR_WEIGHT")
+	private int weight;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "BEAR_CAVE")
 	Cave cave;
 
 	public int getId() {
@@ -46,6 +49,14 @@ public class Bear implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int w) {
+		this.weight = w;
 	}
 
 	public String getName() {
@@ -100,9 +111,7 @@ public class Bear implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Bear [id=" + id + ", name=" + name + ", cave=" + cave + "]";
+		return "Bear [id=" + id + ", name=" + name + ", weight= " + weight + ", cave=" + cave + "]";
 	}
-	
-	
 
 }
