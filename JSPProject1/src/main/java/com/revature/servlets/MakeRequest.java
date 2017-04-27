@@ -22,10 +22,6 @@ import com.revature.util.ConnectionUtil;
  */
 public class MakeRequest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-      
-    public MakeRequest() {
-        super();
-    }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -51,11 +47,7 @@ public class MakeRequest extends HttpServlet {
 				
 		//test connection
 		if (con != null){
-			
-			out.println("Connected");
-			
-			//your code
-			
+
 			Reimbursement rei = new Reimbursement(Integer.parseInt(uID));
 			rei.setAmt(Double.parseDouble(amount));
 			rei.setrTtype(Integer.parseInt(typ));

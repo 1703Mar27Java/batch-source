@@ -56,7 +56,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li><form action="GetRequests" method="get" id = "viewMyRequests">
+        <li><form action="GetPersonalRequests" method="post" id = "viewMyRequests">
 			<input type="submit" value="View My Requests" /></form></li>
         <li><form action="MakeRequest" method="get" id = "makeRequest">
 			<input type="submit" value="Request Reimbursment" /></form></li>
@@ -183,7 +183,6 @@ $(document).ready(
 
 			},
 			function(data, status){
-				alert("Data: "+data+"\nStatus: "+status);
 				//parse this
 				var parser = "";
 				var parserTD = "";
@@ -216,9 +215,9 @@ $(document).ready(
 				}
 			
 				$("#emps").html($("#emps").html() + strArr + "</table>");
-				$(".format").click(function(){
+				/*$(".format").click(function(){
 					$(location).attr('href',"profile.jsp");
-				});
+				});*/
 			});
 		
 			//call request update ajax
@@ -226,40 +225,65 @@ $(document).ready(
 		
 			},
 			function(data, status){
-				alert("Data: "+data+"\nStatus: "+status);
 				//parse this
 				var parser = "";
 				var parserTD = "";
 				var strArr =[];
 				var index = 0;
+				var status = [];
+				var parseNoTable = "";
+				var parseNoTableTD = "";
+				var numberOfRows = 0;
 			
 				for (var i = 0; i < data.length; i++){
 				
 					if (data[i] === ","){
 						parser = "<td class="+"format"+">"+parser+"</td>";
 						parserTD += parser;
+						//parseNoTableTD += parseNoTable;
 						parser = "";
-						index++;
+						parseNoTable = "";
+						//index++;
 					}
 				
 					else if (data[i] === "[" || data[i] === "]"){
 					
-						strArr[index] = "<tr id ="+"reqRow"+" class="+"format"+">"+parserTD+"</tr>"; 
+						strArr[index] = "<tr id ="+"reqRow" +index+" class="+"format"+">"+parserTD+"</tr>"; 
 						parserTD = "";
 						//parser = "";
 						
-						//alert(strArr[index]);
+						status[numberOfRows] = parseNoTableTD.substring(0, 2);
+						parseNoTableTD = "";
+						alert(status[index]);
 						index++;
+						numberOfRows++;
 					}
 				
 					else{
 						parser += data[i];
 						parserTD += parser;
+						parseNoTable += data[i];
+						parseNoTableTD += parseNoTable;
 					}
 				}
 			
 				$("#requ").html($("#requ").html() + strArr);
-
+				
+				for (var i = 0; i < numberOfRows; i++){
+					if (status[i].includes("1")){
+						$("#reqRow" +i).css("background-color", "green");
+					}
+					else if (status[i].includes("2")){
+						$("#reqRow" +i).css("background-color", "red");
+					}
+					else if (status[i].includes("3")){
+						$("#reqRow" +i).css("background-color", "white");
+					}
+					
+					$("#reqRow" +i).click(function(){
+						$(this).css("background-color", "blue");
+					});
+				}
 			});
 		
 		}

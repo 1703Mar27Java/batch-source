@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +27,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 			String desc = rei.getDesc();
 			//String receipt = rei.getReceipt();
 			
-			String sql = "INSERT INTO ERS_REIMBURSEMENTS (R_ID, R_AMOUNT, R_DESCRIPTION, U_ID_AUTHOR, RT_TYPE, RS_STATUS) VALUES ('"+2+"', '"+amt+"', '"+desc+"','"+authID+"','"+typ+"','"+stat+"')";
+			String sql = "INSERT INTO ERS_REIMBURSEMENTS (R_AMOUNT, R_DESCRIPTION, U_ID_AUTHOR, RT_TYPE, RS_STATUS) VALUES ('"+amt+"', '"+desc+"','"+authID+"','"+typ+"','"+stat+"')";
 			
 			System.out.println("you's on da bluegrass 1!");
 			
@@ -98,6 +100,11 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				int status = rs.getInt("RS_STATUS");
 				int uid = rs.getInt("U_ID_AUTHOR");
 				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				String submitted  = dateFormat.format(rs.getTimestamp("R_SUBMITTED"));
+				
+				System.out.println(submitted);
+				
 				Reimbursement r = new Reimbursement(uid);
 				r.setrID(rID);
 				r.setAmt(amt);
@@ -105,6 +112,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				r.setAuthor(uid);
 				r.setrTtype(typ);
 				r.setrTstatus(status);
+				r.setSubmitted(submitted);
 				reims.add(r);
 			}
 		}catch(SQLException e){

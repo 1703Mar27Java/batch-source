@@ -7,33 +7,59 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="requestStyles.css">
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<!-- get userID from session -->
-<%int userId = (int)session.getAttribute("uID");%>
+
 </head>
 <body>
-<div class="container">
-<a href="dashboard.jsp">Home</a>
- 
- <form action="MakeRequest" method="post" id="usrform">
- 	<p class = "lbl">Amount<input type="text" name="amt"></p>
-  	<textarea rows="3" cols="40" name="comment" name="desc" placeholder="Description (optional)..."></textarea>
-  	<input class = "userID" type = "hidden" name = "uID" value = <%=(Integer)session.getAttribute("id")%>>
-  	<input class = "lbl" type="submit" value="Submit"/>
-  	<div class="dropdown">
-  	<button class="dropbtn">Type</button>
-  	<div class="dropdown-content">
-  		<input class = "typeDropDown" type = "hidden" name = "types" value ="">
-    	<a href="javascript:void(0)" class = "training">Training</a>
-    	<a href="javascript:void(0)" class = "supplies">Supplies</a>
-    	<a href="javascript:void(0)" class = "travel">Travel</a>
-    	<a href="javascript:void(0)" class = "lodging">Lodging</a>
-    	<a href="javascript:void(0)" class = "medical">Medical</a>
-  	</div>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    	<ul class="nav navbar-nav navbar-left">
+    		<li><a href="dashboard.jsp" class="glyphicon glyphicon-home"></a></li>
+    	</ul>
+		<ul class="nav navbar-nav navbar-right" id="viewMyInformation">
+        	<li><a href="UserProfile?param=value"><span class="glyphicon glyphicon-user"></span>My Account</a></li>
+      	</ul>
+    </div>
   </div>
- </form>
+</nav>
 
+
+<div class="container">
+ 	<form action="MakeRequest" method="post" id="usrform">
+ 		<ul>
+ 			<li><input class = "nav navbar-nav navbar-right" type="submit" value="Submit"/></li>
+ 		<div style="width:50%;">
+ 			<li><input class="form-control" type="text" name="amt" placeholder="Amount (numbers only)"></li>
+ 		</div>
+ 		</ul>
+  		<textarea class="form-control" rows="3" cols="40" name="comment" name="desc" placeholder="Description (optional)..."></textarea>
+  		<input class = "userID" type = "hidden" name = "uID" value = <%=(Integer)session.getAttribute("id")%>>
+  		<div class="dropdown">
+  			<button class="dropbtn">Type</button>
+  		<div class="dropdown-content">
+  			<input class = "typeDropDown" type = "hidden" name = "types" value ="">
+    		<a href="javascript:void(0)" class = "training">Training</a>
+    		<a href="javascript:void(0)" class = "supplies">Supplies</a>
+    		<a href="javascript:void(0)" class = "travel">Travel</a>
+    		<a href="javascript:void(0)" class = "lodging">Lodging</a>
+    		<a href="javascript:void(0)" class = "medical">Medical</a>
+  		</div>
+  	</div>
+ 	</form>
 <div>
 	
 </div>
@@ -44,6 +70,7 @@ $(document).ready(
 	//JQUERY
 	//handle notifications
 	function(){
+		$(".typeDropDown").val("Default");
 		$(".training").on("click",function(){
 			  $(".dropbtn").html('Training');
 			  $(".typeDropDown").val('Training');

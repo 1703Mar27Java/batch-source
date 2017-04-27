@@ -1,5 +1,6 @@
 package com.revature.domain;
 
+
 public class Reimbursement {
 	private int rID;
 	private double amt;
@@ -78,10 +79,15 @@ public class Reimbursement {
 	}
 	@Override
 	public String toString() {
-		return "Reimbursement [rID=" + rID + ", amt=" + amt + ", desc=" + desc + ", receipt=" + receipt + ", submitted="
+		return "[" + rTstatus + ", rID=" + rID + ", amt=" + amt + ", submitted="
 				+ submitted + ", resolved=" + resolved + ", author=" + author + ", resolver=" + resolver + ", rTtype="
-				+ rTtype + ", rTstatus=" + rTstatus + "]";
+				+ rTtype + "," + "]";
 	}
 	
+	public String toString(boolean full) {
+		return "rID=" + rID + ", amt=" + amt + ", desc=" + desc + ", receipt=" + receipt + ", submitted="
+				+ submitted + ", resolved=" + resolved + ", author=" + author + ", resolver=" + resolver + ", rTtype="
+				+ rTtype + ", rTstatus=" + rTstatus;
+	}
 	
 }

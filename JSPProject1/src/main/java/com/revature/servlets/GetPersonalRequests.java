@@ -14,17 +14,26 @@ import javax.servlet.http.HttpSession;
 
 import com.revature.dao.ReimbursementDaoImpl;
 import com.revature.domain.Reimbursement;
-import com.revature.domain.User;
 import com.revature.util.ConnectionUtil;
 
 /**
- * Servlet implementation class GetRequests
+ * Servlet implementation class GetPersonalRequests
  */
-public class GetRequests extends HttpServlet {
+public class GetPersonalRequests extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public GetPersonalRequests() {
+        super();
+    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
+		
+		HttpSession session = request.getSession(); 
+		
+		int uid = (int) session.getAttribute("id");
 
 		Connection con = null;
 		try {
@@ -36,13 +45,14 @@ public class GetRequests extends HttpServlet {
 				
 		//test connection
 		if (con != null){
-		
+			
+			out.println("Connected");
+
 			ReimbursementDaoImpl reiDao = new ReimbursementDaoImpl();
-			List<Reimbursement> requests = reiDao.retrieveReimbursements();
+			List<Reimbursement> requests = reiDao.retrieveUserReimbursementByUserId(uid);
 			
 			out.println(requests);
 			
-			HttpSession session = request.getSession(); 
 			session.setAttribute("users", requests); 
 			
 			//close connection
@@ -54,12 +64,7 @@ public class GetRequests extends HttpServlet {
 		    
 		    //response.sendRedirect("dashboard.jsp");
 		}
-	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		PrintWriter out = response.getWriter();
-		out.print("Get specific request");
 	}
 
 }
-

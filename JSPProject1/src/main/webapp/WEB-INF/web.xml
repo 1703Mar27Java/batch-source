@@ -89,4 +89,14 @@
     <servlet-name>UserProfile</servlet-name>
     <url-pattern>/UserProfile</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetPersonalRequests</display-name>
+    <servlet-name>GetPersonalRequests</servlet-name>
+    <servlet-class>com.revature.servlets.GetPersonalRequests</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetPersonalRequests</servlet-name>
+    <url-pattern>/GetPersonalRequests</url-pattern>
+  </servlet-mapping>
 </web-app>
