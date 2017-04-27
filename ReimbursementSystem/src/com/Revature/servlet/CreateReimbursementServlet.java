@@ -3,7 +3,9 @@ package com.Revature.servlet;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,16 +29,6 @@ public class CreateReimbursementServlet extends HttpServlet{
 		int uid = user.getUserID();
 		Calendar calendar = Calendar.getInstance();
 		Timestamp timestamp = new Timestamp(calendar.getTime().getTime());
-		InputStream inputStream = null;
-        // obtains the upload file part in this multipart request
-        Part receipt = req.getPart("receipt");
-        if (receipt != null) {
-            System.out.println(receipt.getName());
-            System.out.println(receipt.getSize());
-            System.out.println(receipt.getContentType());
-            // obtains input stream of the upload file
-            inputStream = receipt.getInputStream();
-        }
 		Reimbursement reimb = new Reimbursement();
 		ReimbursementDAOimpl reimbDAO = new ReimbursementDAOimpl();
 		reimb.setAmount(amount);
@@ -45,6 +37,7 @@ public class CreateReimbursementServlet extends HttpServlet{
 		reimb.setSubmitterID(uid);
 		reimb.setTimestamp(timestamp);
 		reimbDAO.createReimbursement(reimb);
+		//List<Reimbursement> reimbs = new ArrayList<Reimbursement>();
 		
 		resp.sendRedirect("homepage.jsp");
 	}

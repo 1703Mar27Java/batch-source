@@ -10,6 +10,7 @@ public class Reimbursement {
 	private String description;
 	private InputStream receipt;
 	private Timestamp timestamp;
+	private Timestamp timestamp2;
 	private int submitterID;
 	private int resolverID;
 	private int typeID;
@@ -49,6 +50,14 @@ public class Reimbursement {
 	public void setTimestamp(Timestamp timestamp) {
 		this.timestamp = timestamp;
 	}
+	
+	public Timestamp getTimestamp2() {
+		return timestamp2;
+	}
+	public void setTimestamp2(Timestamp timestamp) {
+		this.timestamp2 = timestamp;
+	}
+	
 	public int getSubmitterID() {
 		return submitterID;
 	}

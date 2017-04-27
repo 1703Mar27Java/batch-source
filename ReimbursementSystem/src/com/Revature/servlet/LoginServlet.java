@@ -16,6 +16,7 @@ import com.Revature.dao.IncorrectLoginException;
 import com.Revature.dao.ReimbursementDAOimpl;
 import com.Revature.dao.UserDAOimpl;
 import com.Revature.domain.Reimbursement;
+import com.Revature.domain.SimpleReimb;
 import com.Revature.domain.User;
 
 public class LoginServlet extends HttpServlet{
@@ -31,7 +32,7 @@ public class LoginServlet extends HttpServlet{
 			user = userDAO.UserByLogin(n1, n2);
 			HttpSession session = req.getSession();
 			session.setAttribute("user", user);
-			//List<Reimbursement> reimbs = reimbDAO.filter(user.getUserID(), "unresolved");
+			//List<SimpleReimb> reimbs = reimbDAO.filter(user.getUserID(), "unresolved");
 			//session.setAttribute("reimbs",reimbs);
 			resp.sendRedirect("homepage.jsp");
 		} catch (IncorrectLoginException e) {

@@ -7,40 +7,75 @@
 <head>
 <title>Homepage</title>
 <link rel="stylesheet" href="radar.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <style>
 form{
 	clear: right;
 	float: right;
 	margin-right: 50px;
-	margin-top:5px;
 }
 </style>
 </head>
 <body>
 	<img src="images/revradar.png"></img>
 	<div class="orange-box">
-		<h1>Welcome, ${user.getUsername()}</h1>
-		
-		<ul>
-			<!-- implement viewreimb to servlet -->
-			<!--  
-			<c:forEach var="row" items="${reimbs}">
-			<li><a href="/ReimbursementSystem/viewreimb?rid=${row.accountID}"><div class="accountCard">
-					<h3><c:out value="${row.accountName}"/>
-						<c:out value="${row.balance}"/></h3>
-					</div></a>
-			</li>
-			</c:forEach>
-			-->
-		</ul>
-		
-		<form action="createReimbursement.html">
-			<input type="submit" class="button" value="New Reimbursement">
-		</form>
-		
+		<h1>Welcome, ${user.getFirstname()}</h1>
+		<input type="checkbox" id="unresolved" value="Unresolved">Unresolved<br>
+		<input type="checkbox" id="resolved" value="Resolved">Resolved<br>
+		<div id="list" class="listbox">
+			<ul></ul>
+		</div>
+		<c:if test="${user.getUserRoleID()==1}">
+			<form action="createReimbursement.html">
+				<input type="submit" class="button" value="New Reimbursement">
+			</form>
+		</c:if>
+			<form action="logout.jsp">
+				<input type="submit" class="button" value="Logout">
+			</form>
 	</div>
 </body>
 <script>
-	
+$(document).ready(function(){
+	$("#resolved,#unresolved").on("change",function(){
+		if($(this).is(":checked")){
+			$("#list ul").empty();
+			populateList();
+		}else{
+			$("#list ul").empty();
+			populateList();
+		}
+	});
+	function populateList(){
+		var xhttp = new XMLHttpRequest();
+		var url=readFilters("reimblist");
+		xhttp.open("GET",url,true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		console.log('url: '+url);
+		xhttp.onreadystatechange = function(){
+			if (this.readyState == 4 && this.status == 200){
+				console.log(this.responseText)
+				var items = JSON.parse(this.responseText);
+				for(var i in items){
+					$("#list ul").append("<li><a href=\"viewreimb?rid="+items[i].id+"\">$"+items[i].amt+"-"+items[i].description+"</a></li>");
+				}	
+			}
+		};
+		xhttp.send();
+	}
+	function readFilters(url){
+		if($("#unresolved").is(':checked')){
+			url = url+'?unresolved=1&';
+		}else{
+			url = url+'?unresolved=0&';
+		}
+		if($("#resolved").is(':checked')){
+			url = url+'resolved=1';
+		}else{
+			url = url+'resolved=0';
+		}
+		return url;
+	}
+});
 </script>
 </html>

@@ -34,5 +34,41 @@
   	<url-pattern>/createreimbursement</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>Fetch reimbursements</servlet-name>
+  	<servlet-class>com.Revature.servlet.ReimbursementListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Fetch reimbursements</servlet-name>
+  	<url-pattern>/reimblist</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>view reimbursement</servlet-name>
+  	<servlet-class>com.Revature.servlet.ViewReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>view reimbursement</servlet-name>
+  	<url-pattern>/viewreimb</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>approve reimbursement</servlet-name>
+  	<servlet-class>com.Revature.servlet.ApproveReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>approve reimbursement</servlet-name>
+  	<url-pattern>/approvereimb</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>deny reimbursement</servlet-name>
+  	<servlet-class>com.Revature.servlet.DenyReimbursementServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>deny reimbursement</servlet-name>
+  	<url-pattern>/denyreimb</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>
