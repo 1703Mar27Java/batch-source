@@ -1,30 +1,30 @@
-/*
+  /*
 db |  gui
 ---|------     
- X |     | -An Employee can login
-N/A|     | -An Employee can view the Employee Homepage
-N/A|     | -An Employee can logout
- X |     | -An Employee can submit a reimbursement request
+ X |  X  | -An Employee can login
+N/A|  X  | -An Employee can view the Employee Homepage
+N/A|  X  | -An Employee can logout
+ X |  X  | -An Employee can submit a reimbursement request
    |     | -An Employee can upload an image of his/her receipt as part of the reimbursement request
- X |     | -An Employee can view their pending reimbursement requests
- X |     | -An Employee can view their resolved reimbursement requests
- X |     | -An Employee can view their information
-   |     | -An Employee can update their information
+ X |  X  | -An Employee can view their pending reimbursement requests
+ X |  X  | -An Employee can view their resolved reimbursement requests
+ X |  X  | -An Employee can view their information
+ X |  X  | -An Employee can update their information
    |     | -An Employee receives an email when one of their reimbursement requests is resolved (optional)
    |     | 
- X |     | -A Manager can login
-N/A|     | -A Manager can view the Manager Homepage
-N/A|     | -A Manager can logout
+ X |  X  | -A Manager can login
+N/A|  X  | -A Manager can view the Manager Homepage
+N/A|  X  | -A Manager can logout
    |     | -A Manager can approve/deny pending reimbursement requests
- X |     | -A Manager can view all pending requests from all employees
+ X |  X  | -A Manager can view all pending requests from all employees
    |     | -A Manager can view images of the receipts from reimbursement requests
- X |     | -A Manager can view all resolved requests from all employees and see which manager resolved it
+ X |  X  | -A Manager can view all resolved requests from all employees and see which manager resolved it
  X |     | -A Manager can view all Employees
- X |     | -A Manager can view reimbursement requests from a single Employee
+ X |  X  | -A Manager can view reimbursement requests from a single Employee
    |     | 
 ---|--------------------------------------------------------------
  X |     | -A Manager can register an Employee, which sends the Employee an email with their username and temp password (optional)
- X |     | -An Employee can reset their password (Optional - tied with above functional requirement)
+ X |  X  | -An Employee can reset their password (Optional - tied with above functional requirement)
 */
 
 
@@ -341,28 +341,30 @@ BEGIN
 END;
 
 --SP TO RESET A USER'S PASSWORD
-CREATE OR REPLACE PROCEDURE SP_ERS_RESET_PASS(U_NAME IN VARCHAR)
+CREATE OR REPLACE PROCEDURE SP_ERS_RESET_PASS(U_NAME IN VARCHAR, EMAIL IN VARCHAR)
 IS
 BEGIN
   SAVEPOINT SP;
-  UPDATE ERS_USERS SET U_PASSWORD='password' WHERE U_USERNAME=U_NAME;
+  UPDATE ERS_USERS SET U_PASSWORD='password' WHERE U_USERNAME=U_NAME AND U_EMAIL=EMAIL;
   COMMIT;
   EXCEPTION WHEN OTHERS THEN
     ROLLBACK TO SP;
 END;
 
 --A Manager can approve/deny pending reimbursement requests
-CREATE OR REPLACE PROCEDURE SP_ERS_RESOLVE_REIMBURS(IN_ID IN NUMBER, STATUS IN VARCHAR, RESOLVED_BY IN VARCHAR, TEXT_OUT OUT VARCHAR)
+create or replace PROCEDURE SP_ERS_RESOLVE_REIMBURS(IN_ID IN NUMBER, STATUS IN VARCHAR, RESOLVED_BY IN VARCHAR, TEXT_OUT OUT VARCHAR)
 IS 
   CNT NUMBER;
+  S_ID NUMBER;
   USER_ID NUMBER;
   CURR_TIME TIMESTAMP:=CURRENT_TIMESTAMP; 
 BEGIN
   SAVEPOINT SP;
   SELECT COUNT(*) INTO CNT FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS=STATUS;
+  SELECT RS_ID INTO S_ID FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS=STATUS;
   IF CNT=1 THEN
     SELECT U_ID INTO USER_ID FROM ERS_USERS WHERE U_USERNAME=RESOLVED_BY;
-    UPDATE ERS_REIMBURSEMENTS SET RS_STATUS=STATUS, R_RESOLVED=CURR_TIME, U_ID_RESOLVER=USER_ID WHERE R_ID=IN_ID;
+    UPDATE ERS_REIMBURSEMENTS SET RS_STATUS=S_ID, R_RESOLVED=CURR_TIME, U_ID_RESOLVER=USER_ID WHERE ERS_REIMBURSEMENTS.R_ID=IN_ID;
   ELSE
     TEXT_OUT:='ERROR WITH FINDING STATUS TYPE';
   END IF;
@@ -372,3 +374,4 @@ BEGIN
     TEXT_OUT:='ERROR UPDATING REIMBURSEMENT REQUEST';
     ROLLBACK TO SP;
 END;
+

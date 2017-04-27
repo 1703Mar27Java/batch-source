@@ -1,0 +1,343 @@
+html {
+    font - family: sans - serif;
+    - webkit - text - size - adjust: 100 %;
+    - ms - text - size - adjust: 100 %
+}
+
+body {
+    margin: 0
+}
+html {
+    font - size: 10 px;
+    - webkit - tap - highlight - color: rgba(0, 0, 0, 0)
+}
+
+body {
+    font - family: "Helvetica Neue", Helvetica, Arial, sans - serif;
+    font - size: 14 px;
+    line - height: 1.42857143;
+    color: #333;
+    background-color: # fff
+}
+
+button,
+input,
+select,
+textarea {
+    font - family: inherit;
+    font - size: inherit;
+    line - height: inherit
+}
+
+a {
+    color: #337ab7;
+    text-decoration: none
+}
+
+a:focus,
+a:hover {
+    color: # 23527 c;
+    text - decoration: underline
+}
+
+a: focus {
+    outline: thin dotted;
+    outline: 5 px auto - webkit - focus - ring - color;
+    outline - offset: -2 px
+}
+
+figure {
+    margin: 0
+}
+
+img {
+    vertical - align: middle
+}
+hr {
+    margin - top: 20 px;
+    margin - bottom: 20 px;
+    border: 0;
+    border - top: 1 px solid# eee
+}
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font - family: inherit;
+    font - weight: 500;
+    line - height: 1.1;
+    color: inherit
+}
+
+.h1.small,
+.h1 small,
+.h2.small,
+.h2 small,
+.h3.small,
+.h3 small,
+.h4.small,
+.h4 small,
+.h5.small,
+.h5 small,
+.h6.small,
+.h6 small,
+h1.small,
+h1 small,
+h2.small,
+h2 small,
+h3.small,
+h3 small,
+h4.small,
+h4 small,
+h5.small,
+h5 small,
+h6.small,
+h6 small {
+    font - weight: 400;
+    line - height: 1;
+    color: #777
+}
+
+.h1,
+.h2,
+.h3,
+h1,
+h2,
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px
+}
+
+.h1 .small,
+.h1 small,
+.h2 .small,
+.h2 small,
+.h3 .small,
+.h3 small,
+h1 .small,
+h1 small,
+h2 .small,
+h2 small,
+h3 .small,
+h3 small {
+    font-size: 65%
+}
+
+.h4,
+.h5,
+.h6,
+h4,
+h5,
+h6 {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.h4 .small,
+.h4 small,
+.h5 .small,
+.h5 small,
+.h6 .small,
+.h6 small,
+h4 .small,
+h4 small,
+h5 .small,
+h5 small,
+h6 .small,
+h6 small {
+    font-size: 75%
+}
+
+.h1,
+h1 {
+    font-size: 36px
+}
+
+.h2,
+h2 {
+    font-size: 30px
+}
+
+.h3,
+h3 {
+    font-size: 24px
+}
+
+.h4,
+h4 {
+    font-size: 18px
+}
+
+.h5,
+h5 {
+    font-size: 14px
+}
+
+.h6,
+h6 {
+    font-size: 12px
+}
+
+p {
+    margin: 0 0 10px
+}
+
+.container {
+    padding - right: 15 px;
+    padding - left: 15 px;
+    margin - right: auto;
+    margin - left: auto
+}
+.container - fluid {
+    padding - right: 15 px;
+    padding - left: 15 px;
+    margin - right: auto;
+    margin - left: auto
+}
+.boot-testimon-bgcolor:after {
+    content: '';
+    background: url(//revature.com/wp-content/themes/revature/css/../imgs/testmon-bg.jpg) no-repeat center bottom;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover
+}
+
+.boot-testimon-bgcolor {
+    position: relative;
+    width: 100%;
+    padding: 80px 0 0 0;
+    text-align: center
+}
+
+.boot-testimon-bgcolor h2 {
+    color: #fff
+}
+
+.boot-testimon-bgcolor h3 {
+    font-family: 'futura-pt';
+    font-size: 36px;
+    font-weight: 400
+}
+
+.boot-testimon-bgcolor p {
+    font-family: 'futura-pt';
+    font-size: 18px;
+    color: #b9b9ba;
+    font-weight: 700
+}
+
+.boot-testimon-bgcolor p span {
+    font-family: 'futura-pt';
+    font-size: 18px;
+    color: #b9b9ba;
+    padding-left: 5px;
+    font-style: italic;
+    font-weight: 300
+}
+
+
+.Testimon-bgcolor:after {
+    content: '';
+    /*background: url(//revature.com/wp-content/themes/revature/css/../imgs/Testimonials.png) fixed center bottom;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover
+}
+
+.Testimon-bgcolor {
+    position: relative;
+    width: 100%;
+    padding: 25px 0 0 0;
+    text-align: center;
+    height: 625px;
+    -webkit-transform: translate3d(0, 0, 0)
+}
+
+.Testimon-bgcolor h2 {
+    color: #fff
+}
+
+.Testimon-bgcolor h3 {
+    font-family: 'futura-pt';
+    font-size: 36px;
+    font-weight: 400
+}
+
+.Testimon-bgcolor p {
+    font-family: 'futura-pt';
+    font-size: 18px;
+    color: #b9b9ba;
+    font-weight: 700;
+    width: 100%
+}
+
+.Testimon-bgcolor p span {
+    font-family: 'futura-pt';
+    font-size: 18px;
+    color: #b9b9ba;
+    padding-left: 5px;
+    font-style: italic;
+    font-weight: 300
+}
+
+
+.wwd-bg:after {
+    content: '';
+    background: url(//revature.com/wp-content/themes/revature/css/../imgs/blog-intro.png) no-repeat center bottom;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover
+}
+
+.wwd-bg {
+    position: relative;
+    width: 100%;
+    text-align: center;
+    height: 150px;
+    padding: 30px;
+    -webkit-transform: translate3d(0, 0, 0)
+}
+
+.wwd-content {
+    margin: auto
+}
+
+.wwd-bg p {
+    text-align: center;
+    font-size: 24px;
+    color: inherit;
+    font-family: 'futura-pt';
+    width: 875px;
+    margin: 0 auto;
+    font-style: normal
+}
+
+.wwd-bg h2 {
+    color: inherit
+}
+
+.hwd-bg {
+    position: relative;
+    width: 100%;
+    padding: 25px 25px 100px 25px
+}
