@@ -61,20 +61,23 @@ public class Login extends HttpServlet {
 		    if (user != null){
 		    	 HttpSession session = request.getSession();
 		    	 int roleID = user.getUrID();
+		    	 
 	             session.setAttribute("userName", user.getUserName());
 	             session.setAttribute("password", user.getPassword());
 	             session.setAttribute("firstName", user.getFirstName());
 	             session.setAttribute("lastName", user.getLastName());
 	             session.setAttribute("email", user.getEmailAddress());
-	             session.setAttribute("id", new Integer(user.getUserID()));
+	             session.setAttribute("id", user.getUserID());
+	             
+	             out.println(session.getAttribute("id"));
 	             
 	           //find the user role accociated with the user role id
 	 			UserRolesDaoImpl userRoleDao = new UserRolesDaoImpl();       
 	            UserRoles userRole = userRoleDao.retrieveUserRoleByID(roleID);
-	            
 	         
 	            //if user role it is found
 	            if (userRole != null){
+	            	out.println("Not null");
 	            	session.setAttribute("userRole", userRole.getUrRole());
 	            	
 	            	//if user is a manager, load current requests

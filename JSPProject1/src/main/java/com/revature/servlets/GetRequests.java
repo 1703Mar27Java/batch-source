@@ -4,12 +4,17 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.revature.dao.ReimbursementDaoImpl;
+import com.revature.domain.Reimbursement;
+import com.revature.domain.User;
 import com.revature.util.ConnectionUtil;
 
 /**
@@ -23,9 +28,9 @@ public class GetRequests extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
+
 		Connection con = null;
 		try {
 			con = ConnectionUtil.getConnection();
@@ -37,23 +42,24 @@ public class GetRequests extends HttpServlet {
 		//test connection
 		if (con != null){
 			
-			PrintWriter out = response.getWriter();;
 			out.println("Connected");
+
+			ReimbursementDaoImpl reiDao = new ReimbursementDaoImpl();
+			List<Reimbursement> requests = reiDao.retrieveReimbursements();
 			
-			//some code
+			out.println(requests);
+			
+			HttpSession session = request.getSession(); 
+			session.setAttribute("users", requests); 
 			
 			//close connection
 		    try {
 				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}  
+			}
+		    
+		    //response.sendRedirect("dashboard.jsp");
 		}
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }

@@ -9,27 +9,30 @@
 <link rel="stylesheet" type="text/css" href="requestStyles.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<!-- get userID from session -->
+<%int userId = (int)session.getAttribute("uID");%>
 </head>
 <body>
 <div class="container">
 <a href="dashboard.jsp">Home</a>
  
  <form action="MakeRequest" method="post" id="usrform">
- 	<p class = "lbl">Amount:<input type="text" name="amt"></p>
-  <textarea rows="3" cols="40" name="comment" name="desc" placeholder="Description (optional)..."></textarea>
-  <input class = "lbl" type="submit" value="Submit"/>
-  <div class="dropdown">
-  <button class="dropbtn">Type</button>
-  <div class="dropdown-content">
-  	<input class = "typeDropDown" type = "hidden" name = "types" value ="">
-    <a href="javascript:void(0)" class = "training">Training</a>
-    <a href="javascript:void(0)" class = "supplies">Supplies</a>
-    <a href="javascript:void(0)" class = "travel">Travel</a>
-    <a href="javascript:void(0)" class = "lodging">Lodging</a>
-    <a href="javascript:void(0)" class = "medical">Medical</a>
+ 	<p class = "lbl">Amount<input type="text" name="amt"></p>
+  	<textarea rows="3" cols="40" name="comment" name="desc" placeholder="Description (optional)..."></textarea>
+  	<input class = "userID" type = "hidden" name = "uID" value = <%=(Integer)session.getAttribute("id")%>>
+  	<input class = "lbl" type="submit" value="Submit"/>
+  	<div class="dropdown">
+  	<button class="dropbtn">Type</button>
+  	<div class="dropdown-content">
+  		<input class = "typeDropDown" type = "hidden" name = "types" value ="">
+    	<a href="javascript:void(0)" class = "training">Training</a>
+    	<a href="javascript:void(0)" class = "supplies">Supplies</a>
+    	<a href="javascript:void(0)" class = "travel">Travel</a>
+    	<a href="javascript:void(0)" class = "lodging">Lodging</a>
+    	<a href="javascript:void(0)" class = "medical">Medical</a>
+  	</div>
   </div>
-  </div>
-  </form>
+ </form>
 
 <div>
 	

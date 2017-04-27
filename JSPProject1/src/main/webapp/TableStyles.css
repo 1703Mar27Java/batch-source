@@ -12,18 +12,34 @@ body {
 }
 
 .outer{
-	border: 3px solid red;
 	margin: 10% 10% 10% 10%;
 	width: 90%;
+	height: 40%;
 	position: relative;
 	text-align:center;
 }
 
 .inner{
 	border: 3px solid red;
-	margin: 1% 10% 10% 10%;
-	height: 120px;
-	width: 80%;
+	background-color: gray;
+	margin: 1% 0% 1% 0%;
+	height: 10px;
+	width: 100%;
+	overflow-y: scroll;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+table {
+  height: 200px;
+  overflow-y: scroll;
+}
+
+tr.format{
+	margin:1% 1% 1% 1%;
+}
+
+#userRow:hover{
+	background-color:red;
 }
 
 .forms{

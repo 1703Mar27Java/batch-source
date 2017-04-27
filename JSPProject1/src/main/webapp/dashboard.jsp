@@ -16,7 +16,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Dashboard</title>
 	<!-- user -->
-	<%String userId = (String)session.getAttribute("userId");%>
+	<%Integer userId = (Integer)session.getAttribute("id"); %>
 	<%String userName = (String)session.getAttribute("userName"); %>
 	<%String userRole = (String)session.getAttribute("userRole"); %>
 	<%String emailAddress = (String)session.getAttribute("email"); %>
@@ -44,7 +44,6 @@
 </head>
 
 <body>
-
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -72,46 +71,72 @@
   </div>
 </nav>
 
-	<Table class = "outer">
-		<TR>
-		
-		</TR>
+	<table class = "outer" id = "empsAndReqs">
 		<TR>
 			
 		</TR>
 		<tr>
-			<td>Employees</td>
+			<td colspan = "3">Employees</td>
 		</tr>
-		<TR>
-		<TD>
-			<TABLE id = "emps" class = "inner">
-				<!-- table elements will be inserted with AJAX -->
-			</TABLE>
-		</TD>
-		</TR>
 		<tr>
-			<td>Reimbursement Requests</td>
+		<td>
+  			<input class="form-control" id = "nameInp" type="text" name="un" placeholder="Username" style="float:right;">
+		</td>
+		<td>
+			<input class="form-control" id = "emailInp" type="text" name="email" placeholder="Email address" style="float:right;"> 
+		</td>
+		<td>
+			<input class="form-control" id = "passwordInp" type="text" name="pw" placeholder="Password" style="float:right;">
+		</td>
+		<td>
+			<button class = "createEmp">Create Employee</button>
+			<button class = "submit">Submit</button>
+		</td>
+		<td>
+			<button class = "cancel">Cancel</button>
+		</td>
 		</tr>
-		<TR>
-			<TD>
-			<TABLE id = "requ" class = "inner">
-			<tr>
-				<TD>
-		 			Inner table
-				</TD>
-			<tr>
-			</TABLE>
-		</TR>
-	</Table>
+		<tr>
+			<td colspan = "3">
+				<table id = "emps" class = "inner" style="height: 200px; max-height: 200px; overflow-y: scroll;">
+				<!-- table elements will be inserted with AJAX -->
+				<tr>
+					 <th>Name</th>
+  					 <th>Email</th>
+  					 <th>ID</th>
+  				</tr>
+  				<tr>
+  					<td>
+  					<form method="POST" action="profile.jsp" class = "passSelected">
+						<input type = "hidden" name = "redirect" value ="profile.jsp">
+					</form>
+					</td>
+				</tr>
+  				<tr>
+					<td>
+					
+					</td>
+				</tr>
+			</table>
+				
+			</td>
+		</tr>
+		<tr>
+			<td colspan = "3">Reimbursement Requests</td>
+		</tr>
+		<tr>
+			<td colspan="3">
+			<table id = "requ" class = "inner" style="height: 100px; overflow-y: scroll;">
+				
+			</table>
+			</td>
+		</tr>
+	</table>
 
 <div>
-<form class = "getRequests" action="GetRequests" method="get">
+<!--  <form class = "getRequests" action="GetRequests" method="get">
 	<input class = "lbl" type="submit" value="See Requests" />
-</form>
-
-<form class = "createEmp" action="CreateEmp" method="get">
-	<input class = "lbl" type="submit" value="Create Employee" />
-</form>
+</form>-->
 
 </div>
 
@@ -120,62 +145,166 @@
 <div class="drpdwn"></div>-->
 
 <p>Welcome ${userName}</p>
-<p>You are a ${userRole}</p>
+<p id = "whatAreYa"></p>
 </body>
 <script>
 $(document).ready(
 	//handle notifications
 	
 	function(){
+		
 		var userRole = "<%= userRole %>";
+		$("#whatAreYa").html(userRole);
 		//see if user is an employee to restrict functionality to that of employees
 		if (userRole === "Employee"){
+			$("#whatAreYa").html("You are an Employee");
 			$(".changePassword").hide();
 			$(".createEmp").hide();
 			$("#emps").hide();
 			$(".getRequests").hide();
+			$("#empsAndReqs").hide();
+			
 		}
 		//restrict or enable functionality for managers
 		else if (userRole === "manager"){
+			$("#whatAreYa").html("You are a Manager");
 			$("#viewMyInformation").hide();
 			$("#viewMyRequests").hide();
 			$("#makeRequest").hide();
-		}
-		
-		//call user update ajax
-		$.post("ViewEmps", {
-
-		},
-		function(data, status){
-			alert("Data: "+data+"\nStatus: "+status);
-			//parse this
-			var parser = "";
-			var strArr =[];
-			var index = 0;
 			
-			for (var i = 0; i < data.length; i++){
-				if (data[i] == "U" && data[i+1] == "s" && data[i+2] == "e" && data[i+3] == "r"){
-					//ignore
-					i += 3;
-				}
-				else if (data[i] == "[" || data[i] == "]"){
-					
-						strArr[index] = "<tr>"+parser+"</tr>"; 
+			$("#nameInp").hide();
+			$("#emailInp").hide();
+			$("#passwordInp").hide();
+			$(".submit").hide();
+			$(".cancel").hide();
+		
+			//call user update ajax
+			$.post("ViewEmps", {
+
+			},
+			function(data, status){
+				alert("Data: "+data+"\nStatus: "+status);
+				//parse this
+				var parser = "";
+				var parserTD = "";
+				var strArr =[];
+				var index = 0;
+			
+				for (var i = 0; i < data.length; i++){
+				
+					if (data[i] === ","){
+						parser = "<td class="+"format"+">"+parser+"</td>";
+						parserTD += parser;
 						parser = "";
+						index++;
+					}
+				
+					else if (data[i] === "[" || data[i] === "]"){
+					
+						strArr[index] = "<tr id ="+"userRow"+" class="+"format"+">"+parserTD+"</tr>"; 
+						parserTD = "";
+						//parser = "";
 						
 						//alert(strArr[index]);
 						index++;
+					}	
 				
+					else{
+						parser += data[i];
+						parserTD += parser;
+					}
 				}
-				else{
-					parser += "<td>"+data[i]+"</td>";
-				}
-			}
-			$("#emps").html(strArr);
 			
+				$("#emps").html($("#emps").html() + strArr + "</table>");
+				$(".format").click(function(){
+					$(location).attr('href',"profile.jsp");
+				});
+			});
+		
+			//call request update ajax
+			$.get("GetRequests", {
+		
+			},
+			function(data, status){
+				alert("Data: "+data+"\nStatus: "+status);
+				//parse this
+				var parser = "";
+				var parserTD = "";
+				var strArr =[];
+				var index = 0;
+			
+				for (var i = 0; i < data.length; i++){
+				
+					if (data[i] === ","){
+						parser = "<td class="+"format"+">"+parser+"</td>";
+						parserTD += parser;
+						parser = "";
+						index++;
+					}
+				
+					else if (data[i] === "[" || data[i] === "]"){
+					
+						strArr[index] = "<tr id ="+"reqRow"+" class="+"format"+">"+parserTD+"</tr>"; 
+						parserTD = "";
+						//parser = "";
+						
+						//alert(strArr[index]);
+						index++;
+					}
+				
+					else{
+						parser += data[i];
+						parserTD += parser;
+					}
+				}
+			
+				$("#requ").html($("#requ").html() + strArr);
+
+			});
+		
+		}
+		
+		$(".createEmp").click(function(){
+			$("#nameInp").show();
+			$("#emailInp").show();
+			$("#passwordInp").show();
+			$(".submit").show();
+			$(".cancel").show();
+			$(".createEmp").hide();
+			$(".cancel").click(function(){
+				$("#nameInp").hide();
+				$("#emailInp").hide();
+				$("#passwordInp").hide();
+				$(".submit").hide();
+				$(".cancel").hide();
+				$(".createEmp").show();
+			})
+			$(".submit").click(function(){
+				//make user AJAX call
+				$.post("CreateEmp", {
+					empName: $("#nameInp").val(),
+					email: $("#emailInp").val(),
+					empPW: $("#passwordInp").val()
+				},
+				function(data, status){
+					alert("Data: "+data+"\nStatus: "+status);
+				});
+				
+				$("#nameInp").hide();
+				$("#emailInp").hide();
+				$("#passwordInp").hide();
+				$(".submit").hide();
+				$(".cancel").hide();
+				$(".createEmp").show();
+				
+				//finally, refresh page
+				location.reload();
+			})
 		});
-	}	
-);
+});
+
+
+
 </script>
 
 </html>

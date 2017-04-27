@@ -128,9 +128,10 @@ public class UsersDaoImpl implements UsersDao {
 				String lName = rs.getString("U_LASTNAME");
 				String email = rs.getString("U_EMAIL");
 				int urID = rs.getInt("UR_ID");
-				User u = new User(name, pw);
+				User u = new User();
 				u.setFirstName(fName);
 				u.setLastName(lName);
+				u.setUserName(name);
 				u.setEmailAddress(email);
 				u.setUrID(urID);
 				u.setUserID(uID);

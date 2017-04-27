@@ -42,6 +42,7 @@ public class CreateEmp extends HttpServlet {
 		
 		String empName = request.getParameter("empName");
 		String empPW = request.getParameter("empPW");
+		String email = request.getParameter("email");
 		
 		//also should check to see if username and/or password are already taken
 		if (empName.equals("") || empPW.equals("")){
@@ -76,6 +77,7 @@ public class CreateEmp extends HttpServlet {
 				//make a user and userdao object
 				User user = new User(empName, empPW);
 				user.setUrID(2);
+				user.setEmailAddress(email);
 				UsersDaoImpl userDao = new UsersDaoImpl();
 				userDao.createEmp(user);
 				

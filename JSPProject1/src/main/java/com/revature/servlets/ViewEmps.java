@@ -43,7 +43,6 @@ public class ViewEmps extends HttpServlet {
 		if (con != null){
 			
 			PrintWriter out = response.getWriter();
-			out.println("Connected");
 			
 			UsersDaoImpl userDao = new UsersDaoImpl();
 			List<User> users = userDao.retrieveEmployees();
