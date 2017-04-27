@@ -19,15 +19,14 @@
 		submitterID:${reimb.submitterID}<br>
 		submission time: ${reimb.timestamp}<br>
 		resolverID: ${reimb.resolverID}<br>
-		statusID: ${reimb.statusID}<br>
+		status: <c:if test="${reimb.statusID==1}">PENDING</c:if>
+				<c:if test="${reimb.statusID==3}">APPROVED</c:if>
+				<c:if test="${reimb.statusID==4}">DENIED</c:if><br>
 		</p>
 		<c:if test="${user.getUserRoleID()==2}">
-			<form action="/ReimbursementSystem/approvereimb?rid=${reimb.id}">
-				<input type="submit" class="button" value="Approve">
-			</form>
-			<form action="/ReimbursementSystem/denyreimb?rid=${reimb.id}">
-				<input type="submit" class="button" value="Deny">
-			</form>
+			<a href="/ReimbursementSystem/approvereimb?rid=${reimb.id}&uid=${user.getUserID()}" class="button">Approve</a>
+			<a href="/ReimbursementSystem/denyreimb?rid=${reimb.id}&uid=${user.getUserID()}" class="button">Deny</a>
+			
 		</c:if>
 		<form action="homepage.jsp">
 			<input type="submit" class="button" value="Back to Homepage">

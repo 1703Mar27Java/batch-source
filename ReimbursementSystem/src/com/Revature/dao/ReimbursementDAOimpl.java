@@ -36,6 +36,7 @@ public class ReimbursementDAOimpl implements ReimbursementDAO {
 		    //cs.setBlob(3, receipt);
 			cs.setTimestamp(3, timestamp);
 			cs.setInt(4, uid);
+			System.out.println("U_ID_AUTHOR: "+uid);
 			cs.setInt(5, rtid);
 			int numRowsAffected = cs.executeUpdate();
 		} catch (SQLException e) {

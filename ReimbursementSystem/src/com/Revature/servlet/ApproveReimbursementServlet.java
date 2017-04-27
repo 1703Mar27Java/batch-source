@@ -16,12 +16,9 @@ public class ApproveReimbursementServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		Integer rid = Integer.parseInt(req.getParameter("rid"));
-		HttpSession session = req.getSession();
+		Integer uid = Integer.parseInt(req.getParameter("uid"));
 		ReimbursementDAOimpl reimbDAO = new ReimbursementDAOimpl();
-		Reimbursement reimb = reimbDAO.byId(rid);
-		User user = (User) session.getAttribute("User");
-		System.out.println("approve user: "+user.getFirstname()+", reimb: "+reimb.getId());
-		reimbDAO.approveReimb(reimb.getId(), user.getUserID());
+		reimbDAO.approveReimb(rid, uid);
 		resp.sendRedirect("homepage.jsp");
 	}
 }

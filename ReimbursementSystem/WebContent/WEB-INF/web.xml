@@ -70,5 +70,23 @@
   	<url-pattern>/denyreimb</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>view employees</servlet-name>
+  	<servlet-class>com.Revature.servlet.ViewEmployeesServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>view employees</servlet-name>
+  	<url-pattern>/viewemployees</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>view user</servlet-name>
+  	<servlet-class>com.Revature.servlet.ViewUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>view user</servlet-name>
+  	<url-pattern>/viewuser</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>

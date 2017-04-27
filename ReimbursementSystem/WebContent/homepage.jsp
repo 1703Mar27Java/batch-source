@@ -20,7 +20,7 @@ form{
 	<img src="images/revradar.png"></img>
 	<div class="orange-box">
 		<h1>Welcome, ${user.getFirstname()}</h1>
-		<input type="checkbox" id="unresolved" value="Unresolved">Unresolved<br>
+		<input type="checkbox" id="unresolved" value="Unresolved">Pending<br>
 		<input type="checkbox" id="resolved" value="Resolved">Resolved<br>
 		<div id="list" class="listbox">
 			<ul></ul>
@@ -28,6 +28,11 @@ form{
 		<c:if test="${user.getUserRoleID()==1}">
 			<form action="createReimbursement.html">
 				<input type="submit" class="button" value="New Reimbursement">
+			</form>
+		</c:if>
+		<c:if test="${user.getUserRoleID()==2}">
+			<form action="viewemployees">
+				<input type="submit" class="button" value="View Employees">
 			</form>
 		</c:if>
 			<form action="logout.jsp">
@@ -54,11 +59,14 @@ $(document).ready(function(){
 		console.log('url: '+url);
 		xhttp.onreadystatechange = function(){
 			if (this.readyState == 4 && this.status == 200){
+				$(".listbox").removeClass("loading");
 				console.log(this.responseText)
 				var items = JSON.parse(this.responseText);
 				for(var i in items){
-					$("#list ul").append("<li><a href=\"viewreimb?rid="+items[i].id+"\">$"+items[i].amt+"-"+items[i].description+"</a></li>");
+					$("#list ul").append("<li><a href=\"viewreimb?rid="+items[i].id+"\"><div class=\"accountCard\"><h3>$"+items[i].amt+"-"+items[i].description+"</h3></div></a></li>");
 				}	
+			}else{
+				$(".listbox").addClass("loading");
 			}
 		};
 		xhttp.send();

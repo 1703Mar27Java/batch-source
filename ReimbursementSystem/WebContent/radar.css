@@ -1,3 +1,4 @@
+
 ul{
 	list-style-type: none;
 	display:inline-block;
@@ -28,6 +29,9 @@ img {
 	display:inline-block;
 	width: 400px;
 	height: 350px;
+	border-radius:5px;
+	border-style: double;
+	border-color: #f26a26;
 	overflow: scroll;
 }
 .button {
@@ -52,8 +56,8 @@ img {
 	background-color:#FFF;
 	position: absolute;
 	top: 20%;
-	left:10%;
-	width: 1000px;
+	left:30%;
+	width: 800px;
 	height: 500px;
 	z-index: -1;
 }
@@ -66,7 +70,7 @@ img {
 	background-color:#f26a26;
 	border-radius:5px;
 	width:275px;
-	height: 200px;
+	height: 20px;
 	margin-top: 5px;
 	display:inline-block;
 	-webkit-transition: 0.2s;
