@@ -11,4 +11,5 @@ public interface ReimbursementDao {
 	public List<Reimbursement> retrieveReimbursements();
 	public void updateReimbursement(int rei, int appr);
 	public void deleteReimbursement(int id);
+	public String getReimbursementType(int id);
 }

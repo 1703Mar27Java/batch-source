@@ -1,0 +1,124 @@
+/*******************************************************************************
+   Create database
+********************************************************************************/
+CREATE USER pro1
+IDENTIFIED BY bErtenjourney7
+DEFAULT TABLESPACE users
+TEMPORARY TABLESPACE temp
+QUOTA 10M ON users;
+
+GRANT connect to pro1;
+GRANT resource to pro1;
+GRANT create session TO pro1;
+GRANT create table TO pro1;
+GRANT create view TO pro1;
+
+conn pro1/bErtenjourney7
+
+DROP TABLE ERS_USERS;
+DROP TABLE ERS_USER_ROLES;
+DROP TABLE ERS_REIMURSEMENT_STATUS;
+DROP TABLE ERS_REIMBURSEMENT_TYPE;
+
+CREATE TABLE ERS_USER_ROLES(
+  UR_ID NUMBER(*,0) PRIMARY KEY,
+  UR_ROLE VARCHAR2(40)
+)
+
+CREATE TABLE ERS_USERS(
+    U_ID NUMBER (*,0) PRIMARY KEY,
+    U_USERNAME VARCHAR2(40) NOT NULL,
+    U_PASSWORD VARCHAR2(40) NOT NULL,
+    U_FIRSTNAME VARCHAR2(30),
+    U_LASTNAME VARCHAR2(30),
+    U_EMAIL VARCHAR2(100),
+    UR_ID NUMBER(*,0) NOT NULL,
+    CONSTRAINT unique_keys 
+      UNIQUE (U_USERNAME, U_EMAIL),
+    CONSTRAINT fk_supplier
+      FOREIGN KEY (UR_ID)
+      REFERENCES ERS_USER_ROLES(UR_ID)
+);
+
+CREATE TABLE ERS_REIMURSEMENT_STATUS(
+  RS_ID NUMBER(*,0) PRIMARY KEY,
+  RS_STATUS VARCHAR2(30) NOT NULL
+);
+
+CREATE TABLE ERS_REIMBURSEMENT_TYPE(
+  RT_ID NUMBER(*,0) PRIMARY KEY,
+  RT_TYPE VARCHAR2(30) NOT NULL
+);
+
+CREATE TABLE ERS_REIMBURSEMENTS(
+  R_ID NUMBER(*,0) PRIMARY KEY,
+  R_AMOUNT NUMBER(22,2) NOT NULL,
+  R_DESCRIPTION VARCHAR2(100),
+  R_RECEIPT BLOB,
+  R_SUBMITTED TIMESTAMP NOT NULL,
+  R_RESOLVED TIMESTAMP,
+  U_ID_AUTHOR NUMBER(*,0) NOT NULL,
+  U_ID_RESOLVER NUMBER(*,0),
+  RT_TYPE NUMBER(*,0) NOT NULL,
+  RS_STATUS NUMBER(*,0) NOT NULL,
+  
+  CONSTRAINT fk_supplier1
+      FOREIGN KEY (U_ID_AUTHOR)
+      REFERENCES ERS_USERS(U_ID),
+      
+  CONSTRAINT fk_supplier2
+      FOREIGN KEY (U_ID_RESOLVER)
+      REFERENCES ERS_USERS(U_ID),
+      
+  CONSTRAINT fk_supplier3
+      FOREIGN KEY (RT_TYPE)
+      REFERENCES ERS_REIMBURSEMENT_TYPE(RT_ID),
+  
+  CONSTRAINT fk_supplier4
+      FOREIGN KEY (RS_STATUS)
+      REFERENCES ERS_REIMURSEMENT_STATUS(RS_ID)
+);
+
+/*****************
+auto-increment for users
+******************/
+CREATE SEQUENCE user_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER user_trigger
+BEFORE INSERT ON ers_users
+FOR EACH ROW
+
+BEGIN
+  SELECT user_seq.NEXTVAL
+  INTO   :new.u_id
+  FROM   dual;
+END;
+/
+
+/*****************
+auto-increment for reimbursement requests
+******************/
+CREATE SEQUENCE reim_seq START WITH 1;
+
+CREATE OR REPLACE TRIGGER reim_trigger
+BEFORE INSERT ON ers_reimbursements
+FOR EACH ROW
+
+BEGIN
+  SELECT reim_seq.NEXTVAL
+  INTO   :new.r_id
+  FROM   dual;
+END;
+/
+
+/*****************
+auto time-stamp insertion
+******************/
+CREATE OR REPLACE TRIGGER timestamp_trigger 
+BEFORE INSERT ON ers_reimbursements
+FOR EACH ROW
+BEGIN
+ :NEW.R_SUBMITTED := SYSDATE;
+END;
+
+

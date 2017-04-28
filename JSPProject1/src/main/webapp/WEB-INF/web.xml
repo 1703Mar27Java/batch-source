@@ -99,4 +99,14 @@
     <servlet-name>GetPersonalRequests</servlet-name>
     <url-pattern>/GetPersonalRequests</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteUser</display-name>
+    <servlet-name>DeleteUser</servlet-name>
+    <servlet-class>com.revature.servlets.DeleteUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteUser</servlet-name>
+    <url-pattern>/DeleteUser</url-pattern>
+  </servlet-mapping>
 </web-app>

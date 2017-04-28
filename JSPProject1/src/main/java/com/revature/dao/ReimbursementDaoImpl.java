@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.domain.Reimbursement;
+import com.revature.domain.ReimbursementType;
 import com.revature.domain.User;
 import com.revature.util.ConnectionUtil;
 
@@ -182,6 +183,29 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				}
 			}
 		}
+	}
+	
+	public String getReimbursementType(int id){
+		PreparedStatement pstmt = null;
+		String rtype = "";
+		try{
+			Connection con = ConnectionUtil.getConnection();
+			String sql = "SELECT * FROM ERS_REIMBURSEMENT_TYPE WHERE R_ID = ('"+id+"')";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				rtype = rs.getString("RT_TYPE");
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if (pstmt!=null){try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}}
+		}
+		return rtype;
 	}
 
 	@Override

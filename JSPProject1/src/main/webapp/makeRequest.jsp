@@ -7,7 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 <link rel="stylesheet" type="text/css" href="requestStyles.css">
-<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">-->
+<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -40,26 +40,34 @@
 
 <div class="container">
  	<form action="MakeRequest" method="post" id="usrform">
- 		<ul>
+ 		<ul class="contain">
  			<li><input class = "nav navbar-nav navbar-right" type="submit" value="Submit"/></li>
- 		<div style="width:50%;">
- 			<li><input class="form-control" type="text" name="amt" placeholder="Amount (numbers only)"></li>
- 		</div>
+ 			<li style="float:right">
+ 			<div class="dropdwn">
+  				<button class="dropbtn">Type</button>
+  					<div class="dropdown-cont">
+  						<input class = "typeDropDwn" type = "hidden" name = "types" value ="">
+    					<a href="javascript:void(0)" class = "training">Training</a>
+    					<a href="javascript:void(0)" class = "supplies">Supplies</a>
+    					<a href="javascript:void(0)" class = "travel">Travel</a>
+    					<a href="javascript:void(0)" class = "lodging">Lodging</a>
+    					<a href="javascript:void(0)" class = "medical">Medical</a>
+  					</div>
+  			</div>
+  			</li>
+  			<li>
+ 			<div style="width:50%;">
+ 				<input class="form-control" type="text" name="amt" placeholder="Amount (numbers only)">
+ 			</div>
+ 		</li>
+ 		<li>
+ 			<div style="width:50%;"><textarea class="form-control" rows="3" cols="40" name="comment" name="desc" placeholder="Description (optional)..."></textarea>
+  				<input class = "userID" type = "hidden" name = "uID" value = <%=(Integer)session.getAttribute("id")%>></div>
+ 		<li>
  		</ul>
-  		<textarea class="form-control" rows="3" cols="40" name="comment" name="desc" placeholder="Description (optional)..."></textarea>
-  		<input class = "userID" type = "hidden" name = "uID" value = <%=(Integer)session.getAttribute("id")%>>
-  		<div class="dropdown">
-  			<button class="dropbtn">Type</button>
-  		<div class="dropdown-content">
-  			<input class = "typeDropDown" type = "hidden" name = "types" value ="">
-    		<a href="javascript:void(0)" class = "training">Training</a>
-    		<a href="javascript:void(0)" class = "supplies">Supplies</a>
-    		<a href="javascript:void(0)" class = "travel">Travel</a>
-    		<a href="javascript:void(0)" class = "lodging">Lodging</a>
-    		<a href="javascript:void(0)" class = "medical">Medical</a>
-  		</div>
+ 		</form>
   	</div>
- 	</form>
+  	
 <div>
 	
 </div>
@@ -73,23 +81,23 @@ $(document).ready(
 		$(".typeDropDown").val("Default");
 		$(".training").on("click",function(){
 			  $(".dropbtn").html('Training');
-			  $(".typeDropDown").val('Training');
+			  $(".typeDropDwn").val('Training');
 		})
 		$(".supplies").on("click",function(){
 			  $(".dropbtn").html('Supplies');
-			  $(".typeDropDown").val('Supplies');
+			  $(".typeDropDwn").val('Supplies');
 		})
 		$(".travel").on("click",function(){
 			  $(".dropbtn").html('Travel');
-			  $(".typeDropDown").val('Travel');
+			  $(".typeDropDwn").val('Travel');
 		})
 		$(".lodging").on("click",function(){
 			  $(".dropbtn").html('Lodging');
-			  $(".typeDropDown").val('Lodging');
+			  $(".typeDropDwn").val('Lodging');
 		})
 		$(".medical").on("click",function(){
 			  $(".dropbtn").html('Medical');
-			  $(".typeDropDown").val('Medical');
+			  $(".typeDropDwn").val('Medical');
 		})
 	}	
 );

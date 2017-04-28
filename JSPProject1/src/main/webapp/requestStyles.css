@@ -1,13 +1,13 @@
 @CHARSET "ISO-8859-1";
 
 /* Container */
-.container {
+.contain {
     overflow: hidden;
     background-color: #333;
     font-family: Arial;
 }
 
-.container a, p{
+.contain a, p{
     float: left;
     font-size: 12px;
     color: white;
@@ -17,16 +17,16 @@
 }
 
 /* Dropdown Button */
-.dropdown {
+.dropbtn {
     float: left;
     height: 50px;
     width: 50px;
     margin: 2px 10px 1px 10px;
-    background-color: blue;
+    background-color: white;
     overflow: hidden;
 }
 
-.dropdown .dropbtn {
+.dropdwn{
     font-size: 14px;    
     border: none;
     outline: none;
@@ -34,14 +34,14 @@
     width: 100%;
     padding: 14px 6px;
     text-align: center;
-    background-color: inherit;
+    background-color: white;
 }
 
-.container a:hover, .dropdown:hover .dropbtn {
+.dropdwn:hover .dropbtn {
     background-color: red;
 }
 
-.dropdown-content {
+.dropdown-cont {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
@@ -50,7 +50,7 @@
     z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-cont a {
     float: none;
     color: black;
     padding: 12px 16px;
@@ -59,7 +59,7 @@
     text-align: left;
 }
 
-.dropdown-content p {
+.dropdown-cont p {
     float: none;
     color: black;
     padding: 12px 16px;
@@ -68,11 +68,11 @@
     text-align: left;
 }
 
-.dropdown-content a:hover {
+.dropdown-cont a:hover {
     background-color: #ddd;
 }
 
-.dropdown:hover .dropdown-content {
+.dropdwn:hover .dropdown-cont {
     display: block;
 }
 }

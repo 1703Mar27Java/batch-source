@@ -33,9 +33,34 @@ public class MakeRequest extends HttpServlet {
 		
 		String amount = request.getParameter("amt");
 		String description= "I need money";//request.getParameter("desc");
-		String typ = "1";		//insert actual value later 
+		String typ = request.getParameter("types");
 		String status = "3";	//this is the default value
 		String uID = request.getParameter("uID");
+		
+		int typed = 1;
+		
+		//this should be done using the string to get the id. But whuteryagonnado?
+		switch(typ) {
+		   case "Training" :
+			  typed = 1;
+		      break; 
+		   
+		   case "Supplies" :
+			   typed = 2;
+		      break; 
+		      
+		   case "Travel" :
+			   typed = 3;
+			   break; 
+			   
+		   case "Lodging" :
+			   typed = 4;
+			   break; 
+			      
+		   case "Medical" :
+			   typed = 5;
+			   break; 
+		}
 		
 		Connection con = null;
 		try {
@@ -50,7 +75,7 @@ public class MakeRequest extends HttpServlet {
 
 			Reimbursement rei = new Reimbursement(Integer.parseInt(uID));
 			rei.setAmt(Double.parseDouble(amount));
-			rei.setrTtype(Integer.parseInt(typ));
+			rei.setrTtype(typed);
 			rei.setDesc(description);
 			rei.setrTstatus(Integer.parseInt(status));
 			
@@ -75,5 +100,4 @@ public class MakeRequest extends HttpServlet {
 		out.println(description);
 		out.println(typ);
 	}
-
 }
