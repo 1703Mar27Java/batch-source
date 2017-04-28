@@ -22,8 +22,13 @@
 		User Role: <c:if test="${viewuser.getUserRoleID()==1}">Employee</c:if>
 				   <c:if test="${viewuser.getUserRoleID()==2}">Manager</c:if><br>
 		
-		
-		<a href="/ReimbursementSystem/viewemployees" class="button">Employee page</a>
+		<c:if test="${user.getUserRoleID()==2}"><a href="/ReimbursementSystem/viewemployees" class="button">Employee page</a></c:if>
+		<c:if test="${user.getUserRoleID()==1}">
+			<a href="/ReimbursementSystem/homepage.jsp" class="button">Homepage</a>
+			<form action="edituser.jsp">
+				<input type="submit" class="button" value="Edit">
+			</form>
+		</c:if>
 	</div>
 </body>
 </html>

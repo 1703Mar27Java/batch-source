@@ -29,6 +29,7 @@ form{
 			<form action="createReimbursement.html">
 				<input type="submit" class="button" value="New Reimbursement">
 			</form>
+			<a href="/ReimbursementSystem/viewuser?uid=${user.userID}" class="button" style="clear:right;float:right;margin-right:50px;">My Info</a>
 		</c:if>
 		<c:if test="${user.getUserRoleID()==2}">
 			<form action="viewemployees">
@@ -63,7 +64,7 @@ $(document).ready(function(){
 				console.log(this.responseText)
 				var items = JSON.parse(this.responseText);
 				for(var i in items){
-					$("#list ul").append("<li><a href=\"viewreimb?rid="+items[i].id+"\"><div class=\"accountCard\"><h3>$"+items[i].amt+"-"+items[i].description+"</h3></div></a></li>");
+					$("#list ul").append("<li><a href=\"viewreimb?rid="+items[i].id+"\"><div class=\"accountCard\"><h3>$"+items[i].amt+"<br>"+items[i].description+"</h3></div></a></li>");
 				}	
 			}else{
 				$(".listbox").addClass("loading");

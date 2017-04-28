@@ -17,8 +17,8 @@
 		description: ${reimb.description}<br>
 		amount: ${reimb.amount}<br>
 		submitterID:${reimb.submitterID}<br>
-		submission time: ${reimb.timestamp}<br>
-		resolverID: ${reimb.resolverID}<br>
+		resolverID: <c:if test="${reimb.resolverID==0}">Pending</c:if>
+					<c:if test="${reimb.resolverID>0}">${reimb.resolverID}</c:if><br>
 		status: <c:if test="${reimb.statusID==1}">PENDING</c:if>
 				<c:if test="${reimb.statusID==3}">APPROVED</c:if>
 				<c:if test="${reimb.statusID==4}">DENIED</c:if><br>

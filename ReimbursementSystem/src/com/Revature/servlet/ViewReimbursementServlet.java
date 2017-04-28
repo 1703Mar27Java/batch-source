@@ -1,7 +1,10 @@
 package com.Revature.servlet;
 
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.Revature.dao.ReimbursementDAOimpl;
+import com.Revature.domain.Reimbursement;
 import com.Revature.domain.SimpleReimb;
 import com.Revature.domain.User;
 
@@ -20,7 +24,8 @@ public class ViewReimbursementServlet extends HttpServlet{
 		Integer rid = Integer.parseInt(req.getParameter("rid"));
 		HttpSession session = req.getSession();
 		ReimbursementDAOimpl reimbDAO = new ReimbursementDAOimpl();
-		session.setAttribute("reimb", reimbDAO.byId(rid));
+		Reimbursement reimb = reimbDAO.byId(rid);
+		session.setAttribute("reimb", reimb);
 		resp.sendRedirect("viewReimbursement.jsp");
 	}
 }

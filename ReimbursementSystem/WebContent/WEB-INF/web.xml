@@ -88,5 +88,14 @@
   	<url-pattern>/viewuser</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>edit user</servlet-name>
+  	<servlet-class>com.Revature.servlet.EditUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>edit user</servlet-name>
+  	<url-pattern>/edituser</url-pattern>
+  </servlet-mapping>
+  
   
 </web-app>

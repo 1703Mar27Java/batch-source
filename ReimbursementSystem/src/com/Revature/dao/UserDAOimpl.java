@@ -137,4 +137,27 @@ public class UserDAOimpl implements UserDAO {
 		}
 		return user;
 	}
+
+	@Override
+	public void editUser(int uid, User user) {
+		try (Connection con = ConnectionUtil.getConnectionFromFile("connection.properties");) {
+			String username = user.getUsername();
+			String password = user.getPassword();
+			String fname = user.getFirstname();
+			String lname = user.getLastname();
+			String email = user.getEmail();
+			PreparedStatement cs = con.prepareStatement("{call UPDATE_USER(?,?,?,?,?,?)}");
+			cs.setInt(1, uid);
+			cs.setString(2, username);
+			cs.setString(3, password);
+			cs.setString(4, fname);
+			cs.setString(5, lname);
+			cs.setString(6, email);
+			int numRowsAffected = cs.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

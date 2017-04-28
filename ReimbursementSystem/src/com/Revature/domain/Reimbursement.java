@@ -9,6 +9,7 @@ public class Reimbursement {
 	private double amount;
 	private String description;
 	private InputStream receipt;
+	private byte[] receiptByte;
 	private Timestamp timestamp;
 	private Timestamp timestamp2;
 	private int submitterID;

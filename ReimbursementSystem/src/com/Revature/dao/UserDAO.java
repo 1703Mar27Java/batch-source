@@ -9,4 +9,5 @@ public interface UserDAO {
 	public void createUser(User user) throws UsernameExistsException;
 	public List<User> getAllUsers();
 	public User getUserByID(int uid);
+	public void editUser(int uid, User user);
 }
