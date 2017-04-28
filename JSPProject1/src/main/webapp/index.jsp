@@ -21,11 +21,6 @@
    	 .row.content {
    	 	height: 100px
    	 }
-   	 footer {
-     	background-color: #555;
-      	color: blue;
-     	 padding: 15px;
-    }
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -62,16 +57,7 @@
 			</TABLE>
 		</TD>
 		</TR>
-		<TR class = "row content">
-			<td>
-				<p>Slogan</p>
-			</td>
-		</TR>
 	</Table>
-	
-	<footer class="container-fluid text-center">
-  		<p>Footer Text</p>	
-	</footer>
 	</div>
 	
 </body>

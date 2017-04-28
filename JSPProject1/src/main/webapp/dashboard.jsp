@@ -29,17 +29,39 @@
    	 .row.content {
    	 	height: 100px
    	 }
-   	 footer {
-     	background-color: #555;
-      	color: blue;
-     	 padding: 15px;
-    }
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
-   	 
+   	
+   	#dialog {
+   		background-color: white;
+   		width: 50%;
+   		height: 10%;
+   		margin: 0% 0% 0% 25%;
+   	} 
+   	
+   	#welcome {
+   		background-color: lightblue;
+   		width: 50%;
+   		height: 10%;
+   		margin: 0% 0% 0% 25%;
+   	}
+   	
+   	#innerDialog{
+   		padding:1% 1% 1% 1%;
+   	}
+   	
+   	#approvedDeclined{
+   		background-color: white;
+   		color: red;
+   		width: 20%;
+   		height: 15%;
+   		margin: 0% 0% 0% 25%;
+   		text-align: center;
+   		font-size:16px;
+   	}
     </style>
 </head>
 
@@ -70,7 +92,10 @@
     </div>
   </div>
 </nav>
-
+<div id = "welcome">
+	<h2>Welcome ${userName}</h2>
+	<p id = "whatAreYa"></p>
+</div>
 	<table class = "outer" id = "empsAndReqs">
 		<TR>
 			
@@ -132,6 +157,14 @@
 			</td>
 		</tr>
 	</table>
+	
+	<div id="dialog">
+		<div id="innerDialog"></div>
+		<button id = "Approve">Approve</button>
+		<button id = "Deny">Deny</button>
+	</div>
+	
+	<div id="approvedDeclined"></div>
 
 <div>
 <!--  <form class = "getRequests" action="GetRequests" method="get">
@@ -144,10 +177,9 @@
 <div class="notification">Notification</div>
 <div class="drpdwn"></div>-->
 
-<p>Welcome ${userName}</p>
-<p id = "whatAreYa"></p>
 </body>
 <script>
+
 $(document).ready(
 	//handle notifications
 	
@@ -155,6 +187,10 @@ $(document).ready(
 		
 		var userRole = "<%= userRole %>";
 		$("#whatAreYa").html(userRole);
+		$("#dialog").hide();
+		$("#approvedDeclined").hide();
+		
+		
 		//see if user is an employee to restrict functionality to that of employees
 		if (userRole === "Employee"){
 			$("#whatAreYa").html("You are an Employee");
@@ -163,6 +199,7 @@ $(document).ready(
 			$("#emps").hide();
 			$(".getRequests").hide();
 			$("#empsAndReqs").hide();
+			$("#welcome").fadeIn(1000);
 			
 		}
 		//restrict or enable functionality for managers
@@ -171,6 +208,7 @@ $(document).ready(
 			$("#viewMyInformation").hide();
 			$("#viewMyRequests").hide();
 			$("#makeRequest").hide();
+			$("#welcome").fadeIn(1000);
 			
 			$("#nameInp").hide();
 			$("#emailInp").hide();
@@ -235,6 +273,7 @@ $(document).ready(
 				var parseNoTable = "";
 				var parseNoTableTD = "";
 				var numberOfRows = 0;
+				var reiID = "";	//for reimbursements
 			
 				for (var i = 0; i < data.length; i++){
 				
@@ -290,14 +329,52 @@ $(document).ready(
 						//alert($(this).html());
 						var n = ($(this).html()).indexOf("rID="); 
 						var temp = ($(this).html()).charAt(n+4);
+						reiId = temp;
+						
 						$.post("GetRequests", {
 							id: temp,
 						},
 						function(data, status){
-							alert(status + data);
+							//alert(status + data);
+							$("#innerDialog").text(data);
+							$("#dialog").fadeIn(1000);
 						});
 					});
 				}
+				
+				$("#Approve").click(function(){
+					$("#dialog").hide();
+					
+					//send email and change table
+					$.post("ApproveOrDenyRequest", {
+						appr: 1,
+						id: reiId,
+					},
+					function(data, status){
+						$("#approvedDeclined").text("Approved");
+						$("#approvedDeclined").show();
+						$("#approvedDeclined").fadeOut(3000, function(){
+							location.reload();
+						});
+					});
+				});
+				$("#Deny").click(function(){
+					$("#dialog").hide();
+					
+					//just change table
+					$.post("ApproveOrDenyRequest", {
+						appr: 2,
+						id: reiId,
+					},
+					function(data, status){
+						$("#approvedDeclined").text("Denied");
+						$("#approvedDeclined").show();
+						$("#approvedDeclined").fadeOut(3000, function(){
+							location.reload();
+						});
+						
+					});
+				});
 			});
 		}
 		

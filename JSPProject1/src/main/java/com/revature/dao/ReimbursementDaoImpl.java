@@ -164,9 +164,24 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 	}
 
 	@Override
-	public void updateReimbursement(Reimbursement rei, String un, String fName, String lName, String email) {
-		// TODO Auto-generated method stub
-
+	public void updateReimbursement(int rei, int approve) {
+		PreparedStatement pstmt = null;
+		try{
+			Connection con = ConnectionUtil.getConnection();
+			String sql = "UPDATE ERS_REIMBURSEMENTS SET RS_STATUS = '" + approve + "'WHERE R_ID = + '" + rei +"'";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if (pstmt!=null){
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
