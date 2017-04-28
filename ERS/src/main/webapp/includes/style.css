@@ -1,0 +1,10 @@
+body{
+	background-color: green;
+}
+.company-banner {
+	    font-size: 400px;
+		text-align: center;
+		padding: 500px;
+		margin-left: auto ;
+		margin-right: auto ;
+}
