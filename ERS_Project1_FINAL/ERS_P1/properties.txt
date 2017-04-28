@@ -1,0 +1,4 @@
+url = jdbc:oracle:thin:@testdb.ctct7rg6v32d.us-west-2.rds.amazonaws.com:1521:ORCL
+username = master
+password = pas5w0rd
+
