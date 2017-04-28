@@ -41,8 +41,40 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 
 	@Override
 	public Reimbursement retrieveReimbursementById(int rid) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement pstmt = null;
+		Reimbursement reim = new Reimbursement(rid);
+		try{
+			Connection con = ConnectionUtil.getConnection();
+			String sql = "SELECT * FROM ERS_REIMBURSEMENTS WHERE R_ID = ('"+rid+"')";
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()){
+				int uid = rs.getInt("U_ID_AUTHOR");
+				int amt = rs.getInt("R_AMOUNT");
+				String desc = rs.getString("R_DESCRIPTION");
+				int typ = rs.getInt("RT_TYPE");
+				int status = rs.getInt("RS_STATUS");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				String submitted  = dateFormat.format(rs.getTimestamp("R_SUBMITTED"));
+				
+				reim.setrID(rid);
+				reim.setAmt(amt);
+				reim.setDesc(desc);
+				reim.setAuthor(uid);
+				reim.setrTtype(typ);
+				reim.setrTstatus(status);
+				reim.setSubmitted(submitted);
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			if (pstmt!=null){try {
+				pstmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}}
+		}
+		return reim;
 	}
 	
 	@Override
@@ -60,6 +92,8 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				String desc = rs.getString("R_DESCRIPTION");
 				int typ = rs.getInt("RT_TYPE");
 				int status = rs.getInt("RS_STATUS");
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+				String submitted  = dateFormat.format(rs.getTimestamp("R_SUBMITTED"));
 				
 				Reimbursement r = new Reimbursement(uid);
 				r.setrID(rID);
@@ -68,6 +102,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				r.setAuthor(uid);
 				r.setrTtype(typ);
 				r.setrTstatus(status);
+				r.setSubmitted(submitted);
 				reims.add(r);
 			}
 		}catch(SQLException e){
@@ -113,6 +148,7 @@ public class ReimbursementDaoImpl implements ReimbursementDao {
 				r.setrTtype(typ);
 				r.setrTstatus(status);
 				r.setSubmitted(submitted);
+				
 				reims.add(r);
 			}
 		}catch(SQLException e){

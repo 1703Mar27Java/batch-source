@@ -231,6 +231,7 @@ $(document).ready(
 				var strArr =[];
 				var index = 0;
 				var status = [];
+				var id = "";
 				var parseNoTable = "";
 				var parseNoTableTD = "";
 				var numberOfRows = 0;
@@ -247,14 +248,19 @@ $(document).ready(
 					}
 				
 					else if (data[i] === "[" || data[i] === "]"){
-					
+						status[numberOfRows] = parseNoTableTD.substring(0, 2);
+						id = parseNoTableTD.substring(18,23);
+						
+						//strArr[index] = "<form method="+"\'post\'" + "action="+"\'GetRequests\'"+">"+"<input type =" + "\'hidden\'" + "name = " + "\'redirect\'" + "value=" + id +">" + "<tr id ="+"reqRow" +index+" class="+"/'format/'"+">"+parserTD+"</tr></input></form>"; 
+						//strArr[index] = "<tr id ="+"reqRow" +index+" class="+"/'format/'"+">"+"<form method="+"\'post\'" + "action="+"\'GetRequests\'"+">"+"<input type =" + "\'hidden\'" + "name = " + "\'redirect\'" + "value=" + id +">"+parserTD+"</input></form></tr>"; 
+						//strArr[index] = "<tr id ="+"reqRow" +index+" class="+"/'format/'"+">"+"<form method="+"post" + "action="+"GetRequests"+">"+"<input type =" + "hidden" + "name = " + "redirect" + "value=" + id +">"+parserTD+"</input></form></tr>"; 
+						//strArr[index] = "<tr id ="+"reqRow" +index+" class="+"format"+">"+"<form method="post" action="GetRequests"><input type = "hidden" name = "redirect" value=id>"+parserTD+"</form></tr>"; 
 						strArr[index] = "<tr id ="+"reqRow" +index+" class="+"format"+">"+parserTD+"</tr>"; 
 						parserTD = "";
 						//parser = "";
 						
-						status[numberOfRows] = parseNoTableTD.substring(0, 2);
 						parseNoTableTD = "";
-						alert(status[index]);
+						//alert(id[index] + index);
 						index++;
 						numberOfRows++;
 					}
@@ -270,6 +276,7 @@ $(document).ready(
 				$("#requ").html($("#requ").html() + strArr);
 				
 				for (var i = 0; i < numberOfRows; i++){
+					//alert(i);
 					if (status[i].includes("1")){
 						$("#reqRow" +i).css("background-color", "green");
 					}
@@ -279,13 +286,19 @@ $(document).ready(
 					else if (status[i].includes("3")){
 						$("#reqRow" +i).css("background-color", "white");
 					}
-					
 					$("#reqRow" +i).click(function(){
-						$(this).css("background-color", "blue");
+						//alert($(this).html());
+						var n = ($(this).html()).indexOf("rID="); 
+						var temp = ($(this).html()).charAt(n+4);
+						$.post("GetRequests", {
+							id: temp,
+						},
+						function(data, status){
+							alert(status + data);
+						});
 					});
 				}
 			});
-		
 		}
 		
 		$(".createEmp").click(function(){

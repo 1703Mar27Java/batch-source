@@ -58,7 +58,36 @@ public class GetRequests extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		PrintWriter out = response.getWriter();
-		out.print("Get specific request");
+	
+		int rID = Integer.parseInt(request.getParameter("id"));
+		
+		Connection con = null;
+		try {
+			con = ConnectionUtil.getConnection();
+			System.out.println(con.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		//test connection
+		if (con != null){
+		
+			ReimbursementDaoImpl reiDao = new ReimbursementDaoImpl();
+			Reimbursement requests = reiDao.retrieveReimbursementById(rID);
+			
+			out.println(requests);
+			
+			//close connection
+		    try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		    
+		    //response.sendRedirect("dashboard.jsp");
+		}
+
+		
 	}
 
 }
