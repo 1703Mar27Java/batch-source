@@ -6,21 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import com.revature.dao.RequestDAOImpl;
+import com.revature.dao.UserDAOImpl;
+import com.revature.util.mailer;
 
 /**
- * Servlet implementation class AddReq
+ * Servlet implementation class MakeUser
  */
-@WebServlet("/AddReq")
-public class AddReq extends HttpServlet {
+@WebServlet("/MakeUser")
+public class MakeUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AddReq() {
+	public MakeUser() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -42,22 +42,22 @@ public class AddReq extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session=request.getSession(); 
-		System.out.println(request.getParameter("blob"));
-		System.out.println(session.getAttribute("uName"));
-		System.out.println(request.getParameter("descr"));
-		System.out.println(request.getParameter("amt"));
-		System.out.println(request.getParameter("type"));
-		RequestDAOImpl rDAO = new RequestDAOImpl();
-		rDAO.createReq(request.getParameter("descr").toString(), 
-				Double.parseDouble(request.getParameter("amt")), 
-				session.getAttribute("uName").toString(), 
-				request.getParameter("type").toString()
-				);
+		String e = request.getParameter("e");
+		String f = request.getParameter("f");
+		String l = request.getParameter("l");
+		String u = request.getParameter("u");
+		String t = request.getParameter("t");
+		UserDAOImpl uDAO = new UserDAOImpl();
+		boolean accepted = uDAO.makeUser(e, f, l, u, t);
 		
+		String str = String.valueOf(accepted);
+		if(accepted){
+			mailer.mail( e, 
+					"Congratulations, you have been added to Revature's Employee Reimbursement System. "
+					+ "Please log in with the password 'password' to review your data and update your password.");
+		}
 		
-		request.getRequestDispatcher("employee.jsp").forward(request, response);
-		//response.sendRedirect("/employee.jsp");
+		response.getWriter().write(str);
 	}
 
 }

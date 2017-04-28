@@ -73,6 +73,30 @@
     <servlet-name>resReq</servlet-name>
     <url-pattern>/resReq</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>makeUser</servlet-name>
+    <servlet-class>com.revature.servlet.MakeUser</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>makeUser</servlet-name>
+    <url-pattern>/makeUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>img</servlet-name>
+    <servlet-class>com.revature.servlet.Img</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>img</servlet-name>
+    <url-pattern>/img</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>imgGet</servlet-name>
+    <servlet-class>com.revature.servlet.ImgGet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>imgGet</servlet-name>
+    <url-pattern>/imgGet</url-pattern>
+  </servlet-mapping>
   <error-page>
     <error-code>404</error-code>
     <location>/404.jsp</location>

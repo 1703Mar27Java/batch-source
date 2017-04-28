@@ -55,12 +55,16 @@ public class RequestDAOImpl implements RequestDAO {
 	public void createReq(String descr, double amt, String uName, String rType) {
 		try (Connection con = ConnectionUtil.getConnection();) {
 			String sql = "BEGIN ERS_SP_CREATE_REIMBUR_DESCR (?,?,?,?,?); END;";
+			
+			//sql = "UPDATE ERS_REIMBURSEMENTS SET R_RECEIPT=? WHERE R_ID=101";
 			CallableStatement cstmt = con.prepareCall(sql);
 			cstmt.setString(1, descr);
 			cstmt.setDouble(2, amt);
 			cstmt.setString(3, uName);
 			cstmt.setString(4, rType);
+			//cstmt.setString(5, blob);
 			cstmt.registerOutParameter(5, Types.VARCHAR);
+			//System.out.println("in create"+blob);
 			cstmt.execute();
 
 		} catch (SQLException e) {
@@ -69,8 +73,8 @@ public class RequestDAOImpl implements RequestDAO {
 
 	}
 
-	//todo fix this update sp
-	
+	// todo fix this update sp
+
 	// SP_ERS_RESOLVE_REIMBURS(IN_ID IN NUMBER, STATUS IN VARCHAR, RESOLVED_BY
 	// IN VARCHAR, TEXT_OUT OUT VARCHAR)
 	@Override
@@ -92,12 +96,60 @@ public class RequestDAOImpl implements RequestDAO {
 				txtOut = cstmt.getString(4);
 				System.out.println(txtOut);
 			}
-			
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public void setImg(int rid, String blob) {
+		try (Connection con = ConnectionUtil.getConnection();) {
+			String sql = "UPDATE ERS_REIMBURSEMENTS SET R_RECEIPT=? WHERE R_ID=?";
+			PreparedStatement pstmt = con.prepareCall(sql);
+			
+			pstmt.setString(1, blob);
+			pstmt.setInt(2, rid);
+			pstmt.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public String getImg(int rid) {
+		String str = "";
+		try (Connection con = ConnectionUtil.getConnection();) {
+			String sql = "SELECT R_RECEIPT FROM ERS_REIMBURSEMENTS WHERE R_ID=?";
+			PreparedStatement pstmt = con.prepareCall(sql);
+			
+			pstmt.setInt(1, rid);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			str=rs.getString("R_RECEIPT");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return str;
+	}
+
+	@Override
+	public String getEmailByRid(int rid) {
+		String str = "";
+		try (Connection con = ConnectionUtil.getConnection();) {
+			String sql = "SELECT EMAIL FROM VW_ERS_MGR_VIEW_ALL_REIMBURSE WHERE R_ID=?";
+			PreparedStatement pstmt = con.prepareCall(sql);
+			
+			pstmt.setInt(1, rid);
+			ResultSet rs=pstmt.executeQuery();
+			rs.next();
+			str=rs.getString("EMAIL");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return str;
 	}
 
 }

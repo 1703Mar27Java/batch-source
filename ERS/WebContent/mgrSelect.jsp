@@ -65,7 +65,7 @@
 		<tr class="bg-success" id="row<%=cnt%>" >
 			<td class="rId" id="id<%=cnt%>" align="left"><c:out value="${row.R_ID}"/></td>
 			<td align="left"><c:out value="${row.DESCRIPTION}"/></td>
-			<td align="left"><c:out value="${row.RECEIPT}"/></td>
+			<td align="left"><img style="height: 200px; width: 200px;" id="getImgSrc" src="<c:out value="${row.RECEIPT}"/>" alt="No Image" /></td>
 			<td align="left"><c:out value="${row.TIME_SUBMITTED}"/></td>
 			<td align="left"><c:out value="${row.TIME_RESOLVED}"/></td>
 			<td align="left"><c:out value="${row.RESOLVED_BY}"/></td>

@@ -10,4 +10,6 @@ public interface UserDAO {
 	public boolean updatePw(String user, String pw);
 	public boolean isMgr(String user);
 	public boolean mgrUpdateUser(String user, String email, String fName, String lName, String title);
+	public boolean makeUser(String e, String f, String l, String u, String t);
+	public String getEmail(String user);
 }

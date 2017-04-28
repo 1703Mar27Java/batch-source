@@ -45,6 +45,7 @@
 		<tr class="bg-primary">
 			<th>ID</th>
 			<th>Description</th>
+			<th>Receipt</th>
 			<th>Time Submitted</th>
 			<th>Time Resolved</th>
 			<th>Amount</th>
@@ -61,6 +62,7 @@
 		<tr class="bg-success" >
 			<td align="left"><c:out value="${row.R_ID}"/></td>
 			<td align="left"><c:out value="${row.DESCRIPTION}"/></td>
+			<td align="left"><img style="height: 200px; width: 200px;" id="getImgSrc" src="<c:out value="${row.RECEIPT}"/>" alt="No Image" /></td>
 			<td align="left"><c:out value="${row.TIME_SUBMITTED}"/></td>
 			<td align="left"><c:out value="${row.TIME_RESOLVED}"/></td>
 			<td align="left"><c:out value="${row.AMOUNT}"/></td>

@@ -15,8 +15,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Revature ERS</title>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- Revature favicon -->
 <link href="img/favicon.ico" rel="icon" type="image/x-icon">
 <link type="text/css" media="all" href="css/rev.css" rel="stylesheet">
@@ -106,7 +106,7 @@ optgroup {
 
 			</div>
 		</div>
-
+	<br><br>
 	</div>
 
 
@@ -121,16 +121,73 @@ optgroup {
 		
 
 <br>
-		
+		<button id="showMakeEmp" style="float: left;" onclick="showEmpMaker()">Make New Employee</button>
+		<br>
 		<!-- Section for updating user info -->
 		<div id="empInfoHere"></div>
 		
+		<div id="makeEmp" style="visibility:hidden;">
+		<h2>New Employee Form:</h2>
+			<table class="table table-inverse" style="width: 90%;">
+				<tbody style="font-size: 20px !important;">
+					<tr class="bg-primary">
+						<th>Email</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Username</th>
+						<th>Title</th>
+						<th></th>
+					</tr>
+					<tr class="bg-success">
+						<td align="left"><input type="text" id="newEmailIn" value=""
+						maxlength="30" size="25"></td>
+						<td align="left"><input type="text" id="newFirstIn" value=""
+						maxlength="30" size="15"></td>
+						<td align="left"><input type="text" id="newLastIn" value=""
+						maxlength="30" size="15"></td>
+						<td align="left"><input type="text" id="newUserIn" value=""
+						maxlength="30" size="15"></td>
+						<td align="left"><input type="text" id="newTitleIn" value=""
+						maxlength="20" size="15"></td>
+						<td><button id="submitNewEmp" style="float: left;" onclick="makeNewEmp()">Submit Employee</button></td>
+					</tr>
+				</tbody>
+			</table>
+		
+		</div>
 	</div>
 
 
 
 </body>
 <script>
+	function makeNewEmp(){
+		var e= $('#newEmailIn')[0].value;
+		var f= $('#newFirstIn')[0].value;
+		var l= $('#newLastIn') [0].value;
+		var u= $('#newUserIn') [0].value;
+		var t= $('#newTitleIn')[0].value;
+		$.post("makeUser", {
+			e : e,
+			f : f,
+			l : l,
+			u : u,
+			t : t
+		}, function(result){
+			$(".container").css("visibility","visible");
+			if(result=="true"){
+				$('#error').text("New User Successfully created.");
+				$('#selectUsers').append('<option>'+u+'</option>');
+			}
+			else
+				$('#error').text("Failure Creating New User. The Userame is taken.");
+			
+		});
+	};
+	function showEmpMaker(){
+		$('#makeEmp').css('visibility','visible');
+	}
+	
 	$(document).on('change', '#selectUsers', function() {
 		var curEmp =$('#selectUsers')[0].value;
 		//console.log(curEmp);

@@ -10,16 +10,16 @@ N/A|  X  | -An Employee can logout
  X |  X  | -An Employee can view their resolved reimbursement requests
  X |  X  | -An Employee can view their information
  X |  X  | -An Employee can update their information
-   |     | -An Employee receives an email when one of their reimbursement requests is resolved (optional)
+   |  X  | -An Employee receives an email when one of their reimbursement requests is resolved (optional)
    |     | 
  X |  X  | -A Manager can login
 N/A|  X  | -A Manager can view the Manager Homepage
 N/A|  X  | -A Manager can logout
-   |     | -A Manager can approve/deny pending reimbursement requests
+   |  X  | -A Manager can approve/deny pending reimbursement requests
  X |  X  | -A Manager can view all pending requests from all employees
    |     | -A Manager can view images of the receipts from reimbursement requests
  X |  X  | -A Manager can view all resolved requests from all employees and see which manager resolved it
- X |     | -A Manager can view all Employees
+ X |  X  | -A Manager can view all Employees
  X |  X  | -A Manager can view reimbursement requests from a single Employee
    |     | 
 ---|--------------------------------------------------------------
@@ -27,19 +27,25 @@ N/A|  X  | -A Manager can logout
  X |  X  | -An Employee can reset their password (Optional - tied with above functional requirement)
 */
 
-
-
+drop table test;
+CREATE TABLE test(
+  R_ID          NUMBER NOT NULL,
+  recieptblob     BLOB, 
+  recieptvarchar  VARCHAR2(100) ,
+  recieptlong     long,
+  CONSTRAINT    PK_test PRIMARY KEY  (R_ID)
+);
 
 
 /*******************************************************
 *                Create Table Structure                *
 *******************************************************/
-
+drop table ers_reimbursements;
 CREATE TABLE ERS_REIMBURSEMENTS(
   R_ID          NUMBER NOT NULL,
   R_AMOUNT      NUMBER NOT NULL, 
   R_DESCR       VARCHAR2(100),
-  R_RECEIPT     BLOB, 
+  R_RECEIPT     LONG, 
   R_SUBMITTED   TIMESTAMP NOT NULL,
   R_RESOLVED    TIMESTAMP, 
   U_ID_AUTHOR   NUMBER NOT NULL,
@@ -197,6 +203,7 @@ CREATE OR REPLACE VIEW VW_ERS_USERS AS
 CREATE OR REPLACE VIEW VW_ERS_REIMBURSEMENTS AS
   SELECT 
     ERS_REIMBURSEMENTS.R_ID, 
+    ERS_REIMBURSEMENTS.R_RECEIPT AS RECEIPT,
     ERS_REIMBURSEMENTS.R_DESCR AS DESCRIPTION, 
     ERS_REIMBURSEMENTS.R_SUBMITTED AS TIME_SUBMITTED,
     ERS_REIMBURSEMENTS.R_RESOLVED AS TIME_RESOLVED,
@@ -234,7 +241,7 @@ CREATE OR REPLACE VIEW VW_ERS_ALL_PEND_REIMBURSE AS
   
 --A Manager can view all resolved requests from all employees and see which manager resolved it
 --(did this separately because of the need to add the additional where clause and other changes)
-CREATE OR REPLACE VIEW VW_ERS_ALL_RESOLVED_REIMBURSE AS
+CREATE OR REPLACE VIEW VW_ERS_MGR_VIEW_ALL_REIMBURSE AS
   SELECT
     REIMBUR.R_ID, 
     REIMBUR.R_DESCR AS DESCRIPTION,
@@ -247,14 +254,14 @@ CREATE OR REPLACE VIEW VW_ERS_ALL_RESOLVED_REIMBURSE AS
     ERS_REIMBURSEMENT_STATUS.RS_STATUS AS R_STATUS, 
     USERS_A.U_USERNAME AS USERNAME,
     USERS_A.U_FIRSTNAME AS FIRST_NAME,
-    USERS_A.U_LASTNAME AS LAST_NAME
+    USERS_A.U_LASTNAME AS LAST_NAME,
+    USERS_A.U_EMAIL AS EMAIL
     FROM ERS_REIMBURSEMENTS REIMBUR
   INNER JOIN ERS_USERS USERS_A ON USERS_A.U_ID=REIMBUR.U_ID_AUTHOR
   LEFT JOIN ERS_USERS USERS_B ON USERS_B.U_ID=REIMBUR.U_ID_RESOLVER
   INNER JOIN ERS_REIMBURSEMENT_STATUS ON ERS_REIMBURSEMENT_STATUS.RS_ID=REIMBUR.RS_STATUS
-  INNER JOIN ERS_REIMBURSEMENT_TYPE ON ERS_REIMBURSEMENT_TYPE.RT_ID=REIMBUR.RT_TYPE
-  WHERE REIMBUR.RS_STATUS=(SELECT RS_ID FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Denied')
-  OR REIMBUR.RS_STATUS=(SELECT RS_ID FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Approved');
+  INNER JOIN ERS_REIMBURSEMENT_TYPE ON ERS_REIMBURSEMENT_TYPE.RT_ID=REIMBUR.RT_TYPE;
+
 
 
 /*******************************************************
@@ -287,8 +294,6 @@ BEGIN
     ROLLBACK TO SP;
 END;
 
-
-
 --SIMILAR TO ABOVE SP, EXCEPT ALSO INCLUDES THE DESCRIPTION FIELD
 CREATE OR REPLACE PROCEDURE ERS_SP_CREATE_REIMBUR_DESCR (DESCRIP IN VARCHAR, AMOUNT IN NUMBER, U_USER IN VARCHAR, RTYPE IN VARCHAR, TEXT_OUT OUT VARCHAR)
 IS
@@ -299,6 +304,7 @@ IS
   TYPE_OF_REIMBURSE VARCHAR2(50);
 BEGIN
   SAVEPOINT SP;
+  
   SELECT U_ID INTO ID_OF_AUTHOR FROM ERS_USERS WHERE U_USER=U_USERNAME;
   SELECT RT_ID INTO ID_OF_TYPE FROM ERS_REIMBURSEMENT_TYPE WHERE RTYPE=RT_TYPE;
   SELECT RS_ID INTO ID_OF_STATUS FROM ERS_REIMBURSEMENT_STATUS WHERE RS_STATUS='Pending'; 
@@ -375,3 +381,4 @@ BEGIN
     ROLLBACK TO SP;
 END;
 
+SELECT 

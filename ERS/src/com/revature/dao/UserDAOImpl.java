@@ -89,7 +89,7 @@ public class UserDAOImpl implements UserDAO {
 
 		return success;
 	}
-	
+
 	public boolean mgrUpdateUser(String user, String email, String fName, String lName, String title) {
 		boolean success = false;
 		try (Connection con = ConnectionUtil.getConnection();) {
@@ -101,7 +101,7 @@ public class UserDAOImpl implements UserDAO {
 			pstmt.setString(3, lName);
 			pstmt.setString(4, title);
 			pstmt.setString(5, user);
-			System.out.println(email+" "+fName+" "+lName+" "+title+" "+user);
+			System.out.println(email + " " + fName + " " + lName + " " + title + " " + user);
 			pstmt.executeQuery();
 			success = true;
 		} catch (SQLException e) {
@@ -111,7 +111,6 @@ public class UserDAOImpl implements UserDAO {
 
 		return success;
 	}
-
 
 	@Override
 	public boolean updatePw(String user, String pw) {
@@ -133,7 +132,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public boolean isMgr(String user) {
-		boolean isMgr=false;
+		boolean isMgr = false;
 		try (Connection con = ConnectionUtil.getConnection();) {
 
 			String sql = "SELECT JOB_TITLE FROM VW_ERS_USERS WHERE USER_NAME=?";
@@ -142,13 +141,61 @@ public class UserDAOImpl implements UserDAO {
 			ResultSet rs = pstmt.executeQuery();
 			rs.next();
 			String ti = rs.getString("JOB_TITLE");
-			if(ti.equals("Manager"))
-				isMgr=true;
+			if (ti.equals("Manager"))
+				isMgr = true;
 			else
-				isMgr=false;
+				isMgr = false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return isMgr;
+	}
+
+	// SP_ERS_CREATE_USER
+	// (U_NAME IN VARCHAR, U_PASS IN VARCHAR, U_FIRST IN VARCHAR,
+	// U_LAST IN VARCHAR, EMAIL IN VARCHAR, U_ROLE IN VARCHAR, IS_VALID OUT
+	// NUMBER)
+	@Override
+	public boolean makeUser(String e, String f, String l, String u, String t) {
+		boolean suc = false;
+		try (Connection con = ConnectionUtil.getConnection();) {
+
+			String sql = "BEGIN SP_ERS_CREATE_USER(?,?,?,?,?,?,?); END;";
+			CallableStatement cstmt = con.prepareCall(sql);
+			cstmt.setString(1, u);
+			cstmt.setString(2, "password");
+			cstmt.setString(3, f);
+			cstmt.setString(4, l);
+			cstmt.setString(5, e);
+			cstmt.setString(6, t);
+			cstmt.registerOutParameter(7, Types.NUMERIC);
+			cstmt.executeQuery();
+			int val = cstmt.getInt(7);
+			if (val == 1)
+				suc = true;
+			else
+				suc = false;
+		} catch (SQLException err) {
+			err.printStackTrace();
+		}
+		return suc;
+	}
+
+	@Override
+	public String getEmail(String user) {
+		String email="";
+		try (Connection con = ConnectionUtil.getConnection();) {
+
+			String sql = "SELECT U_EMAIL FROM ERS_USERS WHERE U_USERNAME=?";
+			PreparedStatement pstmt = con.prepareCall(sql);
+			pstmt.setString(1, user);
+			ResultSet rs= pstmt.executeQuery();
+			rs.next();
+			email=rs.getString("U_EMAIL");
+			
+		} catch (SQLException err) {
+			err.printStackTrace();
+		}
+		return email;
 	}
 }

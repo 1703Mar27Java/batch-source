@@ -114,6 +114,7 @@ user="master" password="p4ssw0rd" />
 			<th>Description</th>
 			<th>Amount</th>
 			<th>Request Type</th>
+			
 			<th>New Request:</th>
 			<th></th>
 			<th></th>
@@ -138,11 +139,11 @@ user="master" password="p4ssw0rd" />
 			</select>
 		</th>
 
-
+		<th> </th>
 		<th>
 			<button id="submitReq">Submit</button>
 		</th>
-		<th></th>
+		
 		<th></th>
 		<th></th>
 		<th><sql:query dataSource="${source}" var="result">
@@ -156,6 +157,25 @@ user="master" password="p4ssw0rd" />
 </tr>
 </table>
 <!-- Input form for entering new requests -->
+
+<table class="table table-inverse" style="width: 50%;">
+
+           <tr class="bg-primary">
+           		<th>Choose your file</th>
+           		<th>Enter the Request ID to Modify</th>
+           		<th></th>
+           
+           </tr>
+           <tr class="bg-success"> 
+           <td> <input type="number" id="rid4img"  maxlength="15" size="15"></td>
+           <td> <label for="photo"> Portrait Photo:  </label>
+            <input type="file" name="photo" size="50" id="imgUp" placeholder="Upload Your Image" /></td>
+           <td> </td>
+		</tr>
+</table>
+
+
+
 <div id="requests"></div>
 
 
@@ -163,6 +183,31 @@ user="master" password="p4ssw0rd" />
 
 </body>
 <script>
+
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+           // $('#blah').attr('src', e.target.result);
+            console.log(e);
+            
+            $.post("img", {
+				img : e.target.result,
+				rid: $("#rid4img").val()
+			});
+            filter($('#selectStatus').val());
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$("#imgUp").change(function(){
+    readURL(this);
+});
+
 
 //totally using two different ways of performing ajax here, 
 //but it works and i dont want to re-do it -_-
@@ -193,10 +238,33 @@ function filter(str) {
 			$("#requests").html(responseTxt);
 		});
 	});
+/*
+	function readURL(input) {
 
+       
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                //$('#blah').attr('src', e.target.result);
+                console.log(e);
+                
+            	$.post("addReq", {
+    				descr : $("#descrIn").val(),
+    				amt : $("#amtIn").val(),
+    				type : $("#typeIn").val(),
+    				blob : e.target.result
+    			});
+            }
+            reader.readAsDataURL($('#imgUp')[0].files[0]);
+            //reader.readAsDataURL(input.files[0]);
+        }
+    
+	*/
 	//when user clicks submit button
 	$("#submitReq").click(function() {
 		if ($('#amtIn').val() > 0) {
+			//readURL($('#imgUp'))
+			
 			$.post("addReq", {
 				descr : $("#descrIn").val(),
 				amt : $("#amtIn").val(),

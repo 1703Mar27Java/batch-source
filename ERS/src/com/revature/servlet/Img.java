@@ -7,20 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.dao.UserDAOImpl;
-import com.revature.util.mailer;
+import com.revature.dao.RequestDAOImpl;
 
 /**
- * Servlet implementation class ResetPass
+ * Servlet implementation class Img
  */
-@WebServlet("/ResetPass")
-public class ResetPass extends HttpServlet {
+@WebServlet("/Img")
+public class Img extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ResetPass() {
+    public Img() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,14 +37,11 @@ public class ResetPass extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		UserDAOImpl uDAO = new UserDAOImpl();
-		uDAO.resetPass(request.getParameter("uName"), request.getParameter("email") );
-		mailer.mail( request.getParameter("email"), 
-				"Your password has been reset to the default password of 'password'. "
-				+ "Please log onto your account to set a new password as soon as possible.");
+		String img= request.getParameter("img");
+		int rid =Integer.parseInt( request.getParameter("rid"));
+		RequestDAOImpl rDAO = new RequestDAOImpl();
+		rDAO.setImg(rid, img);
 		
-		//request.getRequestDispatcher("index.jsp").forward(request, response);
-		response.sendRedirect("index.jsp");
 	}
 
 }
