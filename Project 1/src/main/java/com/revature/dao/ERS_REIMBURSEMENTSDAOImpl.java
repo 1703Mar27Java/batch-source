@@ -100,31 +100,31 @@ public class ERS_REIMBURSEMENTSDAOImpl implements ERS_REIMBURSEMENTSDAO {
 	}
 
 	@Override
-	public void submit(double amt, String desc, int id, String type) {
+	public void submit(double amt, String desc, int id, int type) throws SQLException {
+		CallableStatement cstmt = null;
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "BEGIN SP_ERS_SUBMIT (?,?,?,?)";
-			CallableStatement cstmt = conn.prepareCall(sql);
+			String sql = "{CALL SP_ERS_SUBMIT(?,?,?,?)}";
+			cstmt = conn.prepareCall(sql);
 			cstmt.setDouble(1, amt);
 			cstmt.setString(2, desc);
 			cstmt.setInt(3, id);
-			cstmt.setString(4, type);
-			cstmt.execute();
+			cstmt.setInt(4, type);
+			cstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			if (cstmt != null)
+				cstmt.close();
 		}
 	}
 
 	@Override
-	public void resolve(int id, String status, int manager) {
+	public void resolve(int id, int status, int manager) {
 		try (Connection conn = ConnectionUtil.getConnection()) {
-			String sql = "BEGIN SP_ERS_RESOLVE (?, ?, ?)";
+			String sql = "{CALL SP_ERS_RESOLVE(?, ?, ?)}";
 			CallableStatement cstmt = conn.prepareCall(sql);
-			if (status.equals("Approve"))
-				status = "Approved";
-			else if (status.equals("Deny"))
-				status = "Denied";
 			cstmt.setInt(1, id);
-			cstmt.setString(2, status);
+			cstmt.setInt(2, status);
 			cstmt.setInt(3, manager);
 			cstmt.execute();
 		} catch (SQLException e) {

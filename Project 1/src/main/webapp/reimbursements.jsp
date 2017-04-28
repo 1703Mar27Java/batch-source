@@ -1,29 +1,36 @@
 <%@include file="header.jsp"%>
 
-<table>
-	<tr>
-		<th>Amount</th>
-		<th>Description</th>
-		<th>Submitted</th>
-		<th>Resolved</th>
-		<th>Author</th>
-		<th>Resolver</th>
-		<th>Type</th>
-		<th>Status</th>
-	</tr>
+<c:if test="${currentUser.getUR_ID() == 1}">
+	<c:if test="${filtered != null}">
+		<%@include file="mrview.jsp"%>
+	</c:if>
+	<div id="shortform">
+		<form method="post" action="MRView">
+			<select name="option">
+				<option value="1">Pending</option>
+				<option value="2">Approved</option>
+				<option value="3">Denied</option>
+			</select> <input type="submit" value="Display" />
+		</form>
+	</div>
 
-	<c:forEach var="row" items="${reimbursements}">
-		<tr>
-			<td><c:out value="${row.getR_AMOUNT}"/></td>
-			<td><c:out value="${row.getR_DESCRIPTION()}"/></td>
-			<td><c:out value="${row.getR_SUBMITTED()}"/></td>
-			<td><c:out value="${row.getR_RESOLVED()}"/></td>
-			<td><c:out value="${row.getU_ID_AUTHOR()}"/></td>
-			<td><c:out value="${row.getU_ID_RESOLVER()}"/></td>
-			<td><c:out value="${row.getRT_TYPE()}"/></td>
-			<td><c:out value="${row.getRT_TYPE()}"/></td>
-		</tr>
-	</c:forEach>
-</table>
+</c:if>
+
+
+<c:if test="${currentUser.getUR_ID() == 2}">
+	<c:if test="${filtered != null}">
+		<%@include file="erview.jsp"%>
+	</c:if>
+	<div id="shortform">
+		<form method="post" action="ERView">
+			<select name="option">
+				<option value="1">Pending</option>
+				<option value="2">Approved</option>
+				<option value="3">Denied</option>
+			</select> <input type="submit" value="Display" />
+		</form>
+	</div>
+
+</c:if>
 
 <%@include file="footer.jsp"%>

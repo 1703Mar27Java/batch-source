@@ -2,6 +2,7 @@ package com.revature.bean;
 
 import java.io.*;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class ERS_REIMBURSEMENTS {
 	private int R_ID;
@@ -65,6 +66,20 @@ public class ERS_REIMBURSEMENTS {
 
 	public Timestamp getR_RESOLVED() {
 		return this.R_RESOLVED;
+	}
+	
+	public String formatSubmitted() {
+		if (R_SUBMITTED != null)
+			return new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a").format(R_SUBMITTED);
+		else
+			return "";
+	}
+	
+	public String formatResolved() {
+		if(R_RESOLVED != null)
+			return new SimpleDateFormat("MM/dd/yyyy hh:mm:ss a").format(R_RESOLVED);
+		else
+			return "";
 	}
 
 	public void setR_RESOLVED(Timestamp R_RESOLVEDIn) {

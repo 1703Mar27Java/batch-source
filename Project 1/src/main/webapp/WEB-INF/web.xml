@@ -23,6 +23,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>EmployeePending</servlet-name>
+		<servlet-class>com.revature.servlet.EmployeePendingServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmployeePending</servlet-name>
+		<url-pattern>/EmployeePending</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Submit</servlet-name>
 		<servlet-class>com.revature.servlet.SubmitServlet</servlet-class>
 	</servlet>
@@ -32,11 +41,38 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>Resolve</servlet-name>
+		<servlet-class>com.revature.servlet.ResolveServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Resolve</servlet-name>
+		<url-pattern>/Resolve</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
 		<servlet-name>Profile</servlet-name>
 		<servlet-class>com.revature.servlet.ProfileServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Profile</servlet-name>
 		<url-pattern>/Profile</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ERView</servlet-name>
+		<servlet-class>com.revature.servlet.ERServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ERView</servlet-name>
+		<url-pattern>/ERView</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>MRView</servlet-name>
+		<servlet-class>com.revature.servlet.MRServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MRView</servlet-name>
+		<url-pattern>/MRView</url-pattern>
 	</servlet-mapping>
 </web-app>

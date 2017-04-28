@@ -14,20 +14,20 @@ public class ProfileServlet extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-	        HttpSession session = req.getSession();
+			HttpSession session = req.getSession();
+			ERS_USERS currentUser = (ERS_USERS) session.getAttribute("currentUser");
 			ERS_USERSDAO udao = new ERS_USERSDAOImpl();
-			ERS_USERS updateUser = new ERS_USERS();
 
-			updateUser.setU_USERNAME(req.getParameter("username"));
-			updateUser.setU_PASSWORD(req.getParameter("password"));
-			updateUser.setU_FIRSTNAME(req.getParameter("firstname"));
-			updateUser.setU_LASTNAME(req.getParameter("lastname"));
-			updateUser.setU_EMAIL(req.getParameter("email"));
-			updateUser.setUR_ID(2);
+			currentUser.setU_USERNAME(req.getParameter("username"));
+			currentUser.setU_PASSWORD(req.getParameter("password"));
+			currentUser.setU_FIRSTNAME(req.getParameter("firstname"));
+			currentUser.setU_LASTNAME(req.getParameter("lastname"));
+			currentUser.setU_EMAIL(req.getParameter("email"));
+			currentUser.setUR_ID(2);
 	        
-	        udao.save(updateUser);
+	        udao.save(currentUser);
 	        
-	        session.setAttribute("currentUser", updateUser);
+	        session.setAttribute("currentUser", currentUser);
         	resp.sendRedirect("main.jsp"); 
         } catch (SQLException e) {
         	req.setAttribute("message", "Failed to Update Profile");

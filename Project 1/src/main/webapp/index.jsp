@@ -1,23 +1,21 @@
 <%@include file="header.jsp"%>
 
-<%
-	if (currentUser != null) {
-%>
-<jsp:forward page="/main.jsp" />
-<%
-	}
-%>
+<c:if test="${currentUser != null}">
 
-<h1>Please Login</h1>
+	<jsp:forward page="/main.jsp" />
 
-<form method="post" action="Login">
-	<p>
-		User Name: <input type="text" name="username" />
-	</p>
-	<p>
-		Password: <input type="password" name="password" />
-	</p>
-	<input type="submit" value="Login" />
-</form>
+</c:if>
 
-<%@include file="footer.jsp" %>
+<div id="shortform">
+<h3>Please Login</h3>
+	<form method="post" action="Login">
+		<p>
+			User Name: <input type="text" name="username" />
+		</p>
+		<p>
+			Password: <input type="password" name="password" />
+		</p>
+		<input type="submit" value="Login" />
+	</form>
+</div>
+<%@include file="footer.jsp"%>

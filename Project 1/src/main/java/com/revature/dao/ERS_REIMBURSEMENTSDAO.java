@@ -9,9 +9,9 @@ public interface ERS_REIMBURSEMENTSDAO {
 
 	public void create(ERS_REIMBURSEMENTS reimb) throws SQLException;
 
+	void submit(double amt, String desc, int id, int type) throws SQLException;
+
+	void resolve(int id, int status, int manager);
+
 	public void update(ERS_REIMBURSEMENTS reimb) throws SQLException;
-
-	void resolve(int id, String status, int manager);
-
-	void submit(double amt, String desc, int id, String type);
 }

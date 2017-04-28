@@ -1,6 +1,6 @@
 <%@page import="java.util.*"%>
 <%@page import="com.revature.bean.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page contentType="text/html; charset=ISO-8859-1"%>
 <%@page pageEncoding="ISO-8859-1"%>
 <%@page session="true"%>
@@ -11,53 +11,42 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <head>
-<title>Employee Reimbursement System</title>
+<title>Revature ERS</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<link rel="stylesheet" href="/css/base.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 	<div id="container">
+		<c:if test="${currentUser != null}">
+			<div id="nav">
 
-		<div id="header">
-			<div id="subbar">
-				<p>
-					Welcome
-					<%=currentUser == null ? "Guest" : currentUser.getU_FIRSTNAME() + " " + currentUser.getU_LASTNAME()%></p>
+				<ul>
+					<li><a class="active"> Welcome <c:if
+								test="${currentUser == null}">Guest</c:if> <c:if
+								test="${currentUser != null}">
+								<c:out value="${currentUser.getU_FIRSTNAME()}" />
+							</c:if>
+					</a></li>
+					<li><a href="main.jsp">Home</a></li>
+
+
+					<c:if test="${currentUser.getUR_ID() == 1}">
+						<li><a href="employees.jsp">Manage</a></li>
+						<li><a href="register.jsp">Register</a></li>
+					</c:if>
+					<c:if test="${currentUser.getUR_ID() == 2}">
+						<li><a href="profile.jsp">Profile</a></li>
+					</c:if>
+					<c:if test="${currentUser.getUR_ID() == 2}">
+						<li><a href="submit.jsp">Submit</a></li>
+					</c:if>
+					<li><a href="reimbursements.jsp">Reimbursements</a></li>
+					<li style="float: right"><a class="active" href="logout.jsp">Logout</a></li>
+					<li style="float: right"><a id="currentTime"></a></li>
+				</ul>
 			</div>
-		</div>
-		<%
-			if (currentUser != null) {
-		%>
-		<div id="nav">
-
-			<ul>
-
-				<li><a href="main.jsp">Home</a></li>
-				<%
-					if (currentUser.getUR_ID() == 1) {
-				%>
-
-				<li><a href="employees.jsp">Employees</a></li>
-				<li><a href="register.jsp">Register</a></li>
-
-				<%
-					} else if (currentUser.getUR_ID() == 2) {
-				%>
-
-				<li><a href="submit.jsp">Submit</a></li>
-				<li><a href="profile.jsp">Profile</a></li>
-
-				<%
-					}
-				%>
-
-				<li><a href="reimbursements.jsp">Reimbursements</a></li>
-				<li><a href="logout.jsp">Logout</a></li>
-			</ul>
-		</div>
-		<%
-			}
-		%>
+		</c:if>
 	</div>

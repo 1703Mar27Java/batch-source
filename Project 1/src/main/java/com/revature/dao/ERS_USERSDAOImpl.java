@@ -10,13 +10,12 @@ public class ERS_USERSDAOImpl implements ERS_USERSDAO {
 
 	@Override
 	public List<ERS_USERS> loadAll() throws SQLException {
-		Connection conn = ConnectionUtil.getConnection();
 		PreparedStatement stmt = null;
 		ResultSet result = null;
 		String sql = "SELECT * FROM ERS_USERS WHERE UR_ID = ? ORDER BY U_ID ASC ";
 		List<ERS_USERS> searchResults = new ArrayList<>();
 
-		try {
+		try (Connection conn = ConnectionUtil.getConnection()) {
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, 2);
 			result = stmt.executeQuery();
@@ -146,7 +145,7 @@ public class ERS_USERSDAOImpl implements ERS_USERSDAO {
 			stmt.setString(4, user.getU_LASTNAME());
 			stmt.setString(5, user.getU_EMAIL());
 
-			stmt.setInt(7, user.getU_ID());
+			stmt.setInt(6, user.getU_ID());
 
 			int rowcount = stmt.executeUpdate();
 			if (rowcount == 0) {
