@@ -1,0 +1,100 @@
+.button {
+	background-color: #A5C4D4; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.disabled {
+	background-color: #A5C4D4; /* Green */
+	border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.avatar {
+	display: block;
+    margin: auto;
+    width: 40%;
+}
+
+body {
+	background-color: #493B2A;
+}
+
+.login {
+	border: 3px solid #f1f1f1;
+	width: 25%;
+	margin: auto;
+}
+
+
+input[type=text], input[type=password] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px;
+	display: inline-block;
+	border: 1px solid##593F62;
+	box-sizing: border-box;
+	border-color: #7B6D8D;
+}
+
+
+button:hover {
+	opacity: 0.8;
+}
+
+.container {
+	padding: 16px;
+	background-color: #7B6D8D;
+	margin: auto;
+}
+
+span.psw {
+	float: right;
+	padding-top: 16px;
+}
+.header{
+	padding: 16px;
+	background-color: #7B6D8D;
+	margin: auto;
+	border: 3px solid #f1f1f1;
+	width: 30%;
+	text-align: center;
+	font-weight: bold;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+   	
+    overflow-y: auto;
+  
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+/*     padding: 8px; */
+}
+
+tr:nth-child(even) {
+    background-color: #7B6D8D;
+}
+tr:nth-child(odd) {
+    background-color: #593F62;
+}
