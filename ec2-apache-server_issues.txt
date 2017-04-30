@@ -1,0 +1,607 @@
+Using username "ec2-user".
+Authenticating with public key "imported-openssh-key"
+Last login: Fri Apr 28 20:32:12 2017 from 50-207-204-190-static.hfc.comcastbusiness.net
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2017.03-release-notes/
+12 package(s) needed for security, out of 13 available
+Run "sudo yum update" to apply all updates.
+[ec2-user@ip-172-31-1-221 ~]$ cd ..
+[ec2-user@ip-172-31-1-221 home]$ cd ..
+[ec2-user@ip-172-31-1-221 /]$ l
+-bash: l: command not found
+[ec2-user@ip-172-31-1-221 /]$ ls
+~    boot    dev  home  lib64  lost+found  mnt  proc  run   selinux  sys  usr
+bin  cgroup  etc  lib   local  media       opt  root  sbin  srv      tmp  var
+[ec2-user@ip-172-31-1-221 /]$ cd tmp
+[ec2-user@ip-172-31-1-221 tmp]$ ls
+apache-maven-3.3.9-bin.tar.gz  git-2.10.2.tar.gz    jdk-8u111-linux-x64.rpm
+apache-tomcat-8.5.14.tar.gz    hsperfdata_ec2-user  jenkins.war
+[ec2-user@ip-172-31-1-221 tmp]$ cd hsperfdata_ec2-user
+[ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ ls
+26553
+[ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ cd..
+-bash: cd..: command not found
+[ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ cd ..
+[ec2-user@ip-172-31-1-221 tmp]$ cd ..
+[ec2-user@ip-172-31-1-221 /]$ ls
+~     cgroup  home   local       mnt   root  selinux  tmp
+bin   dev     lib    lost+found  opt   run   srv      usr
+boot  etc     lib64  media       proc  sbin  sys      var
+[ec2-user@ip-172-31-1-221 /]$ cd usr
+[ec2-user@ip-172-31-1-221 usr]$ ls
+apache  etc    include  lib    libexec  sbin   src
+bin     games  java     lib64  local    share  tmp
+[ec2-user@ip-172-31-1-221 usr]$ cd apache
+[ec2-user@ip-172-31-1-221 apache]$ ls
+apache-maven-3.3.9  apache-tomcat-8.5.14
+[ec2-user@ip-172-31-1-221 apache]$ cd apache-tomcat-8.5.14
+[ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ li
+-bash: li: command not found
+[ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ ls
+bin   lib      logs    RELEASE-NOTES  temp     work
+conf  LICENSE  NOTICE  RUNNING.txt    webapps
+[ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ cd bin
+[ec2-user@ip-172-31-1-221 bin]$ ls
+bootstrap.jar                 daemon.sh         startup.sh
+catalina.bat                  digest.bat        tomcat-juli.jar
+catalina.sh                   digest.sh         tomcat-native.tar.gz
+catalina-tasks.xml            setclasspath.bat  tool-wrapper.bat
+commons-daemon.jar            setclasspath.sh   tool-wrapper.sh
+commons-daemon-native.tar.gz  shutdown.bat      version.bat
+configtest.bat                shutdown.sh       version.sh
+configtest.sh                 startup.bat
+[ec2-user@ip-172-31-1-221 bin]$ ./startup.sh
+Using CATALINA_BASE:   /usr/apache/apache-tomcat-8.5.14
+Using CATALINA_HOME:   /usr/apache/apache-tomcat-8.5.14
+Using CATALINA_TMPDIR: /usr/apache/apache-tomcat-8.5.14/temp
+Using JRE_HOME:        /usr/java/latest
+Using CLASSPATH:       /usr/apache/apache-tomcat-8.5.14/bin/bootstrap.jar:/u    sr/apache/apache-tomcat-8.5.14/bin/tomcat-juli.jar
+Tomcat started.
+[ec2-user@ip-172-31-1-221 bin]$ sudo ./startup.sh
+Using CATALINA_BASE:   /usr/apache/apache-tomcat-8.5.14
+Using CATALINA_HOME:   /usr/apache/apache-tomcat-8.5.14
+Using CATALINA_TMPDIR: /usr/apache/apache-tomcat-8.5.14/temp
+Using JRE_HOME:        /usr
+Using CLASSPATH:       /usr/apache/apache-tomcat-8.5.14/bin/bootstrap.jar:/u    sr/apache/apache-tomcat-8.5.14/bin/tomcat-juli.jar
+Tomcat started.
+[ec2-user@ip-172-31-1-221 bin]$ cd ..
+[ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ cd ..
+[ec2-user@ip-172-31-1-221 apache]$ cd ..
+[ec2-user@ip-172-31-1-221 usr]$ cd ..
+[ec2-user@ip-172-31-1-221 /]$ ls
+~     cgroup  home   local       mnt   root  selinux  tmp
+bin   dev     lib    lost+found  opt   run   srv      usr
+boot  etc     lib64  media       proc  sbin  sys      var
+[ec2-user@ip-172-31-1-221 /]$ sudo netstat
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address                 State
+tcp        0    304 ip-172-31-1-221.us-west:ssh c-73-87-198-213.hsd1.:55024     ESTABLISHED
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+unix  11     [ ]         DGRAM                    9807   /dev/log
+unix  2      [ ]         DGRAM                    10558
+unix  3      [ ]         STREAM     CONNECTED     9768
+unix  2      [ ]         DGRAM                    81224
+unix  3      [ ]         STREAM     CONNECTED     10442
+unix  3      [ ]         STREAM     CONNECTED     10443
+unix  2      [ ]         DGRAM                    10342
+unix  2      [ ]         DGRAM                    10520
+unix  3      [ ]         STREAM     CONNECTED     10448  /var/run/dbus/syste    m_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     10447
+unix  3      [ ]         STREAM     CONNECTED     9767
+unix  3      [ ]         STREAM     CONNECTED     79815
+unix  2      [ ]         DGRAM                    12517
+unix  3      [ ]         DGRAM                    8691
+unix  3      [ ]         DGRAM                    8690
+unix  2      [ ]         DGRAM                    11079
+unix  2      [ ]         DGRAM                    10979
+unix  3      [ ]         STREAM     CONNECTED     79816
+unix  2      [ ]         DGRAM                    79811
+unix  2      [ ]         STREAM     CONNECTED     47995
+unix  2      [ ]         DGRAM                    11101
+unix  2      [ ]         DGRAM                    11059
+[ec2-user@ip-172-31-1-221 /]$ sudo netstat -tulpn
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address                 State       PID/Program name
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                       LISTEN      2491/sshd
+tcp        0      0 127.0.0.1:25                0.0.0.0:*                       LISTEN      2521/sendmail
+tcp        0      0 0.0.0.0:47813               0.0.0.0:*                       LISTEN      2285/rpc.statd
+tcp        0      0 0.0.0.0:111                 0.0.0.0:*                       LISTEN      2264/rpcbind
+tcp        0      0 :::60689                    :::*                            LISTEN      2285/rpc.statd
+tcp        0      0 :::22                       :::*                            LISTEN      2491/sshd
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                            LISTEN      26553/java
+tcp        0      0 :::8009                     :::*                            LISTEN      26553/java
+tcp        0      0 :::111                      :::*                            LISTEN      2264/rpcbind
+tcp        0      0 :::8080                     :::*                            LISTEN      26553/java
+udp        0      0 0.0.0.0:68                  0.0.0.0:*                                   2059/dhclient
+udp        0      0 0.0.0.0:111                 0.0.0.0:*                                   2264/rpcbind
+udp        0      0 0.0.0.0:43638               0.0.0.0:*                                   2285/rpc.statd
+udp        0      0 172.31.1.221:123            0.0.0.0:*                                   2501/ntpd
+udp        0      0 127.0.0.1:123               0.0.0.0:*                                   2501/ntpd
+udp        0      0 0.0.0.0:123                 0.0.0.0:*                                   2501/ntpd
+udp        0      0 0.0.0.0:743                 0.0.0.0:*                                   2264/rpcbind
+udp        0      0 127.0.0.1:766               0.0.0.0:*                                   2285/rpc.statd
+udp        0      0 fe80::803:14ff:fe46:8e3:546 :::*                                        2156/dhclient
+udp        0      0 :::111                      :::*                                        2264/rpcbind
+udp        0      0 :::35955                    :::*                                        2285/rpc.statd
+udp        0      0 :::743                      :::*                                        2264/rpcbind
+[ec2-user@ip-172-31-1-221 /]$ netstat -lntp | grep 80
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      26553/java
+tcp        0      0 :::8009                     :::*                        LISTEN      26553/java
+tcp        0      0 :::8080                     :::*                        LISTEN      26553/java
+[ec2-user@ip-172-31-1-221 /]$ sudo netstat -lntp | grep 80
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      26553/java
+tcp        0      0 :::8009                     :::*                        LISTEN      26553/java
+tcp        0      0 :::8080                     :::*                        LISTEN      26553/java
+[ec2-user@ip-172-31-1-221 /]$ cd ..
+[ec2-user@ip-172-31-1-221 /]$ ssh -p 8080 ec2-35-166-77-62.us-west.2.compute.amazonaws.com port 8080
+ssh: Could not resolve hostname ec2-35-166-77-62.us-west.2.compute.amazonaws.com: Name or service not known
+[ec2-user@ip-172-31-1-221 /]$ ssh -p 8080 ec2-35-166-77-62.us-west-2.compute.amazonaws.com port 8080
+ssh_exchange_identification: Connection closed by remote host
+[ec2-user@ip-172-31-1-221 /]$ ^C
+[ec2-user@ip-172-31-1-221 /]$ telnet HOSTNAME 22
+-bash: telnet: command not found
+[ec2-user@ip-172-31-1-221 /]$ ssh -vvv
+usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+           [-D [bind_address:]port] [-E log_file] [-e escape_char]
+           [-F configfile] [-I pkcs11] [-i identity_file]
+           [-L [bind_address:]port:host:hostport] [-l login_name] [-m mac_spec]
+           [-O ctl_cmd] [-o option] [-p port]
+           [-Q cipher | cipher-auth | mac | kex | key]
+           [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port]
+           [-w local_tun[:remote_tun]] [user@]hostname [command]
+[ec2-user@ip-172-31-1-221 /]$ -L
+-bash: -L: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using username "ec2-user".
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Authenticating with public key "imported-openssh-key"
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+-bash: Authenticating: command not found
+[ec2-user@ip-172-31-1-221 /]$ Last login: Fri Apr 28 20:32:12 2017 from 50-207-204-190-static.hfc.comcastbusiness.net
+-bash: Last: command not found
+[ec2-user@ip-172-31-1-221 /]$
+[ec2-user@ip-172-31-1-221 /]$        __|  __|_  )
+-bash: syntax error near unexpected token `)'
+[ec2-user@ip-172-31-1-221 /]$        _|  (     /   Amazon Linux AMI
+>       ___|\___|___|
+>
+> https://aws.amazon.com/amazon-linux-ami/2017.03-release-notes/
+> 12 package(s) needed for security, out of 13 available
+-bash: syntax error near unexpected token `('
+[ec2-user@ip-172-31-1-221 /]$ Run "sudo yum update" to apply all updates.
+-bash: Run: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 ~]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 home]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ l
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ -bash: l: command not found
+-bash: -bash:: command not found
+~    boot    dev  home  lib64  lost+found  mnt  proc  run   selinux  sys  usr
+bin  cgroup  etc  lib   local  media       opt  root  sbin  srv      tmp  var
+[ec2-user@ip-172-31-1-221 /]$ cd tmp
+[ec2-user@ip-172-31-1-221 tmp]$ ls
+apache-maven-3.3.9-bin.tar.gz  git-2.10.2.tar.gz    jdk-8u111-linux-x64.rpm
+apache-tomcat-8.5.14.tar.gz    hsperfdata_ec2-user  jenkins.war
+[ec2-user@ip-172-31-1-221 tmp]$ cd hsperfdata_ec2-user
+[ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ ls
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ ~    boot    dev  home  lib64  lost+found  mnt  proc  run   selinux  sys  usr
+-bash: /home/ec2-user: Is a directory
+[ec2-user@ip-172-31-1-221 /]$ bin  cgroup  etc  lib   local  media       opt  root  sbin  srv      tmp  var
+-bash: bin: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ cd tmp
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 tmp]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ apache-maven-3.3.9-bin.tar.gz  git-2.10.2.tar.gz    jdk-8u111-linux-x64.rpm
+-bash: apache-maven-3.3.9-bin.tar.gz: command not found
+[ec2-user@ip-172-31-1-221 /]$ apache-tomcat-8.5.14.tar.gz    hsperfdata_ec2-user  jenkins.war
+-bash: apache-tomcat-8.5.14.tar.gz: command not found
+26553
+[ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ cd..
+-bash: cd..: command not found
+[ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ cd ..
+[ec2-user@ip-172-31-1-221 tmp]$ cd ..
+[ec2-user@ip-172-31-1-221 /]$ ls
+~     cgroup  home   local       mnt   root  selinux  tmp
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 tmp]$ cd hsperfdata_ec2-user
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ 26553
+-bash: 26553: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ cd..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ -bash: cd..: command not found
+-bash: -bash:: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 hsperfdata_ec2-user]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 tmp]$ cd ..
+bin   dev     lib    lost+found  opt   run   srv      usr
+boot  etc     lib64  media       proc  sbin  sys      var
+[ec2-user@ip-172-31-1-221 /]$ cd usr
+[ec2-user@ip-172-31-1-221 usr]$ ls
+apache  etc    include  lib    libexec  sbin   src
+bin     games  java     lib64  local    share  tmp
+[ec2-user@ip-172-31-1-221 usr]$ cd apache
+[ec2-user@ip-172-31-1-221 apache]$ ls
+apache-maven-3.3.9  apache-tomcat-8.5.14
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ ~     cgroup  home   local       mnt   root  selinux  tmp
+-bash: /home/ec2-user: Is a directory
+[ec2-user@ip-172-31-1-221 /]$ bin   dev     lib    lost+found  opt   run   srv      usr
+-bash: bin: command not found
+[ec2-user@ip-172-31-1-221 /]$ boot  etc     lib64  media       proc  sbin  sys      var
+-bash: boot: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ cd usr
+[ec2-user@ip-172-31-1-221 apache]$ cd apache-tomcat-8.5.14
+[ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ li
+-bash: li: command not found
+[ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ ls
+bin   lib      logs    RELEASE-NOTES  temp     work
+conf  LICENSE  NOTICE  RUNNING.txt    webapps
+[ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ cd bin
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 usr]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ apache  etc    include  lib    libexec  sbin   src
+-bash: apache: command not found
+[ec2-user@ip-172-31-1-221 /]$ bin     games  java     lib64  local    share  tmp
+-bash: bin: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 usr]$ cd apache
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 apache]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ apache-maven-3.3.9  apache-tomcat-8.5.14
+-bash: apache-maven-3.3.9: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 apache]$ cd apache-tomcat-8.5.14
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ li
+[ec2-user@ip-172-31-1-221 bin]$ ls
+bootstrap.jar                 daemon.sh         startup.sh
+catalina.bat                  digest.bat        tomcat-juli.jar
+catalina.sh                   digest.sh         tomcat-native.tar.gz
+catalina-tasks.xml            setclasspath.bat  tool-wrapper.bat
+commons-daemon.jar            setclasspath.sh   tool-wrapper.sh
+commons-daemon-native.tar.gz  shutdown.bat      version.bat
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ -bash: li: command not found
+-bash: -bash:: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ bin   lib      logs    RELEASE-NOTES  temp     work
+-bash: bin: command not found
+[ec2-user@ip-172-31-1-221 /]$ conf  LICENSE  NOTICE  RUNNING.txt    webapps
+-bash: conf: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ cd bin
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 bin]$ ls
+configtest.bat                shutdown.sh       version.sh
+configtest.sh                 startup.bat
+[ec2-user@ip-172-31-1-221 bin]$ ./startup.sh
+Using CATALINA_BASE:   /usr/apache/apache-tomcat-8.5.14
+Using CATALINA_HOME:   /usr/apache/apache-tomcat-8.5.14
+Using CATALINA_TMPDIR: /usr/apache/apache-tomcat-8.5.14/temp
+Using JRE_HOME:        /usr/java/latest
+Using CLASSPATH:       /usr/apache/apache-tomcat-8.5.14/bin/bootstrap.jar:/u    sr/apache/apache-tomcat-8.5.14/bin/tomcat-juli.jar
+Tomcat started.
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ bootstrap.jar                 daemon.sh         startup.sh
+-bash: bootstrap.jar: command not found
+[ec2-user@ip-172-31-1-221 /]$ catalina.bat                  digest.bat        tomcat-juli.jar
+-bash: catalina.bat: command not found
+[ec2-user@ip-172-31-1-221 /]$ catalina.sh                   digest.sh         tomcat-native.tar.gz
+-bash: catalina.sh: command not found
+[ec2-user@ip-172-31-1-221 /]$ catalina-tasks.xml            setclasspath.bat  tool-wrapper.bat
+-bash: catalina-tasks.xml: command not found
+[ec2-user@ip-172-31-1-221 /]$ commons-daemon.jar            setclasspath.sh   tool-wrapper.sh
+-bash: commons-daemon.jar: command not found
+[ec2-user@ip-172-31-1-221 /]$ commons-daemon-native.tar.gz  shutdown.bat      version.bat
+[ec2-user@ip-172-31-1-221 bin]$ sudo ./startup.sh
+Using CATALINA_BASE:   /usr/apache/apache-tomcat-8.5.14
+Using CATALINA_HOME:   /usr/apache/apache-tomcat-8.5.14
+-bash: commons-daemon-native.tar.gz: command not found
+[ec2-user@ip-172-31-1-221 /]$ configtest.bat                shutdown.sh       version.sh
+-bash: configtest.bat: command not found
+[ec2-user@ip-172-31-1-221 /]$ configtest.sh                 startup.bat
+-bash: configtest.sh: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 bin]$ ./startup.sh
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CATALINA_BASE:   /usr/apache/apache-tomcat-8.5.14
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CATALINA_HOME:   /usr/apache/apache-tomcat-8.5.14
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CATALINA_TMPDIR: /usr/apache/apache-tomcat-8.5.14/temp
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using JRE_HOME:        /usr/java/latest
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CLASSPATH:       /usr/apache/apache-tomcat-8.5.14/bin/bootstrap.jar:/u    sr/apache/apache-tomcat-8.5.14/bin/tomcat-juli.jar
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Tomcat started.
+-bash: Tomcat: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 bin]$ sudo ./startup.sh
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CATALINA_BASE:   /usr/apache/apache-tomcat-8.5.14
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CATALINA_HOME:   /usr/apache/apache-tomcat-8.5.14
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CATALINA_TMPDIR: /usr/apache/apache-tomcat-8.5.14/temp
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using JRE_HOME:        /usr
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Using CLASSPATH:       /usr/apache/apache-tomcat-8.5.14/bin/bootstrap.jar:/u    sr/apache/apache-tomcat-8.5.14/bin/tomcat-juli.jar
+-bash: Using: command not found
+[ec2-user@ip-172-31-1-221 /]$ Tomcat started.
+-bash: Tomcat: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 bin]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 apache-tomcat-8.5.14]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 apache]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 usr]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ ls
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ ~     cgroup  home   local       mnt   root  selinux  tmp
+-bash: /home/ec2-user: Is a directory
+[ec2-user@ip-172-31-1-221 /]$ bin   dev     lib    lost+found  opt   run   srv      usr
+-bash: bin: command not found
+[ec2-user@ip-172-31-1-221 /]$ boot  etc     lib64  media       proc  sbin  sys      var
+-bash: boot: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ sudo netstat
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ Active Internet connections (w/o servers)
+-bash: syntax error near unexpected token `('
+[ec2-user@ip-172-31-1-221 /]$ Proto Recv-Q Send-Q Local Address               Foreign Address                 State
+-bash: Proto: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0    304 ip-172-31-1-221.us-west:ssh c-73-87-198-213.hsd1.:55024     ESTABLISHED
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ Active UNIX domain sockets (w/o servers)
+-bash: syntax error near unexpected token `('
+[ec2-user@ip-172-31-1-221 /]$ Proto RefCnt Flags       Type       State         I-Node Path
+-bash: Proto: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  11     [ ]         DGRAM                    9807   /dev/log
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    10558
+unix  3      [ ]         STREAM     CONNECTED     10442
+unix  3      [ ]         STREAM     CONNECTED     10443
+unix  2      [ ]         DGRAM                    10342
+unix  2      [ ]         DGRAM                    10520
+unix  3      [ ]         STREAM     CONNECTED     10448  /var/run/dbus/syste    m_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     10447
+unix  3      [ ]         STREAM     CONNECTED     9767
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     9768
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    81224
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     10442
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     10443
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    10342
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    10520
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     10448  /var/run/dbus/syste    m_bus_socket
+unix  3      [ ]         STREAM     CONNECTED     79815
+unix  2      [ ]         DGRAM                    12517
+unix  3      [ ]         DGRAM                    8691
+unix  3      [ ]         DGRAM                    8690
+unix  2      [ ]         DGRAM                    11079
+unix  2      [ ]         DGRAM                    10979
+unix  3      [ ]         STREAM     CONNECTED     79816
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     10447
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     9767
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     79815
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    12517
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         DGRAM                    8691
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         DGRAM                    8690
+unix  2      [ ]         DGRAM                    79811
+unix  2      [ ]         STREAM     CONNECTED     47995
+unix  2      [ ]         DGRAM                    11101
+unix  2      [ ]         DGRAM                    11059
+[ec2-user@ip-172-31-1-221 /]$ sudo netstat -tulpn
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address               Foreign Address                 State       PID/Program name
+tcp        0      0 0.0.0.0:22                  0.0.0.0:*                       LISTEN      2491/sshd
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    11079
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    10979
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  3      [ ]         STREAM     CONNECTED     79816
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    79811
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         STREAM     CONNECTED     47995
+tcp        0      0 127.0.0.1:25                0.0.0.0:*                       LISTEN      2521/sendmail
+tcp        0      0 0.0.0.0:47813               0.0.0.0:*                       LISTEN      2285/rpc.statd
+tcp        0      0 0.0.0.0:111                 0.0.0.0:*                       LISTEN      2264/rpcbind
+tcp        0      0 :::60689                    :::*                            LISTEN      2285/rpc.statd
+tcp        0      0 :::22                       :::*                            LISTEN      2491/sshd
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                            LISTEN      26553/java
+tcp        0      0 :::8009                     :::*                            LISTEN      26553/java
+tcp        0      0 :::111                      :::*                            LISTEN      2264/rpcbind
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    11101
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ unix  2      [ ]         DGRAM                    11059
+-bash: unix: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ sudo netstat -tulpn
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ Active Internet connections (only servers)
+-bash: syntax error near unexpected token `('
+[ec2-user@ip-172-31-1-221 /]$ Proto Recv-Q Send-Q Local Address               Foreign Address                 State       PID/Program name
+-bash: Proto: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 0.0.0.0:22                  0.0.0.0:*                       LISTEN      2491/sshd
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 127.0.0.1:25                0.0.0.0:*                       LISTEN      2521/sendmail
+tcp        0      0 :::8080                     :::*                            LISTEN      26553/java
+udp        0      0 0.0.0.0:68                  0.0.0.0:*                                   2059/dhclient
+udp        0      0 0.0.0.0:111                 0.0.0.0:*                                   2264/rpcbind
+udp        0      0 0.0.0.0:43638               0.0.0.0:*                                   2285/rpc.statd
+udp        0      0 172.31.1.221:123            0.0.0.0:*                                   2501/ntpd
+udp        0      0 127.0.0.1:123               0.0.0.0:*                                   2501/ntpd
+udp        0      0 0.0.0.0:123                 0.0.0.0:*                                   2501/ntpd
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 0.0.0.0:47813               0.0.0.0:*                       LISTEN      2285/rpc.statd
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 0.0.0.0:111                 0.0.0.0:*                       LISTEN      2264/rpcbind
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::60689                    :::*                            LISTEN      2285/rpc.statd
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::22                       :::*                            LISTEN      2491/sshd
+udp        0      0 0.0.0.0:743                 0.0.0.0:*                                   2264/rpcbind
+udp        0      0 127.0.0.1:766               0.0.0.0:*                                   2285/rpc.statd
+udp        0      0 fe80::803:14ff:fe46:8e3:546 :::*                                        2156/dhclient
+udp        0      0 :::111                      :::*                                        2264/rpcbind
+udp        0      0 :::35955                    :::*                                        2285/rpc.statd
+udp        0      0 :::743                      :::*                                        2264/rpcbind
+[ec2-user@ip-172-31-1-221 /]$ netstat -lntp | grep 80
+(Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 ::ffff:127.0.0.1:8005       :::*                            LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::8009                     :::*                            LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::111                      :::*                            LISTEN      2264/rpcbind
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::8080                     :::*                            LISTEN      26553/java
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      26553/java
+tcp        0      0 :::8009                     :::*                        LISTEN      26553/java
+tcp        0      0 :::8080                     :::*                        LISTEN      26553/java
+[ec2-user@ip-172-31-1-221 /]$ sudo netstat -lntp | grep 80
+tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      26553/java
+tcp        0      0 :::8009                     :::*                        LISTEN      26553/java
+tcp        0      0 :::8080                     :::*                        LISTEN      26553/java
+[ec2-user@ip-172-31-1-221 /]$ cd ..
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 0.0.0.0:68                  0.0.0.0:*                                   2059/dhclient
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 0.0.0.0:111                 0.0.0.0:*                                   2264/rpcbind
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 0.0.0.0:43638               0.0.0.0:*                                   2285/rpc.statd
+[ec2-user@ip-172-31-1-221 /]$ ssh -p 8080 ec2-35-166-77-62.us-west.2.compute.amazonaws.com port 8080
+ssh: Could not resolve hostname ec2-35-166-77-62.us-west.2.compute.amazonaws.com: Name or service not known
+[ec2-user@ip-172-31-1-221 /]$ ssh -p 8080 ec2-35-166-77-62.us-west-2.compute.amazonaws.com port 8080
+ssh_exchange_identification: Connection closed by remote host
+[ec2-user@ip-172-31-1-221 /]$ ^C
+[ec2-user@ip-172-31-1-221 /]$ telnet HOSTNAME 22
+-bash: telnet: command not found
+[ec2-user@ip-172-31-1-221 /]$ ssh -vvv
+usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 172.31.1.221:123            0.0.0.0:*                                   2501/ntpd
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 127.0.0.1:123               0.0.0.0:*                                   2501/ntpd
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 0.0.0.0:123                 0.0.0.0:*                                   2501/ntpd
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 0.0.0.0:743                 0.0.0.0:*                                   2264/rpcbind
+           [-D [bind_address:]port] [-E log_file] [-e escape_char]
+           [-F configfile] [-I pkcs11] [-i identity_file]
+           [-L [bind_address:]port:host:hostport] [-l login_name] [-m mac_spec]
+           [-O ctl_cmd] [-o option] [-p port]
+           [-Q cipher | cipher-auth | mac | kex | key]
+           [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port]
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 127.0.0.1:766               0.0.0.0:*                                   2285/rpc.statd
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 fe80::803:14ff:fe46:8e3:546 :::*                                        2156/dhclient
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 :::111                      :::*                                        2264/rpcbind
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 :::35955                    :::*                                        2285/rpc.statd
+           [-w local_tun[:remote_tun]] [user@]hostname [command]
+[ec2-user@ip-172-31-1-221 /]$ -L
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ udp        0      0 :::743                      :::*                                        2264/rpcbind
+-bash: udp: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ netstat -lntp | grep 80
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ (Not all processes could be identified, non-owned process info
+>  will not be shown, you would have to be root to see it all.)
+-bash: Not: command not found
+-bash: will: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::8009                     :::*                        LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::8080                     :::*                        LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ sudo netstat -lntp | grep 80
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 ::ffff:127.0.0.1:8005       :::*                        LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::8009                     :::*                        LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ tcp        0      0 :::8080                     :::*                        LISTEN      26553/java
+-bash: tcp: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ cd ..
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ ssh -p 8080 ec2-35-166-77-62.us-west.2.compute.amazonaws.com port 8080
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ ssh: Could not resolve hostname ec2-35-166-77-62.us-west.2.compute.amazonaws.com: Name or service not known
+-bash: ssh:: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ ssh -p 8080 ec2-35-166-77-62.us-west-2.compute.amazonaws.com port 8080
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ ssh_exchange_identification: Connection closed by remote host
+-bash: ssh_exchange_identification:: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ ^C
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ telnet HOSTNAME 22
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ -bash: telnet: command not found
+-bash: -bash:: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ ssh -vvv
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+-bash: usage:: command not found
+[ec2-user@ip-172-31-1-221 /]$            [-D [bind_address:]port] [-E log_file] [-e escape_char]
+-bash: [-D: command not found
+[ec2-user@ip-172-31-1-221 /]$            [-F configfile] [-I pkcs11] [-i identity_file]
+-bash: [-F: command not found
+[ec2-user@ip-172-31-1-221 /]$            [-L [bind_address:]port:host:hostport] [-l login_name] [-m mac_spec]
+-bash: [-L: command not found
+[ec2-user@ip-172-31-1-221 /]$            [-O ctl_cmd] [-o option] [-p port]
+-bash: [-O: command not found
+[ec2-user@ip-172-31-1-221 /]$            [-Q cipher | cipher-auth | mac | kex | key]
+-bash: key]: command not found
+-bash: kex: command not found
+-bash: mac: command not found
+-bash: cipher-auth: command not found
+-bash: [-Q: command not found
+[ec2-user@ip-172-31-1-221 /]$            [-R [bind_address:]port:host:hostport] [-S ctl_path] [-W host:port]
+-bash: [-R: command not found
+[ec2-user@ip-172-31-1-221 /]$            [-w local_tun[:remote_tun]] [user@]hostname [command]
+-bash: [-w: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$ -L
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$ -bash: -L: command not found
+-bash: -bash:: command not found
+[ec2-user@ip-172-31-1-221 /]$ [ec2-user@ip-172-31-1-221 /]$
+-bash: [ec2-user@ip-172-31-1-221: command not found
+[ec2-user@ip-172-31-1-221 /]$
