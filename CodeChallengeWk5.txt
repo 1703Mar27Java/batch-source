@@ -1,0 +1,14 @@
+CODE CHALLENGE for Monday, May 1:
+
+In a production environment, you'll never have your entire application and pipeline hosted on the same server. 
+Now that you have some experience with pipeline setup, do the following: 
+
+-set up a pipeline with Jenkins and your app hosted on two different EC2s. 
+-the additional EC2 will require Java and Tomcat only. 
+-you will need to change the URL in "Deploy war/ear to container" to your new EC2 in your build configuration. 
+
+-deploy a simple webapp to the EC2 with an HMTL homepage
+-add a Slack integration with the class channel to the pipeline (this will show up in the feed) 
+-Send me the link to the homepage of your deployed application. 
+
+This can be reused for Project 2! 
