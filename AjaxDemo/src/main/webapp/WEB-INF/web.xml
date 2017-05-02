@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>AjaxDemo</display-name>
+  <servlet>
+    <servlet-name>counter</servlet-name>
+    <servlet-class>com.revature.web.CounterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>counter</servlet-name>
+    <url-pattern>/count</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CaveServlet</display-name>
+    <servlet-name>CaveServlet</servlet-name>
+    <servlet-class>com.revature.web.CaveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CaveServlet</servlet-name>
+    <url-pattern>/CaveServlet</url-pattern>
+  </servlet-mapping>
+</web-app>

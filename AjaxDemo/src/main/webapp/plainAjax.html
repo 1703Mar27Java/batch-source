@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>PlainAjax</title>
+</head>
+<body>
+<div >
+	<h2 id="demo">Let AJAX change this text</h2>
+	<button type="button" onclick="loadDoc('ajaxInfo.txt',myFunction1)">Change Content</button>
+</div>
+<div >
+	<h2 id="demo2">Show me bulbasaur!</h2>
+	<button type="button" onclick="loadDoc('https://pokeapi.co/api/v2/pokemon/1/',myFunction2)">Change Content</button>
+</div>
+<div >
+	<h2 id="demo3">Show me the caves</h2>
+	<button type="button" onclick="loadDoc('caves.jsp',myFunction3)">Change Content</button>
+</div>
+</body>
+<script>
+function loadDoc(url,func){
+	var xhttp = new XMLHttpRequest()//we know we're going to use Chrome
+	xhttp.onreadystatechange = function(){
+		console.log(this.readyState);
+		if (this.readyState == 4 && this.status == 200){
+			func(this);
+		}
+	};
+	xhttp.open("GET",url,true);
+	xhttp.send();
+}
+function myFunction1(xhttp){
+	document.getElementById("demo").innerHTML = xhttp.responseText;
+}
+function myFunction2(xhttp){
+	document.getElementById("demo2").innerHTML = xhttp.responseText;
+}
+function myFunction3(xhttp){
+	document.getElementById("demo3").innerHTML = xhttp.responseText;
+}
+</script>
+</html>

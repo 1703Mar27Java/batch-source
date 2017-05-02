@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title id="title">This is a better title</title>
+</head>
+<body>
+
+	
+	<div id="div1">
+		<p id="p1">this is a paragraph</p>
+		<p id="p2">this is another paragraph</p>
+	</div>
+
+</body>
+<script>
+	/*document.getElementById("p1").innerHTML = "New text!";
+	var element = document.getElementById("title");
+	element.innerHTML = "New Title"*/
+	//document.getElementById("p2").innerHTML = document.getElementById("p1").innerHTML;
+	/*var p2 = document.getElementById("p2");
+	console.log(document.getElementById("p1").firstChild.nodeValue);*/
+	var para = document.createElement("p");
+	var node = document.createTextNode("this is new");
+	para.appendChild(node);
+	
+	var node2 = document.createTextNode("this is also new");
+	para.appendChild(node2);
+	
+	var element = document.getElementById("div1");
+	var child = document.getElementById("p1");
+	element.insertBefore(para,child);
+	
+	//console.log(element.firstChild.nodeValue);
+	console.log(para.firstChild.nodeValue);
+	console.log(para.lastChild.nodeValue);
+	
+	
+	
+	
+	
+	</script>
+</html>

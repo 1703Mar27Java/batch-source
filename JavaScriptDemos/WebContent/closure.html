@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Closure</title>
+</head>
+<body>
+<p onclick="birdCount()">count birds</p>
+<p id="birds"></p>
+<p onclick="dogCount()">count dogs</p>
+
+<p id="dogs"></p>
+</body>
+<script type="text/javascript" src=scripts/closure.js></script>
+<script>
+//giving a name to anonymous function returned by makeCount
+//using closure to set a "default" starting point for counter. 
+var birdCount = makeCount("birds");
+var dogCount = makeCount("dogs");
+</script>
+</html>

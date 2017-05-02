@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Now we have jQuery!</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+<div id="div1"></div>
+<button id="btn1">Click me</button>
+<div id="msg"></div>
+<button id="caveBtn">show caves</button>
+<div id="caves"></div>
+cave name: <input type="text" id="caveName"><br>
+max bears: <input type="text" id="maxBears"><br>
+<button id="btn2"> add this cave </button>
+
+</body>
+<script>
+$(document).ready(function(){
+	$("#btn1").click(function(){
+		$("#div1").load("ajaxInf.txt", function(responseTxt, statusTxt, xhr){
+			if(statusTxt=="success")
+				$("#msg").text("External content loaded successfully");
+				$("#div1").text(responseTxt);
+			if (statusTxt=="error")
+				$("#msg").text(xhr.status+ " : "+ xhr.statusText);
+		});
+	});
+	$("#btn2").click(function(){
+		$.post("CaveServlet", {
+			name: $("#caveName").val(),
+			max: $("#maxBears").val()
+		},
+		function(data, status){
+			alert("Data: "+data+"\nStatus: "+status);
+		});
+	});
+	$("#caveBtn").click(function(){
+		$.get("caves.jsp",function(responseTxt){
+			$("#caves").html(responseTxt);
+		});
+	});
+});
+
+
+
+</script>
+</html>

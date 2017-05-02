@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+	
+</script>
+<style>
+.important{
+font-weight:bold;
+font-size:xx-large;
+}
+.blue{
+color:blue;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>More jQuery!</title>
+</head>
+<body>
+	<button id="btn1">click</button>
+	<p id="p1">here is some text</p>
+	<button id="btn2">click2</button>
+	<div id="div1">
+		<p>here is some more text</p>
+	</div>
+	<button id="btn3">click3</button>
+	<input type="text" id="input1">
+	<button id="btn4">click4</button>
+	<a href="google.com" id="a1">google</a>
+	<button id="btn5">click5</button>
+	<a id="a2">some text</a>
+	<button id="btn6">append things</button>
+</body>
+<script>
+	$(document).ready(function() {
+		$("#btn1").click(function(){
+			alert("Text in p1: "+$("#p1").text());
+		});
+		$("#btn2").click(function(){
+			alert("HTML in div1: "+$("#div1").html());
+		});
+		$("#btn3").click(function(){
+			alert("Value in input1: "+$("#input1").val());
+		});
+		$("#btn4").click(function(){
+			alert("Value of href attribute in a1: "+$("#a1").attr("href"));
+		});
+		$("#btn2").click(function(){
+			$("#div1").html("<b>HelloWorld</b>");
+		});
+		//text with a callback
+		$("#btn5").click(function(){
+			$(this).text(function(i, origText){
+				return "Old text: "+origText+" new text: Hello World";
+			});
+		});
+		//set href and title of anchor tag
+		$("#btn5").click(function(){
+			$("#a2").attr({
+				"href":"www.google.com",
+				"title":"google"
+			});
+		});
+		
+		//append things
+		
+		$("#btn6").click(function (){
+			var txt1 = "<p>Text.</p>"; //create element with html
+			var txt2 = $("<p></p>").text("Text."); //create with jquery
+			var txt3 = document.createElement("p");
+			txt3.innerHTML = "Text.";//create with DOM
+			$("body").append(txt1,txt2,txt3);
+		});
+		
+		//toggle class
+		$("#p1").click(function(){
+			$(this,"#div1").addClass("blue");
+			$("#div1").toggleClass("important");
+		});
+		
+		
+	});
+</script>
+</html>

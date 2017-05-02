@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Enhanced Cursor</title>
+</head>
+<body onmousemove="enhanceCursor();">
+<div id="cursorplus" style="position:absolute;top:10px;left:10px;height:200px;width:200px;background-color:red"></div>
+</body>
+	<script>
+		function enhanceCursor() {
+			cursorplus.style.posLeft=event.clientX-10;
+			cursorplus.style.posTop=event.clientY-10;
+		}
+	</script>
+</html>

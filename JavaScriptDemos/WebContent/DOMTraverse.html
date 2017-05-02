@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+	
+</script>
+<style>
+.important{
+font-weight:bold;
+font-size:xx-large;
+}
+.blue{
+color:blue;
+}
+.descendants * {
+	display:block;
+	border: 2px solid lightgrey;
+	color: lightgrey;
+	padding: 5px;
+	margin: 15px;
+}
+</style>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<div>
+	<ul>
+	<li>
+		<span>THIS IS A SPAN</span>
+	</li>
+	<li>THIS IS A SPAN</li>
+	</ul>
+</div>
+<div class="descendants" style="width:500px;">div (current element) 
+  <p class="first">p (child)
+    <span>span (grandchild)</span>     
+  </p>
+  <p class="second">p (child)
+    <span>span (grandchild)</span>
+  </p> 
+</div>
+
+
+</body>
+<script>
+
+$(document).ready(function(){
+	//all children of a div
+	$("div").find("*").addClass("blue");
+	//change color of child of div which is a paragraph with class=first
+	$("div").children("p.first").css({"color":"red","border":"2px solid red"});
+});
+</script>
+</html>
