@@ -3,7 +3,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd"
+		default-init-method="defaultInit" default-destroy-method="defaultDestroy">
 	
 	<bean name="beanASetter" class="com.revature.beans.BeanASetter">
 		<property name="b" ref="beanB"/>
@@ -17,6 +18,9 @@
 	<bean name="beanAByName" class="com.revature.beans.BeanAByName"
 		autowire="byName">
 	</bean>
-	<bean name="beanB" class="com.revature.beans.BeanB"></bean>
+	<context:component-scan base-package="com.revature.beans"/>
+	<bean name="beanB" class="com.revature.beans.BeanB">
+		<property name="message" value="Hello World!"/>
+	</bean>
 
 </beans>
