@@ -26,13 +26,50 @@ public class MainClass {
 		// System.out.println(allBears);
 		// System.out.println(allBears.get(3).getCave());
 		// System.out.println(dao.getBearByName("Baloo"));
-		Bear getBear = getBearExample(200);
+		
+		
+		/*Bear getBear = getBearExample(200);
 		if (getBear != null) {
 		System.out.println(getBear.getName());}
 		Bear loadBear = loadBearExample(200);
-		System.out.println(loadBear.getId());
 		if (loadBear != null) {
-			System.out.println(loadBear.getName());}
+			System.out.println(loadBear.getName());}*/
+		//System.out.println(mergeHive());
+		//int amtFed = dao.feedBear(21, 25, 20);
+		//System.out.println(amtFed);
+		
+		init();
+		
+	}
+	
+	static Beehive mergeHive(){
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+			Beehive hive = new Beehive();
+			hive.setWeight(300);
+			//s.save(hive);
+			//s.flush(); 
+			//s.evict(hive); //remove hive from session memory
+			//hive.setWeight(400);
+			Beehive hive2 = (Beehive) s.merge(hive);
+			
+		tx.commit();
+		s.close();
+		return hive2;
+	}
+	
+	static Beehive updateHive(){
+		Session s = HibernateUtil.getSession();
+		Transaction tx = s.beginTransaction();
+			Beehive hive = new Beehive();
+			hive.setWeight(300);
+			s.save(hive);
+			hive.setWeight(400);
+			s.update(hive);
+			
+		tx.commit();
+		s.close();
+		return hive;
 	}
 
 	static Bear getBearExample(int id) {
@@ -115,6 +152,11 @@ public class MainClass {
 		Bear b6 = new Bear("Bear Bears", 400, c2);
 		Bear b7 = new Bear("Beary McBearface", 100, c2);
 
+		Bat bat1 = new Bat("Dracula", 400, c1);
+	
+
+
+	
 		Beehive bh1 = new Beehive(150);
 		Beehive bh2 = new Beehive(300);
 
@@ -130,6 +172,8 @@ public class MainClass {
 		session.save(b5);
 		session.save(b6);
 		session.save(b7);
+		
+		session.save(bat1);
 
 		session.save(bh1);
 		session.save(bh2);

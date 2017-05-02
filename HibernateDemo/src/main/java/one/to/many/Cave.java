@@ -34,7 +34,7 @@ public class Cave implements Serializable {
 	private String name;
 	
 	@OneToMany(mappedBy="cave",fetch=FetchType.EAGER)
-	List<Bear> occupants;
+	List<Animal> occupants;
 
 	public int getId() {
 		return id;
@@ -52,11 +52,11 @@ public class Cave implements Serializable {
 		this.name = name;
 	}
 
-	public List<Bear> getOccupants() {
+	public List<Animal> getOccupants() {
 		return occupants;
 	}
 
-	public void setOccupants(List<Bear> occupants) {
+	public void setOccupants(List<Animal> occupants) {
 		this.occupants = occupants;
 	}
 

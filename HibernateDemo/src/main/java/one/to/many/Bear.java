@@ -8,7 +8,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "BEAR")
-public class Bear implements Serializable {
+@AttributeOverrides({
+	@AttributeOverride(name="id",column=@Column(name="BEAR_ID")),
+	@AttributeOverride(name="name",column=@Column(name="BEAR_NAME")),
+	@AttributeOverride(name="cave",column=@Column(name="BEAR_CAVE"))
+})
+public class Bear extends Animal implements Serializable  {
 
 	/**
 	 * 
@@ -27,30 +32,11 @@ public class Bear implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bearSeq")
-	@SequenceGenerator(allocationSize = 1, name = "bearSeq", sequenceName = "BEAR_SEQ")
-	@Column(name = "BEAR_ID")
-	private int id;
-
-	@Column(name = "BEAR_NAME")
-	private String name;
-
 	@Column(name = "BEAR_WEIGHT")
 	private int weight;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "BEAR_CAVE")
-	Cave cave;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
+	
+	
 	public int getWeight() {
 		return weight;
 	}
@@ -59,31 +45,10 @@ public class Bear implements Serializable {
 		this.weight = w;
 	}
 
-	public String getName() {
-		return name;
-	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
 
-	public Cave getCave() {
-		return cave;
-	}
-
-	public void setCave(Cave cave) {
-		this.cave = cave;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cave == null) ? 0 : cave.hashCode());
-		result = prime * result + id;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		return result;
-	}
+	
+	
 
 	@Override
 	public boolean equals(Object obj) {

@@ -12,11 +12,13 @@
 		
 		<!--  property name="hibernate.show_sql"></property> -->
 		<!-- this creates our db. set it to update (or nothing) if db exists -->
-		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.hbm2ddl.auto">create</property>
 		
 		<!-- map domains -->
 		<mapping class="one.to.many.Beehive"/>
 		<mapping class="one.to.many.Cave"/>
 		<mapping class="one.to.many.Bear"/>
+		<mapping class="one.to.many.Bat"/>
+		<mapping class="one.to.many.Animal"/>
 	</session-factory>
 </hibernate-configuration>
