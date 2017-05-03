@@ -25,3 +25,8 @@ java.lang.ArithmeticException: / by zero
 java.lang.ArithmeticException: / by zero
 	at com.revature.logging.Driver.exceptionThrowingGarbage(Driver.java:20)
 	at com.revature.logging.Driver.main(Driver.java:12)
+2017-05-03 06:20:39 FATAL root:15 - Fatal msg
+2017-05-03 06:20:39 FATAL root:19 - / by zero
+java.lang.ArithmeticException: / by zero
+	at com.revature.logging.Driver.exceptionThrowingGarbage(Driver.java:20)
+	at com.revature.logging.Driver.main(Driver.java:12)
