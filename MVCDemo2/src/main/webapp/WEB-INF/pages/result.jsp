@@ -17,8 +17,8 @@
 			<td>${lastName}</td>
 		</tr>
 		<tr>
-			<td>Age</td>
-			<td>${age}</td>
+			<td>Date of Birth</td>
+			<td>${dateOfBirth}</td>
 		</tr>
 	</table>
 </body>
