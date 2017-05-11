@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app="demoApp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Angular Demo</title>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+<script src="app.js"></script>
+<script src="Demo/demoCtrl.js"></script>
+<script src="Forest/forestCtrl.js"></script>
+</head>
+<body>
+	<div>
+		<label>Favorite Color of rootscope:</label> 
+		<!--  input type="text" ng-model="favoriteColor"
+			placeholder="start typing here" /> <br />
+		<p ng-bind="color"></p>
+		<br />-->
+		<p>{{favoriteColor}}</p>
+	</div>
+	<!-- let's do expression with numerics -->
+	<p>This does math:{{5+5}}</p>
+	<p>This doesn't:{{'5'+'5'}}</p>
+
+
+	<div ng-controller="demoCtrl">
+		New name: <input ng-model="newFirstName"> <br>
+		<h3 ng-click="changeName(newFirstName)">Change name</h3>
+		<h1>{{firstName}}</h1>
+		<ul>
+			<li ng-repeat="person in people">{{person.name+', '+person.state}}</li>
+		</ul>
+		<p>Favorite color of demoCtrl scope:</p>
+		<p>{{favoriteColor}}</p>
+	</div>
+
+	<h3>Cost Calculator:</h3>
+	<div ng-init="quantity=1;price=5">
+		Quantity:<input type="number" ng-model="quantity"><br>
+		Price:<input type="number" ng-model="price"><br> Total in
+		dollars: {{quantity*price}}
+	</div>
+
+	<h3>Set background color</h3>
+	<div ng-init="backgroundColor=lightBlue">
+		<input style="background-color: {{backgroundColor}}"
+			ng-model="backgroundColor" value="{{backgroundColor}}">
+	</div>
+	
+	<div ng-init="mySwitch = true">
+	<p><button ng-disabled="mySwitch">Click me!</button></p>
+	<p><input type="checkbox" ng-model="mySwitch">Control button</p>
+	<p>{{mySwitch}}</p>
+	</div>
+
+
+
+	<div ng-controller="forestCtrl"></div>
+	<br />
+	<p>{{color}}</p>
+</body>
+</html>
