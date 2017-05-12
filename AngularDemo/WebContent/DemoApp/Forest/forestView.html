@@ -1,0 +1,31 @@
+<div ng-controller="forestCtrl" class="container" class="row">
+
+	<h2>Caves</h2>
+	
+	<div class="col-sm-9">
+	<h4>Search caves:</h4>
+	<input type="text" ng-model="search">
+		<ul>
+			<li ng-repeat="cave in caves | filter:search"><input
+				type="checkbox" ng-model="cave.rm" /> cave id: {{cave.id}}, cave
+				name: {{cave.name}}</li>
+		</ul>
+
+		<button ng-click="remove($cave)">Remove selected cave</button>
+	</div>
+	<div class="col-sm-3">
+		<h2>Add Cave</h2>
+		<form ng-submit="addCave()">
+			<input type="text" ng-model="newCaveName" size="30"
+				placeholder="enter name" ng-style="inputStyle" style=""> <input
+				type="submit" value="add cave">
+		</form>
+
+		<p>{{caves.length}}</p>
+
+		<p custom-directive></p>
+
+		<p>the current time is: {{theTime}}</p>
+	</div>
+
+</div>

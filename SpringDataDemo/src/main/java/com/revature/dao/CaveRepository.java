@@ -7,4 +7,8 @@ import com.revature.beans.Cave;
 
 @Repository
 public interface CaveRepository extends JpaRepository<Cave,Integer>{
+
+	Cave findBearByName(String name);
+
+	Cave findCaveById(int id);
 }

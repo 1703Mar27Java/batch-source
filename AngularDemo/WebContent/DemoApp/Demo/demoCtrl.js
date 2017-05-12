@@ -9,4 +9,9 @@ angular.module('demoApp').controller('demoCtrl',function demoCtrl($scope) {
 	$scope.changeName = function(newFirstName){
 		$scope.firstName = newFirstName;
 	}
+    $scope.myFunc = function(myE) {
+        $scope.x = myE.clientX;
+        $scope.y = myE.clientY;
+     }
+
 });

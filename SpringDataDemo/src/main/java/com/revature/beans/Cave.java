@@ -33,8 +33,8 @@ public class Cave implements Serializable {
 	@Column(name="CAVE_NAME")
 	private String name;
 	
-	@OneToMany(mappedBy="cave",fetch=FetchType.EAGER)
-	List<Animal> occupants;
+	/*@OneToMany(mappedBy="cave",fetch=FetchType.EAGER)
+	List<Animal> occupants;*/
 
 	public int getId() {
 		return id;
@@ -52,13 +52,13 @@ public class Cave implements Serializable {
 		this.name = name;
 	}
 
-	public List<Animal> getOccupants() {
+	/*public List<Animal> getOccupants() {
 		return occupants;
 	}
 
 	public void setOccupants(List<Animal> occupants) {
 		this.occupants = occupants;
-	}
+	}*/
 
 	@Override
 	public int hashCode() {
@@ -66,7 +66,7 @@ public class Cave implements Serializable {
 		int result = 1;
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((occupants == null) ? 0 : occupants.hashCode());
+		//result = prime * result + ((occupants == null) ? 0 : occupants.hashCode());
 		return result;
 	}
 
@@ -86,11 +86,11 @@ public class Cave implements Serializable {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (occupants == null) {
+		/*if (occupants == null) {
 			if (other.occupants != null)
 				return false;
 		} else if (!occupants.equals(other.occupants))
-			return false;
+			return false;*/
 		return true;
 	}
 
